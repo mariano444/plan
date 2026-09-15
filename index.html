@@ -124,10 +124,10 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
       <div class="search-card">
         <label for="dniSearch">Ingresá tu DNI</label>
         <div class="search-row">
-          <input id="dniSearch" type="text" inputmode="numeric" placeholder="Ej. 41596137" maxlength="12">
+          <input id="dniSearch" type="text" inputmode="numeric" placeholder="Ej. 20345678" maxlength="12">
           <button id="searchBtn" class="primary-btn">Consultar</button>
         </div>
-        <small>Probá con <b>41596137</b> o <b>30123456</b> (datos de ejemplo).</small>
+        <small>Ingresá el DNI de tu operación para ver el estado actualizado.</small>
       </div>
     </div>
 
@@ -169,8 +169,8 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
           <div class="form-section">
             <h4>Cliente</h4>
             <div class="fields two">
-              <label>Nombre y apellido<input id="name" required placeholder="Ej. Marcos Alvarez Brizuela"></label>
-              <label>DNI<input id="dni" required inputmode="numeric" placeholder="Ej. 41596137"></label>
+              <label>Nombre y apellido<input id="name" required placeholder="Ej. Juan Pérez"></label>
+              <label>DNI<input id="dni" required inputmode="numeric" placeholder="Ej. 20345678"></label>
               <label>Teléfono<input id="phone" placeholder="Ej. 351 555 5555"></label>
               <label>Asesor<input id="advisor" placeholder="Ej. Mariano"></label>
             </div>
@@ -250,49 +250,7 @@ const PROOF_BUCKET = "comprobantes";
 /* -----------------------------------------------------------
    A partir de acá la app funciona 100% contra Supabase:
    no se usa localStorage ni datos hardcodeados en el navegador.
-   Los datos de ejemplo abajo son sólo referencia de la forma
-   de los objetos que espera renderClient(); NO se usan en runtime.
 ------------------------------------------------------------ */
-const _shapeReferenceOnly = [
-  {
-    id: "demo-1",
-    name: "Marcos Alvaro Brizuela",
-    dni: "41596137",
-    phone: "351 555 0199",
-    advisor: "Mariano",
-    initial: { amount: 850000, status: "paid", proof: "comprobante_entrega.pdf", proofDate: "2026-09-09", confirmedDate: "2026-09-10" },
-    installmentValue: 410000,
-    installmentCount: 5,
-    payments: [
-      {n:1,due:"2026-09-20",status:"paid",paid:"2026-09-19",proof:"cuota1.pdf",proofDate:"2026-09-19",note:""},
-      {n:2,due:"2026-10-05",status:"paid",paid:"2026-10-05",proof:"cuota2.pdf",proofDate:"2026-10-05",note:""},
-      {n:3,due:"2026-10-20",status:"paid",paid:"2026-10-20",proof:"cuota3.pdf",proofDate:"2026-10-20",note:""},
-      {n:4,due:"2026-11-05",status:"paid",paid:"2026-11-05",proof:"cuota4.pdf",proofDate:"2026-11-05",note:""},
-      {n:5,due:"2026-11-12",status:"paid",paid:"2026-11-12",proof:"cuota5.pdf",proofDate:"2026-11-12",note:""}
-    ],
-    retiroRequested: false
-  },
-  {
-    id: "demo-2",
-    name: "Luciana Gomez",
-    dni: "30123456",
-    phone: "351 555 0132",
-    advisor: "Mariano",
-    initial: { amount: 500000, status: "half", proof: "transferencia_luciana.jpg", proofDate: "2026-09-12", confirmedDate: "2026-09-13" },
-    installmentValue: 230000,
-    installmentCount: 7,
-    payments: [
-      {n:1,due:"2026-09-15",status:"paid",paid:"2026-09-15",proof:"cuota1.jpg",proofDate:"2026-09-15",note:""},
-      {n:2,due:"2026-10-15",status:"risk",paid:"",proof:"",proofDate:"",note:"Reprogramada por cliente"},
-      {n:3,due:"2026-11-15",status:"pending",paid:"",proof:"",proofDate:"",note:""},
-      {n:4,due:"2026-11-30",status:"pending",paid:"",proof:"",proofDate:"",note:""},
-      {n:5,due:"2026-12-05",status:"pending",paid:"",proof:"",proofDate:"",note:""},
-      {n:6,due:"2026-12-10",status:"pending",paid:"",proof:"",proofDate:"",note:""},
-      {n:7,due:"2026-12-15",status:"pending",paid:"",proof:"",proofDate:"",note:""}
-    ],
-    retiroRequested: false
-  }
-];
 
 let currentClientId = null;   // cliente mostrado en la vista "Consulta"
 let currentClientData = null; // último objeto de cliente renderizado (para refrescar)
@@ -890,6 +848,7 @@ document.getElementById("clientForm").addEventListener("submit", async e=>{
   e.preventDefault();
   const c=getFormClient();
   if(!c.name||!c.dni){showToast("Completá nombre y DNI.");return}
+  if(c.payments.some(p=>!p.due)){showToast("Cargá la fecha de vencimiento de todas las cuotas (o usá \"Generar cuotas\").");return}
 
   const submitBtn = e.target.querySelector('button[type="submit"]');
   submitBtn.disabled = true; const originalLabel = submitBtn.textContent; submitBtn.textContent = "Guardando...";
@@ -938,9 +897,11 @@ document.getElementById("clientForm").addEventListener("submit", async e=>{
     await loadAdminClients();
   }catch(err){
     console.error(err);
-    const msg = (err.message||"").includes("duplicate key")
-      ? "Ya existe un cliente con ese DNI."
-      : "No se pudo guardar. Revisá los datos e intentá de nuevo.";
+    const raw = err.message||"";
+    let msg = "No se pudo guardar. Revisá los datos e intentá de nuevo.";
+    if(raw.includes("duplicate key")) msg = "Ya existe un cliente con ese DNI.";
+    else if(raw.includes('column "due"')) msg = 'Faltan fechas de vencimiento en las cuotas. Ejecutá el fix de la base (fix_due_nullable.sql) o completá todas las fechas.';
+    else if(raw.includes("row-level security")) msg = "La base rechazó el guardado por permisos (RLS). Revisá el script fix_rls.sql.";
     showToast(msg);
   }finally{
     submitBtn.disabled = false; submitBtn.textContent = originalLabel;
