@@ -96,7 +96,7 @@ input,select{width:100%;border:1px solid var(--line);background:#fff;border-radi
 .editor-proof-line a{font-size:11px;font-weight:800;color:var(--blue);text-decoration:none;border:1px solid var(--line);padding:5px 10px;border-radius:8px}
 .editor-proof-line a:hover{border-color:var(--blue)}
 .editor-proof-line span{font-size:11px;color:var(--muted)}
-.admin-lock{position:fixed;inset:0;background:#071b3acc;display:none;align-items:center;justify-content:center;padding:20px;z-index:80}.admin-lock.show{display:flex}.admin-lock-card{width:min(420px,100%);background:#fff;border-radius:22px;padding:26px;border:1px solid var(--line);box-shadow:var(--shadow)}.admin-lock-card h3{font:900 22px Montserrat;margin:0 0 7px}.admin-lock-card p{margin:0 0 18px;color:var(--muted);font-size:13px;line-height:1.5}.admin-lock-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:15px}
+.admin-lock{position:fixed;inset:0;background:#071b3acc;display:none;align-items:center;justify-content:center;padding:20px;z-index:80}.admin-lock.show{display:flex}.admin-lock-card{width:min(420px,100%);background:#fff;border-radius:22px;padding:26px;border:1px solid var(--line);box-shadow:var(--shadow)}.admin-lock-card h3{font:900 22px Montserrat;margin:0 0 7px}.admin-lock-card p{margin:0 0 18px;color:var(--muted);font-size:13px;line-height:1.5}.admin-lock-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:15px}.admin-lock-error{min-height:18px;margin-top:9px;color:var(--red);font-size:12px;font-weight:800}
 .client-list{display:grid;gap:9px;max-height:650px;overflow:auto}.client-item{border:1px solid var(--line);border-radius:13px;padding:13px;cursor:pointer}.client-item:hover{border-color:var(--blue);background:#f7fbff}.client-item-top{display:flex;justify-content:space-between;gap:10px}.client-item b{font-size:13px}.client-item small{color:var(--muted);display:block;margin-top:4px}.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px}.dot.green{background:var(--green)}.dot.yellow{background:var(--yellow)}.dot.red{background:var(--red)}
 .toast{position:fixed;right:25px;bottom:25px;background:var(--navy);color:#fff;padding:14px 18px;border-radius:12px;box-shadow:var(--shadow);transform:translateY(120px);opacity:0;transition:.3s;z-index:50;font-weight:700;max-width:320px}.toast.show{transform:translateY(0);opacity:1}
 footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;font-size:11px;border-top:1px solid var(--line);gap:15px}
@@ -106,6 +106,18 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
 </head>
 <body>
 <div id="toast" class="toast"></div>
+<div id="adminLock" class="admin-lock" aria-hidden="true">
+  <form id="adminLockForm" class="admin-lock-card">
+    <h3>Acceso administrativo</h3>
+    <p>Ingresá la contraseña para abrir el panel interno.</p>
+    <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Contraseña">
+    <div id="adminLockError" class="admin-lock-error"></div>
+    <div class="admin-lock-actions">
+      <button type="button" id="adminLockCancel" class="ghost-btn">Cancelar</button>
+      <button type="submit" class="primary-btn">Ingresar</button>
+    </div>
+  </form>
+</div>
 
 <header class="topbar">
   <div class="brand">
@@ -259,7 +271,7 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
 
 <footer>
   <span>MundoAuto · Portal de Compromisos y Retiro</span>
-  <span>Conectado a Supabase · Comprobantes almacenados en Supabase Storage</span>
+  <span>Datos protegidos por SSL y bajo la Ley N° 25.326 de Protección de Datos Personales</span>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -271,6 +283,7 @@ const SUPABASE_URL = "https://pamiixztulwcjymllzle.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_iP1AfoZzzSmkN_gAIGqs7g_-sHv1Sht";
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const PROOF_BUCKET = "comprobantes";
+const ADMIN_PASSWORD = "MA24568";
 
 /* -----------------------------------------------------------
    A partir de acá la app funciona 100% contra Supabase:
@@ -280,6 +293,7 @@ const PROOF_BUCKET = "comprobantes";
 let currentClientId = null;   // cliente mostrado en la vista "Consulta"
 let currentClientData = null; // último objeto de cliente renderizado (para refrescar)
 let adminClients = [];        // caché de la lista del panel de administración
+let adminUnlocked = false;
 
 // ---------------------------------------------------------
 // Mapeo: filas de Supabase (clients + payments) -> forma que
@@ -954,12 +968,47 @@ function showToast(msg){
   clearTimeout(window.__toast); window.__toast=setTimeout(()=>t.classList.remove("show"),2600);
 }
 
-document.querySelectorAll(".nav-btn").forEach(btn=>btn.addEventListener("click",()=>{
+function activateView(btn){
   document.querySelectorAll(".nav-btn").forEach(x=>x.classList.remove("active")); btn.classList.add("active");
   document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));
   document.getElementById("view-"+btn.dataset.view).classList.add("active");
   if(btn.dataset.view==="admin") loadAdminClients();
+}
+
+function showAdminLock(){
+  const lock=document.getElementById("adminLock");
+  document.getElementById("adminPassword").value="";
+  document.getElementById("adminLockError").textContent="";
+  lock.classList.add("show");
+  lock.setAttribute("aria-hidden","false");
+  setTimeout(()=>document.getElementById("adminPassword").focus(), 40);
+}
+
+function hideAdminLock(){
+  const lock=document.getElementById("adminLock");
+  lock.classList.remove("show");
+  lock.setAttribute("aria-hidden","true");
+}
+
+document.querySelectorAll(".nav-btn").forEach(btn=>btn.addEventListener("click",()=>{
+  if(btn.dataset.view==="admin" && !adminUnlocked){
+    showAdminLock();
+    return;
+  }
+  activateView(btn);
 }));
+document.getElementById("adminLockForm").addEventListener("submit", e=>{
+  e.preventDefault();
+  if(document.getElementById("adminPassword").value===ADMIN_PASSWORD){
+    adminUnlocked = true;
+    hideAdminLock();
+    activateView(document.querySelector('[data-view="admin"]'));
+    return;
+  }
+  document.getElementById("adminLockError").textContent="Contraseña incorrecta.";
+});
+document.getElementById("adminLockCancel").addEventListener("click",hideAdminLock);
+document.getElementById("adminPassword").addEventListener("keydown",e=>{if(e.key==="Escape")hideAdminLock()});
 document.getElementById("searchBtn").addEventListener("click",searchClient);
 document.getElementById("dniSearch").addEventListener("keydown",e=>{if(e.key==="Enter")searchClient()});
 document.getElementById("newClientBtn").addEventListener("click",()=>{resetForm();document.getElementById("clientForm").scrollIntoView({behavior:"smooth"})});
@@ -1050,7 +1099,6 @@ document.getElementById("clientForm").addEventListener("submit", async e=>{
 });
 
 renderPaymentEditor(5);
-loadAdminClients();
 
 window.editClient=editClient; window.deleteClient=deleteClient; window.uploadProof=uploadProof; window.uploadProofInitial=uploadProofInitial; window.gestionarRetiro=gestionarRetiro;
 </script>
