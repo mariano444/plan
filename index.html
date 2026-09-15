@@ -19,7 +19,7 @@ body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(
 button,input,select{font:inherit}
 button{cursor:pointer}
 .topbar{height:76px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 5%;position:sticky;top:0;z-index:20;box-shadow:0 5px 25px #06152d44}
-.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:43px;height:43px;border-radius:12px;background:linear-gradient(135deg,var(--yellow),#ffec72);color:var(--navy);display:grid;place-items:center;font:900 24px Montserrat}.brand strong{display:block;font:900 19px Montserrat;letter-spacing:-.6px}.brand strong span{color:var(--yellow)}.brand small{color:#b9c9e2;font-size:10px;letter-spacing:1.5px;text-transform:uppercase}
+.brand{display:flex;align-items:center;gap:12px}.brand-logo{width:172px;height:57px;object-fit:contain;border-radius:8px;background:#fff;padding:4px;display:block}.brand strong{display:block;font:900 19px Montserrat;letter-spacing:-.6px}.brand strong span{color:var(--blue)}.brand small{color:#b9c9e2;font-size:10px;letter-spacing:1.5px;text-transform:uppercase}
 .top-actions{display:flex;gap:8px}.nav-btn{border:1px solid #ffffff22;background:transparent;color:#dce8f8;padding:11px 15px;border-radius:10px;font-weight:700}.nav-btn.active,.nav-btn:hover{background:#ffffff12;color:#fff;border-color:#ffffff38}
 main{min-height:calc(100vh - 130px)}.view{display:none}.view.active{display:block}
 .hero{background:radial-gradient(circle at 85% 25%,#1a65b8 0,#0c2c5d 37%,var(--navy) 75%);color:#fff;padding:70px 7%;display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;min-height:390px}.eyebrow{font-size:11px;font-weight:900;letter-spacing:2px;color:var(--yellow)}.hero h1{font:900 clamp(38px,5vw,67px)/1.02 Montserrat;margin:14px 0 18px;letter-spacing:-2.5px}.hero h1 span{color:var(--yellow)}.hero p{max-width:650px;color:#c9d8ed;font-size:17px;line-height:1.65}
@@ -45,9 +45,11 @@ input,select{width:100%;border:1px solid var(--line);background:#fff;border-radi
 .initial-amount{font:900 22px Montserrat}
 .initial-message{color:var(--muted);font-size:13px;margin-top:4px;max-width:520px}
 .proof-tag{color:var(--muted);font-size:12px;margin-top:6px}
+.bonus-tag{display:inline-flex;align-items:center;gap:7px;margin-top:9px;padding:7px 11px;border-radius:10px;background:#eaf4ff;color:var(--blue);font-size:12px;font-weight:900}
+.bonus-tag.active{background:#e5faed;color:#087d37}
 
 .progress-card{background:#fff;border-radius:22px;padding:26px;border:1px solid var(--line);box-shadow:var(--shadow);margin-bottom:25px}.progress-head{display:flex;justify-content:space-between;gap:15px;align-items:end}.progress-head h3{margin:0;font:900 20px Montserrat}.progress-head b{font-size:28px;color:var(--green2)}.progress-track{height:13px;background:#e8eef5;border-radius:20px;overflow:hidden;margin:17px 0 8px}.progress-fill{height:100%;background:linear-gradient(90deg,var(--green),#7bea49);border-radius:20px;transition:.5s}.progress-caption{color:var(--muted);font-size:13px}
-.timeline-wrap{background:#fff;border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow);padding:28px;margin-bottom:25px;overflow:hidden}.timeline-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}.timeline-title h3{margin:0;font:900 20px Montserrat}.timeline{display:flex;position:relative;min-width:730px}.timeline:before{content:"";position:absolute;left:6%;right:6%;top:42px;height:5px;background:#e4ebf3;border-radius:10px}.step{position:relative;z-index:1;flex:1;text-align:center}.step-dot{width:84px;height:84px;border-radius:50%;margin:auto;background:#fff;border:6px solid #dce6f1;display:grid;place-items:center;font-size:25px;box-shadow:0 7px 18px #071b3a12}.step.done .step-dot{border-color:var(--green);background:#eafff0}.step.risk .step-dot{border-color:var(--yellow);background:#fffbe7}.step.failed .step-dot{border-color:var(--red);background:#fff0f0}.step.verifying .step-dot{border-color:var(--blue);background:#eaf4ff}.step h4{margin:12px 0 4px;font-size:12px}.step p{margin:0;color:var(--muted);font-size:11px;line-height:1.45}.step strong{display:block;margin-top:5px}
+.timeline-wrap{background:#fff;border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow);padding:28px;margin-bottom:25px;overflow:hidden}.timeline-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}.timeline-title h3{margin:0;font:900 20px Montserrat}.timeline{display:flex;position:relative;min-width:840px}.timeline:before{content:"";position:absolute;left:6%;right:6%;top:42px;height:5px;background:#e4ebf3;border-radius:10px}.step{position:relative;z-index:1;flex:1;text-align:center}.step-dot{width:84px;height:84px;border-radius:50%;margin:auto;background:#fff;border:6px solid #dce6f1;display:grid;place-items:center;font-size:25px;box-shadow:0 7px 18px #071b3a12}.step.done .step-dot{border-color:var(--green);background:#eafff0}.step.risk .step-dot{border-color:var(--yellow);background:#fffbe7}.step.failed .step-dot{border-color:var(--red);background:#fff0f0}.step.verifying .step-dot{border-color:var(--blue);background:#eaf4ff}.step h4{margin:12px 0 4px;font-size:12px}.step p{margin:0;color:var(--muted);font-size:11px;line-height:1.45}.step strong{display:block;margin-top:5px}
 .step.final-combo{background:linear-gradient(160deg,#0c2a58,#071b3a);border-radius:20px;padding:16px 10px;margin-top:-6px}
 .step.final-combo h4{color:var(--yellow);font-size:12px;letter-spacing:.4px}
 .step.final-combo p{color:#c9d8ed}
@@ -68,6 +70,9 @@ input,select{width:100%;border:1px solid var(--line);background:#fff;border-radi
 .countdown-label{font-size:11px;font-weight:800;color:var(--orange)}
 .countdown-timer{font:900 15px Montserrat;color:var(--red);background:#fff0e0;padding:4px 10px;border-radius:8px;letter-spacing:.3px}
 .countdown-timer.expired{color:#fff;background:var(--red)}
+.initial-deadline{margin-top:12px;padding:13px;border-radius:14px;background:#f7fbff;border:1px solid var(--line)}
+.initial-deadline .countdown-wrap{margin-top:0}
+.initial-deadline small{display:block;color:var(--muted);margin-top:6px;font-size:12px}
 .locked-teaser{text-align:center;color:var(--muted);font-size:12px;font-weight:700;padding:14px 0 4px;border-top:1px dashed #edf2f7;margin-top:8px}
 .meta-row{display:flex;align-items:center;gap:14px;margin-top:16px;padding:16px;border-radius:16px;background:linear-gradient(120deg,#071b3a,#0d3a75);color:#fff}
 .meta-icon{width:48px;height:48px;border-radius:50%;background:#ffffff20;display:grid;place-items:center;font-size:22px;flex-shrink:0}
@@ -93,7 +98,7 @@ input,select{width:100%;border:1px solid var(--line);background:#fff;border-radi
 .toast{position:fixed;right:25px;bottom:25px;background:var(--navy);color:#fff;padding:14px 18px;border-radius:12px;box-shadow:var(--shadow);transform:translateY(120px);opacity:0;transition:.3s;z-index:50;font-weight:700;max-width:320px}.toast.show{transform:translateY(0);opacity:1}
 footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;font-size:11px;border-top:1px solid var(--line);gap:15px}
 @media(max-width:900px){.hero{grid-template-columns:1fr;padding:45px 6%}.admin-grid{grid-template-columns:1fr}.client-top{grid-template-columns:1fr}.payment-row{grid-template-columns:55px 1fr auto}.payment-row .payment-meta{display:none}.payment-actions{justify-content:flex-end}.section-head{align-items:start;flex-direction:column}}
-@media(max-width:600px){.topbar{padding:0 4%;height:68px}.brand small{display:none}.top-actions{gap:4px}.nav-btn{padding:9px;font-size:11px}.hero{padding:38px 5%}.hero h1{font-size:42px}.search-row{flex-direction:column}.client-panel{padding:25px 4%}.overview{grid-template-columns:1fr 1fr}.metric{padding:14px}.identity h2{font-size:21px}.avatar{width:54px;height:54px}.timeline-wrap{padding:20px 12px;overflow-x:auto}.timeline{min-width:700px}.commitments{padding:18px}.payment-row{grid-template-columns:45px 1fr auto}.payment-amount{font-size:12px}.fields.two{grid-template-columns:1fr}.full{grid-column:auto}.admin-grid,.section-head{padding-left:4%;padding-right:4%}.form-card,.list-card{padding:18px}.editor-row{grid-template-columns:35px 1fr 115px}.editor-row select{grid-column:2/-1}.retiro-card{flex-direction:column;align-items:start}footer{flex-direction:column}}
+@media(max-width:600px){.topbar{padding:0 4%;height:68px}.brand-logo{width:126px;height:42px}.brand strong,.brand small{display:none}.top-actions{gap:4px}.nav-btn{padding:9px;font-size:11px}.hero{padding:38px 5%}.hero h1{font-size:42px}.search-row{flex-direction:column}.client-panel{padding:25px 4%}.overview{grid-template-columns:1fr 1fr}.metric{padding:14px}.identity h2{font-size:21px}.avatar{width:54px;height:54px}.timeline-wrap{padding:20px 12px;overflow-x:auto}.timeline{min-width:840px}.commitments{padding:18px}.payment-row{grid-template-columns:45px 1fr auto}.payment-amount{font-size:12px}.fields.two{grid-template-columns:1fr}.full{grid-column:auto}.admin-grid,.section-head{padding-left:4%;padding-right:4%}.form-card,.list-card{padding:18px}.editor-row{grid-template-columns:35px 1fr 115px}.editor-row select{grid-column:2/-1}.retiro-card{flex-direction:column;align-items:start}footer{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -101,7 +106,7 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
 
 <header class="topbar">
   <div class="brand">
-    <div class="brand-mark">M</div>
+    <img class="brand-logo" src="assets/mundoauto-logo.png" alt="MundoAuto">
     <div>
       <strong>MUNDO<span>AUTO</span></strong>
       <small>Portal de Compromisos</small>
@@ -165,6 +170,7 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
           <input type="hidden" id="initialProof">
           <input type="hidden" id="initialProofDate">
           <input type="hidden" id="initialConfirmedDate">
+          <input type="hidden" id="folderPaidDate">
 
           <div class="form-section">
             <h4>Cliente</h4>
@@ -173,6 +179,19 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
               <label>DNI<input id="dni" required inputmode="numeric" placeholder="Ej. 20345678"></label>
               <label>Teléfono<input id="phone" placeholder="Ej. 351 555 5555"></label>
               <label>Asesor<input id="advisor" placeholder="Ej. Mariano"></label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h4>Carpeta pagada</h4>
+            <div class="fields two">
+              <label>Estado de carpeta
+                <select id="folderStatus">
+                  <option value="pending">Pendiente</option>
+                  <option value="paid">Pagada</option>
+                </select>
+              </label>
+              <label>Fecha de pago<input id="folderPaidDateVisible" type="date"></label>
             </div>
           </div>
 
@@ -188,6 +207,8 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
                   <option value="paid">Pago completo (100%)</option>
                 </select>
               </label>
+              <label>Vencimiento base<input id="initialDueDate" type="date"></label>
+              <label>Días de extensión<input id="initialExtensionDays" type="number" min="0" value="0"></label>
             </div>
             <p id="initialProofInfo" class="proof-info"></p>
             <div id="initialProofPreview"></div>
@@ -281,12 +302,20 @@ function mapDbClient(row, paymentsRows){
       status: row.initial_status || "pending",
       proof: row.initial_proof || "",
       proofDate: row.initial_proof_date || "",
-      confirmedDate: row.initial_confirmed_date || ""
+      confirmedDate: row.initial_confirmed_date || "",
+      dueDate: row.initial_due_date || "",
+      extensionDays: Number(row.initial_extension_days)||0
+    },
+    folder: {
+      paid: !!row.folder_paid,
+      paidDate: row.folder_paid_date || ""
     },
     installmentValue: Number(row.installment_value)||0,
     installmentCount: Number(row.installment_count)||payments.length,
     payments,
-    retiroRequested: !!row.retiro_requested
+    retiroRequested: !!row.retiro_requested,
+    transferBonusActive: !!row.transfer_bonus_active || row.initial_status === "paid",
+    createdAt: row.created_at || ""
   };
 }
 
@@ -345,6 +374,15 @@ function formatDate(s){
   const d = new Date(s+"T12:00:00");
   return d.toLocaleDateString("es-AR",{day:"2-digit",month:"2-digit",year:"numeric"});
 }
+function dateOnly(s){
+  if(!s) return "";
+  return String(s).slice(0,10);
+}
+function addDays(dateStr, days){
+  const base = dateStr ? new Date(dateOnly(dateStr)+"T12:00:00") : new Date();
+  base.setDate(base.getDate() + Number(days||0));
+  return base.toISOString().slice(0,10);
+}
 function statusOf(c){
   const p = c.payments || [];
   if(p.some(x => x.status === "failed")) return "failed";
@@ -378,6 +416,16 @@ function initialMessage(status){
 function initialBadgeClass(status){
   return status==="paid" ? "status-green" : status==="half" ? "status-yellow" : status==="verifying" ? "status-blue" : "status-grey";
 }
+function initialDueDate(c){
+  const initial = c.initial || {};
+  const baseDue = initial.dueDate || addDays(c.createdAt || new Date().toISOString(), 10);
+  return addDays(baseDue, initial.extensionDays || 0);
+}
+function initialCountdownText(initial){
+  if(initial.status==="paid") return "Entrega inicial completa";
+  if(initial.status==="half") return "Seña recibida: podés completar o extender desde administración";
+  return "Plazo para completar la entrega inicial, pagar una seña o solicitar extensión";
+}
 
 function isRetiroReady(c){
   const initOk = c.initial && c.initial.status === "paid";
@@ -385,13 +433,12 @@ function isRetiroReady(c){
   return initOk && cuotasOk;
 }
 
-// La carpeta se considera pagada al llegar al 50% de la entrega inicial;
-// la entrega inicial se considera pagada al confirmarse el 100%.
-// Ambas suman como "compromisos" junto con cada cuota, para reflejar
-// el avance real del cliente hacia el retiro.
+// La carpeta y la entrega inicial son compromisos separados:
+// la seña/50% avanza la entrega inicial, pero no reemplaza el estado
+// administrativo de carpeta pagada.
 function computeAvance(c){
   const initial = c.initial || {amount:0,status:"pending"};
-  const carpetaDone = initial.status === "half" || initial.status === "paid";
+  const carpetaDone = !!(c.folder && c.folder.paid);
   const entregaInicialDone = initial.status === "paid";
   const payments = c.payments || [];
   const paidCuotas = payments.filter(p=>p.status==="paid").sort((a,b)=>a.n-b.n);
@@ -421,6 +468,8 @@ function renderClient(c){
   const avance = computeAvance(c);
   const carpetaDone = avance.carpetaDone;
   const entregaInicialDone = avance.entregaInicialDone;
+  const dueInitial = initialDueDate(c);
+  const bonusActive = !!c.transferBonusActive || entregaInicialDone;
 
   const panel = document.getElementById("clientPanel");
   panel.innerHTML = `
@@ -452,6 +501,11 @@ function renderClient(c){
         <div>
           <div class="initial-amount">${money(initial.amount)}</div>
           <div class="initial-message">${initialMessage(initial.status)}</div>
+          <div class="initial-deadline">
+            <div class="countdown-wrap"><span class="countdown-label">⏰ Entrega inicial</span><span id="initialCountdownTimer" class="countdown-timer">--</span></div>
+            <small>Vence ${formatDate(dueInitial)} · ${initialCountdownText(initial)}</small>
+          </div>
+          <div class="bonus-tag ${bonusActive?"active":""}">${bonusActive?"✓":"○"} Traslado a domicilio bonificado ${bonusActive?"activo":"al completar la entrega inicial"}</div>
           ${initial.proof ? `<div class="proof-tag">📎 <a href="${initial.proof}" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700">Ver comprobante</a>${initial.proofDate ? " · "+formatDate(initial.proofDate) : ""}</div>` : ""}
         </div>
         <button class="icon-btn" onclick="uploadProofInitial('${c.id}')" ${initial.status==="paid"?"disabled":""}>📎 ${initial.proof ? "Actualizar comprobante" : "Cargar comprobante"}</button>
@@ -470,6 +524,10 @@ function renderClient(c){
         <div class="step ${carpetaDone?"done":""}">
           <div class="step-dot">${carpetaDone?"✓":"$"}</div>
           <h4>CARPETA PAGADA</h4><p>¡Felicitaciones por tu compromiso con tu auto!</p><strong>${carpetaDone?"Completado":"Pendiente"}</strong>
+        </div>
+        <div class="step ${entregaInicialDone?"done":initial.status==="verifying"?"verifying":initial.status==="half"?"risk":""}">
+          <div class="step-dot">${entregaInicialDone?"✓":initial.status==="verifying"?"⏳":initial.status==="half"?"50%":"$"}</div>
+          <h4>ENTREGA INICIAL</h4><p>Vence ${formatDate(dueInitial)}<br>${money(initial.amount)}</p><strong>${initial.status==="paid"?"Pagada":initial.status==="half"?"Seña / mitad":paymentStatusText(initial.status)}</strong>
         </div>
         ${(c.payments||[]).map(p => {
           const isLastStep = p.n === total;
@@ -498,6 +556,17 @@ function renderClient(c){
         <div class="payment-amount">—</div>
         <div class="payment-meta"><span class="payment-status ${carpetaDone?"status-green":"status-grey"}">${carpetaDone?"COMPLETADO":"PENDIENTE"}</span></div>
         <div class="payment-actions"></div>
+      </div>
+      <div class="payment-row ${!entregaInicialDone?"current-row":""}">
+        <div class="payment-number ${entregaInicialDone?"":"pulse"}">${entregaInicialDone?"✓":"$"}</div>
+        <div class="payment-info">
+          <b>Entrega inicial</b>
+          <small>Vencimiento: ${formatDate(dueInitial)}</small>
+          ${!entregaInicialDone ? `<div class="countdown-wrap"><span class="countdown-label">⏰ Tiempo restante</span><span id="initialCommitmentTimer" class="countdown-timer">--</span></div>` : ""}
+        </div>
+        <div class="payment-amount">${money(initial.amount)}</div>
+        <div class="payment-meta"><span class="payment-status ${initialBadgeClass(initial.status)}">${initial.status==="paid"?"PAGADA":initial.status==="half"?"SEÑA / 50%":paymentStatusText(initial.status)}</span></div>
+        <div class="payment-actions"><button class="icon-btn" onclick="uploadProofInitial('${c.id}')" ${entregaInicialDone?"disabled":""}>📎</button></div>
       </div>
       ${(function(){
         const payments = c.payments||[];
@@ -557,21 +626,36 @@ function renderClient(c){
   `;
   document.getElementById("emptyState").classList.add("hidden");
   panel.classList.remove("hidden");
+  if(!entregaInicialDone) {
+    startCountdown(dueInitial, "initialCountdownTimer");
+    startCountdown(dueInitial, "initialCommitmentTimer");
+  } else {
+    setCountdownComplete("initialCountdownTimer", "Completada");
+  }
   const currentPayment = entregaInicialDone ? (c.payments||[]).find(p=>p.status!=="paid") : null;
-  if(currentPayment && currentPayment.due) startCountdown(currentPayment.due); else clearInterval(window.__countdownTimer);
+  if(currentPayment && currentPayment.due) startCountdown(currentPayment.due); else clearInterval(window.__countdownTimer_countdownTimer);
 }
 
-function startCountdown(due){
-  clearInterval(window.__countdownTimer);
+function setCountdownComplete(id, text){
+  const el = document.getElementById(id);
+  if(el) {
+    el.textContent = text;
+    el.classList.remove("expired");
+  }
+}
+
+function startCountdown(due, id="countdownTimer"){
+  const key = "__countdownTimer_" + id;
+  clearInterval(window[key]);
   function tick(){
-    const el = document.getElementById("countdownTimer");
-    if(!el){ clearInterval(window.__countdownTimer); return; }
+    const el = document.getElementById(id);
+    if(!el){ clearInterval(window[key]); return; }
     const target = new Date(due+"T23:59:59");
     const diff = target - new Date();
     if(diff <= 0){
       el.textContent = "¡Venció! Regularizá cuanto antes";
       el.classList.add("expired");
-      clearInterval(window.__countdownTimer);
+      clearInterval(window[key]);
       return;
     }
     const d = Math.floor(diff/86400000);
@@ -581,7 +665,7 @@ function startCountdown(due){
     el.textContent = `${d}d ${h}h ${m}m ${s}s`;
   }
   tick();
-  window.__countdownTimer = setInterval(tick, 1000);
+  window[key] = setInterval(tick, 1000);
 }
 
 function statusText(s){
@@ -661,6 +745,8 @@ function getFormClient(){
   const today = new Date().toISOString().slice(0,10);
 
   const initStatus = document.getElementById("initialStatus").value;
+  const folderStatus = document.getElementById("folderStatus").value;
+  const folderPaidDate = document.getElementById("folderPaidDateVisible").value || document.getElementById("folderPaidDate").value;
   const initial = {
     amount: Number(document.getElementById("initialAmount").value)||0,
     status: initStatus,
@@ -668,7 +754,9 @@ function getFormClient(){
     proofDate: document.getElementById("initialProofDate").value || "",
     confirmedDate: (initStatus==="half"||initStatus==="paid")
       ? (document.getElementById("initialConfirmedDate").value || today)
-      : ""
+      : "",
+    dueDate: document.getElementById("initialDueDate").value || "",
+    extensionDays: Number(document.getElementById("initialExtensionDays").value)||0
   };
 
   return {
@@ -678,6 +766,10 @@ function getFormClient(){
     phone:document.getElementById("phone").value.trim(),
     advisor:document.getElementById("advisor").value.trim(),
     initial,
+    folder: {
+      paid: folderStatus === "paid",
+      paidDate: folderStatus === "paid" ? (folderPaidDate || today) : null
+    },
     installmentValue:Number(document.getElementById("installmentValue").value)||0,
     installmentCount:Number(document.getElementById("installmentCount").value)||rows.length,
     payments:rows.map((row,i)=>{
@@ -703,8 +795,14 @@ function editClient(id){
     document.getElementById(fid).value=val??"";
   }
   const initial = c.initial || {amount:0,status:"pending",proof:"",proofDate:"",confirmedDate:""};
+  const folder = c.folder || {paid:false,paidDate:""};
+  document.getElementById("folderStatus").value = folder.paid ? "paid" : "pending";
+  document.getElementById("folderPaidDate").value = folder.paidDate||"";
+  document.getElementById("folderPaidDateVisible").value = folder.paidDate||"";
   document.getElementById("initialAmount").value = initial.amount||"";
   document.getElementById("initialStatus").value = initial.status||"pending";
+  document.getElementById("initialDueDate").value = initial.dueDate || addDays(c.createdAt || new Date().toISOString(), 10);
+  document.getElementById("initialExtensionDays").value = initial.extensionDays||0;
   document.getElementById("initialProof").value = initial.proof||"";
   document.getElementById("initialProofDate").value = initial.proofDate||"";
   document.getElementById("initialConfirmedDate").value = initial.confirmedDate||"";
@@ -814,6 +912,10 @@ function resetForm(){
   document.getElementById("initialProof").value="";
   document.getElementById("initialProofDate").value="";
   document.getElementById("initialConfirmedDate").value="";
+  document.getElementById("folderPaidDate").value="";
+  document.getElementById("folderPaidDateVisible").value="";
+  document.getElementById("initialDueDate").value=addDays(new Date().toISOString(), 10);
+  document.getElementById("initialExtensionDays").value=0;
   document.getElementById("initialProofInfo").textContent="Todavía no se recibió comprobante de la entrega inicial.";
   document.getElementById("initialProofPreview").innerHTML="";
   document.getElementById("installmentCount").value=5;
@@ -834,6 +936,11 @@ document.getElementById("searchBtn").addEventListener("click",searchClient);
 document.getElementById("dniSearch").addEventListener("keydown",e=>{if(e.key==="Enter")searchClient()});
 document.getElementById("newClientBtn").addEventListener("click",()=>{resetForm();document.getElementById("clientForm").scrollIntoView({behavior:"smooth"})});
 document.getElementById("resetForm").addEventListener("click",resetForm);
+document.getElementById("folderStatus").addEventListener("change",e=>{
+  const paidDate = document.getElementById("folderPaidDateVisible");
+  if(e.target.value==="paid" && !paidDate.value) paidDate.value = new Date().toISOString().slice(0,10);
+  if(e.target.value!=="paid") paidDate.value = "";
+});
 document.getElementById("installmentCount").addEventListener("change",e=>renderPaymentEditor(e.target.value));
 document.getElementById("installmentValue").addEventListener("input",()=>{
   document.querySelectorAll(".pay-value").forEach(x=>x.value=document.getElementById("installmentValue").value);
@@ -859,11 +966,16 @@ document.getElementById("clientForm").addEventListener("submit", async e=>{
       dni: c.dni,
       phone: c.phone || null,
       advisor: c.advisor || null,
+      folder_paid: c.folder.paid,
+      folder_paid_date: c.folder.paidDate || null,
       initial_amount: c.initial.amount,
       initial_status: c.initial.status,
       initial_confirmed_date: c.initial.confirmedDate || null,
+      initial_due_date: c.initial.dueDate || null,
+      initial_extension_days: c.initial.extensionDays || 0,
       installment_value: c.installmentValue,
-      installment_count: c.installmentCount
+      installment_count: c.installmentCount,
+      transfer_bonus_active: c.initial.status === "paid"
     };
     // No se pisan initial_proof / initial_proof_date acá: esos campos
     // sólo los actualiza el propio cliente al subir su comprobante.
