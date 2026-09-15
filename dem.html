@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MundoAuto | Portal de Compromisos y Retiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#071b3a; --navy2:#0c2a58; --blue:#0877dc; --cyan:#26b9ff;
+  --green:#18c95b; --green2:#0caa48; --yellow:#ffd51a; --orange:#f3a900;
+  --red:#ed3c3c; --ink:#10213f; --muted:#6b7890; --line:#dce6f1;
+  --bg:#f4f7fb; --white:#fff; --shadow:0 18px 55px rgba(7,27,58,.12);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.topbar{height:76px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 5%;position:sticky;top:0;z-index:20;box-shadow:0 5px 25px #06152d44}
+.brand{display:flex;align-items:center;gap:12px}.brand-logo{width:172px;height:57px;object-fit:contain;border-radius:8px;background:#fff;padding:4px;display:block}.brand strong{display:block;font:900 19px Montserrat;letter-spacing:-.6px}.brand strong span{color:var(--blue)}.brand small{color:#b9c9e2;font-size:10px;letter-spacing:1.5px;text-transform:uppercase}
+.top-actions{display:flex;gap:8px}.nav-btn{border:1px solid #ffffff22;background:transparent;color:#dce8f8;padding:11px 15px;border-radius:10px;font-weight:700}.nav-btn.active,.nav-btn:hover{background:#ffffff12;color:#fff;border-color:#ffffff38}
+main{min-height:calc(100vh - 130px)}.view{display:none}.view.active{display:block}
+.hero{background:radial-gradient(circle at 85% 25%,#1a65b8 0,#0c2c5d 37%,var(--navy) 75%);color:#fff;padding:70px 7%;display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;min-height:390px}.eyebrow{font-size:11px;font-weight:900;letter-spacing:2px;color:var(--yellow)}.hero h1{font:900 clamp(38px,5vw,67px)/1.02 Montserrat;margin:14px 0 18px;letter-spacing:-2.5px}.hero h1 span{color:var(--yellow)}.hero p{max-width:650px;color:#c9d8ed;font-size:17px;line-height:1.65}
+.search-card{background:#fff;color:var(--ink);padding:28px;border-radius:22px;box-shadow:0 25px 65px #0004}.search-card label{display:block;font-weight:800;margin-bottom:10px}.search-row{display:flex;gap:10px}.search-row input{min-width:0;flex:1}.search-card small{display:block;color:var(--muted);margin-top:12px}
+input,select{width:100%;border:1px solid var(--line);background:#fff;border-radius:11px;padding:13px 14px;outline:none;transition:.2s}input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 4px #0877dc15}
+.primary-btn{border:0;background:linear-gradient(135deg,var(--blue),#075fbe);color:#fff;border-radius:11px;padding:13px 19px;font-weight:800;box-shadow:0 8px 20px #0877dc33}.primary-btn:hover{transform:translateY(-1px)}.primary-btn:disabled{cursor:not-allowed;opacity:.55;transform:none}
+.secondary-btn,.ghost-btn,.mini-btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:11px 15px;font-weight:800}.secondary-btn:hover,.mini-btn:hover{border-color:var(--blue);color:var(--blue)}
+.empty-state{text-align:center;padding:75px 20px;color:var(--muted)}.empty-icon{font-size:48px;margin-bottom:12px}.empty-state h2{color:var(--ink);margin:0 0 8px}
+.client-panel{padding:36px 6%;max-width:1400px;margin:auto}.hidden{display:none!important}
+.client-top{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin-bottom:22px}.identity{display:flex;gap:18px;align-items:center}.avatar{width:66px;height:66px;border-radius:18px;background:var(--navy);color:#fff;display:grid;place-items:center;font:900 24px Montserrat}.identity h2{margin:0 0 4px;font:900 28px Montserrat}.identity p{margin:0;color:var(--muted)}
+.status-badge{padding:12px 17px;border-radius:13px;font-weight:900;text-align:center}.status-green{background:#e5faed;color:#087d37}.status-yellow{background:#fff5cc;color:#966e00}.status-red{background:#ffe7e7;color:#a52323}.status-blue{background:#e8f2ff;color:var(--blue)}.status-grey{background:#f2f4f8;color:var(--muted)}
+.overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:25px}.metric{background:#fff;border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:0 8px 25px #071b3a08}.metric small{display:block;color:var(--muted);font-weight:700;margin-bottom:7px}.metric strong{font-size:21px}
+.metric-list{display:block;font-size:14px;line-height:1.4}.metric-fraction{margin-top:7px;color:var(--green2);font-size:12px;font-weight:900}
+
+.initial-card{background:#fff;border-radius:22px;padding:26px;border:1px solid var(--line);box-shadow:var(--shadow);margin-bottom:25px}
+.initial-head{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.initial-head h3{margin:0;font:900 20px Montserrat}
+.badge{padding:6px 13px;border-radius:20px;font-weight:800;font-size:12px;white-space:nowrap}
+.initial-progress-track{height:13px;background:#e8eef5;border-radius:20px;overflow:hidden;margin:16px 0 8px}
+.initial-progress-fill{height:100%;border-radius:20px;transition:.5s;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.initial-progress-fill.full{background:linear-gradient(90deg,var(--green),#7bea49)}
+.initial-foot{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-top:14px}
+.initial-amount{font:900 22px Montserrat}
+.initial-breakdown{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;color:var(--muted);font-size:12px;font-weight:800}
+.initial-breakdown span{padding:6px 9px;border-radius:9px;background:#f4f7fb}
+.initial-message{color:var(--muted);font-size:13px;margin-top:4px;max-width:520px}
+.proof-tag{color:var(--muted);font-size:12px;margin-top:6px}
+.bonus-tag{display:inline-flex;align-items:center;gap:7px;margin-top:9px;padding:7px 11px;border-radius:10px;background:#eaf4ff;color:var(--blue);font-size:12px;font-weight:900}
+.bonus-tag.active{background:#e5faed;color:#087d37}
+
+.progress-card{background:#fff;border-radius:22px;padding:26px;border:1px solid var(--line);box-shadow:var(--shadow);margin-bottom:25px}.progress-head{display:flex;justify-content:space-between;gap:15px;align-items:end}.progress-head h3{margin:0;font:900 20px Montserrat}.progress-head b{font-size:28px;color:var(--green2)}.progress-track{height:13px;background:#e8eef5;border-radius:20px;overflow:hidden;margin:17px 0 8px}.progress-fill{height:100%;background:linear-gradient(90deg,var(--green),#7bea49);border-radius:20px;transition:.5s}.progress-caption{color:var(--muted);font-size:13px}
+.timeline-wrap{background:#fff;border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow);padding:28px;margin-bottom:25px;overflow:hidden}.timeline-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}.timeline-title h3{margin:0;font:900 20px Montserrat}.timeline{display:flex;position:relative;min-width:840px}.timeline:before{content:"";position:absolute;left:6%;right:6%;top:42px;height:5px;background:#e4ebf3;border-radius:10px}.step{position:relative;z-index:1;flex:1;text-align:center}.step-dot{width:84px;height:84px;border-radius:50%;margin:auto;background:#fff;border:6px solid #dce6f1;display:grid;place-items:center;font-size:25px;box-shadow:0 7px 18px #071b3a12}.step.done .step-dot{border-color:var(--green);background:#eafff0}.step.risk .step-dot{border-color:var(--yellow);background:#fffbe7}.step.failed .step-dot{border-color:var(--red);background:#fff0f0}.step.verifying .step-dot{border-color:var(--blue);background:#eaf4ff}.step h4{margin:12px 0 4px;font-size:12px}.step p{margin:0;color:var(--muted);font-size:11px;line-height:1.45}.step strong{display:block;margin-top:5px}
+.step.final-combo{background:linear-gradient(160deg,#0c2a58,#071b3a);border-radius:20px;padding:16px 10px;margin-top:-6px}
+.step.final-combo h4{color:var(--yellow);font-size:12px;letter-spacing:.4px}
+.step.final-combo p{color:#c9d8ed}
+.step.final-combo strong{color:#fff}
+.step.final-combo .final-caption{display:block;color:#8fa9cf;font-size:10px;margin-top:4px}
+.step-dot.final-dot{background:#dce6f1;border-color:#dce6f1;color:#8b9bb5;font-size:30px}
+.step.final-combo.unlocked .step-dot.final-dot{background:linear-gradient(135deg,var(--yellow),#ffec72);border-color:var(--yellow);color:var(--navy);animation:prizeGlow 1.8s ease-in-out infinite}
+.step.final-combo.locked strong{color:#ffd51a}
+@keyframes prizeGlow{0%,100%{box-shadow:0 0 0 0 #ffd51a66}50%{box-shadow:0 0 0 10px #ffd51a00}}
+@media (prefers-reduced-motion: reduce){.step.final-combo.unlocked .step-dot.final-dot{animation:none}}
+.payment-row.folder-row .payment-number{background:var(--green);color:#fff}
+.payment-row.folder-row .payment-number.folder-pending{background:#eef5fc;color:var(--navy)}
+.payment-row.current-row{background:linear-gradient(120deg,#fff7e8,#fffdf6);border:2px solid var(--orange);border-radius:16px;padding:16px 14px;margin:6px 0;box-shadow:0 10px 25px #f3a90026}
+.payment-number.pulse{background:var(--orange);color:#fff;animation:pulseGlow 1.6s ease-in-out infinite}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 0 #f3a90055}50%{box-shadow:0 0 0 8px #f3a90000}}
+@media (prefers-reduced-motion: reduce){.payment-number.pulse{animation:none}}
+.countdown-wrap{display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+.countdown-label{font-size:11px;font-weight:800;color:var(--orange)}
+.countdown-timer{font:900 15px Montserrat;color:var(--red);background:#fff0e0;padding:4px 10px;border-radius:8px;letter-spacing:.3px}
+.countdown-timer.expired{color:#fff;background:var(--red)}
+.initial-deadline{margin-top:12px;padding:13px;border-radius:14px;background:#f7fbff;border:1px solid var(--line)}
+.initial-deadline .countdown-wrap{margin-top:0}
+.initial-deadline small{display:block;color:var(--muted);margin-top:6px;font-size:12px}
+.locked-teaser{text-align:center;color:var(--muted);font-size:12px;font-weight:700;padding:14px 0 4px;border-top:1px dashed #edf2f7;margin-top:8px}
+.meta-row{display:flex;align-items:center;gap:14px;margin-top:16px;padding:16px;border-radius:16px;background:linear-gradient(120deg,#071b3a,#0d3a75);color:#fff}
+.meta-icon{width:48px;height:48px;border-radius:50%;background:#ffffff20;display:grid;place-items:center;font-size:22px;flex-shrink:0}
+.meta-text b{display:block;font:900 13px Montserrat;letter-spacing:.5px;color:var(--yellow)}
+.meta-text small{display:block;color:#c9d8ed;font-size:12px;margin-top:3px}
+.commitments{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:26px}.commitments h3{font:900 20px Montserrat;margin:0 0 16px}.payment-row{display:grid;grid-template-columns:70px 1.4fr 1fr 1fr auto;gap:14px;align-items:center;padding:15px 0;border-bottom:1px solid #edf2f7}.payment-row:last-child{border-bottom:0}.payment-number{width:43px;height:43px;border-radius:12px;background:#eef5fc;display:grid;place-items:center;font-weight:900;color:var(--navy)}.payment-info b{display:block}.payment-info small,.payment-meta small{color:var(--muted)}.payment-amount{font-weight:900}.payment-status{font-size:12px;font-weight:900;padding:7px 10px;border-radius:9px;display:inline-block}.payment-actions{display:flex;gap:6px}.icon-btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 10px}.icon-btn:hover{border-color:var(--blue)}.icon-btn:disabled{opacity:.4;cursor:not-allowed}
+.retiro-card{margin-top:25px;border-radius:22px;background:linear-gradient(120deg,#071b3a,#0d3a75);color:#fff;padding:28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.retiro-card h3{font:900 24px Montserrat;margin:0 0 8px}.retiro-card p{margin:0;color:#bed0e7;max-width:520px}.locked-btn{background:#ffffff22!important;color:#c9d8ed!important;box-shadow:none!important}.locked-btn:hover{transform:none!important}
+.section-head{padding:48px 6% 28px;display:flex;justify-content:space-between;align-items:end;gap:20px}.section-head h2{font:900 34px Montserrat;margin:7px 0}.section-head p{color:var(--muted);margin:0}
+.admin-grid{display:grid;grid-template-columns:1fr 390px;gap:24px;padding:0 6% 45px}.form-card,.list-card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:25px}.card-title{display:flex;justify-content:space-between;gap:15px;align-items:start;border-bottom:1px solid #edf2f7;padding-bottom:18px;margin-bottom:20px}.card-title h3{margin:0;font:900 20px Montserrat}.card-title p{margin:5px 0 0;color:var(--muted);font-size:12px}.live-dot{font-size:10px;color:var(--green2);font-weight:900}
+.form-section{padding:18px 0;border-bottom:1px solid #edf2f7}.form-section h4{margin:0 0 14px;font-size:14px}.fields{display:grid;gap:12px}.fields.two{grid-template-columns:1fr 1fr}.fields label{font-size:12px;font-weight:800;color:#43536c}.fields input,.fields select{margin-top:7px}.full{grid-column:1/-1}.commitment-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.commitment-heading p{margin:4px 0 0;color:var(--muted);font-size:12px}.payment-editor{display:grid;gap:9px}.editor-row{display:grid;grid-template-columns:55px 1fr 160px 170px;gap:8px;align-items:center}.editor-row .number{font-weight:900;color:var(--navy);text-align:center}.editor-row input,.editor-row select{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px;background:#fff}.form-actions{display:flex;justify-content:flex-end;gap:10px;padding-top:20px}
+.proof-info{margin:0;color:var(--muted);font-size:12px}
+.proof-preview{margin-top:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.proof-preview img{width:90px;height:90px;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block}
+.proof-preview .proof-pdf-link,.proof-preview .proof-img-link{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;padding:9px 13px;font-weight:800;font-size:12px;color:var(--blue);text-decoration:none;background:#f7fbff}
+.proof-preview .proof-pdf-link:hover,.proof-preview .proof-img-link:hover{border-color:var(--blue)}
+.proof-none{color:var(--muted);font-size:12px;margin-top:10px}
+.editor-row-wrap{display:grid;gap:4px}
+.editor-proof-line{grid-column:1/-1;display:flex;align-items:center;gap:8px;padding-left:63px}
+.editor-proof-line a{font-size:11px;font-weight:800;color:var(--blue);text-decoration:none;border:1px solid var(--line);padding:5px 10px;border-radius:8px}
+.editor-proof-line a:hover{border-color:var(--blue)}
+.editor-proof-line span{font-size:11px;color:var(--muted)}
+.admin-lock{position:fixed;inset:0;background:#071b3acc;display:none;align-items:center;justify-content:center;padding:20px;z-index:80}.admin-lock.show{display:flex}.admin-lock-card{width:min(420px,100%);background:#fff;border-radius:22px;padding:26px;border:1px solid var(--line);box-shadow:var(--shadow)}.admin-lock-card h3{font:900 22px Montserrat;margin:0 0 7px}.admin-lock-card p{margin:0 0 18px;color:var(--muted);font-size:13px;line-height:1.5}.admin-lock-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:15px}.admin-lock-error{min-height:18px;margin-top:9px;color:var(--red);font-size:12px;font-weight:800}
+.client-list{display:grid;gap:9px;max-height:650px;overflow:auto}.client-item{border:1px solid var(--line);border-radius:13px;padding:13px;cursor:pointer}.client-item:hover{border-color:var(--blue);background:#f7fbff}.client-item-top{display:flex;justify-content:space-between;gap:10px}.client-item b{font-size:13px}.client-item small{color:var(--muted);display:block;margin-top:4px}.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px}.dot.green{background:var(--green)}.dot.yellow{background:var(--yellow)}.dot.red{background:var(--red)}
+.toast{position:fixed;right:25px;bottom:25px;background:var(--navy);color:#fff;padding:14px 18px;border-radius:12px;box-shadow:var(--shadow);transform:translateY(120px);opacity:0;transition:.3s;z-index:50;font-weight:700;max-width:320px}.toast.show{transform:translateY(0);opacity:1}
+footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;font-size:11px;border-top:1px solid var(--line);gap:15px}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding:45px 6%}.admin-grid{grid-template-columns:1fr}.client-top{grid-template-columns:1fr}.payment-row{grid-template-columns:55px 1fr auto}.payment-row .payment-meta{display:none}.payment-actions{justify-content:flex-end}.section-head{align-items:start;flex-direction:column}}
+@media(max-width:600px){.topbar{padding:0 4%;height:68px}.brand-logo{width:126px;height:42px}.brand strong,.brand small{display:none}.top-actions{gap:4px}.nav-btn{padding:9px;font-size:11px}.hero{padding:38px 5%}.hero h1{font-size:42px}.search-row{flex-direction:column}.client-panel{padding:25px 4%}.overview{grid-template-columns:1fr 1fr}.metric{padding:14px}.identity h2{font-size:21px}.avatar{width:54px;height:54px}.timeline-wrap{padding:20px 12px;overflow-x:auto}.timeline{min-width:840px}.commitments{padding:18px}.payment-row{grid-template-columns:45px 1fr auto}.payment-amount{font-size:12px}.fields.two{grid-template-columns:1fr}.full{grid-column:auto}.admin-grid,.section-head{padding-left:4%;padding-right:4%}.form-card,.list-card{padding:18px}.editor-row{grid-template-columns:35px 1fr 115px}.editor-row select{grid-column:2/-1}.retiro-card{flex-direction:column;align-items:start}footer{flex-direction:column}}
+</style>
+</head>
+<body>
+<div id="toast" class="toast"></div>
+<div id="adminLock" class="admin-lock" aria-hidden="true">
+  <form id="adminLockForm" class="admin-lock-card">
+    <h3>Acceso administrativo</h3>
+    <p>Ingresá la contraseña para abrir el panel interno.</p>
+    <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Contraseña">
+    <div id="adminLockError" class="admin-lock-error"></div>
+    <div class="admin-lock-actions">
+      <button type="button" id="adminLockCancel" class="ghost-btn">Cancelar</button>
+      <button type="submit" class="primary-btn">Ingresar</button>
+    </div>
+  </form>
+</div>
+
+<header class="topbar">
+  <div class="brand">
+    <img class="brand-logo" src="assets/mundoauto-logo.png" alt="MundoAuto">
+    <div>
+      <strong>MUNDO<span>AUTO</span></strong>
+      <small>Portal de Compromisos</small>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button class="nav-btn active" data-view="consulta">🔎 Consulta</button>
+    <button class="nav-btn" data-view="admin">⚙️ Administración</button>
+  </div>
+</header>
+
+<main>
+  <section id="view-consulta" class="view active">
+    <div class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">SEGUIMIENTO DE OPERACIÓN</span>
+        <h1>Tu camino hacia<br><span>tu auto</span> empieza acá.</h1>
+        <p>Consultá el estado de tu entrega inicial, tus cuotas y tu avance hasta el momento del retiro.</p>
+      </div>
+      <div class="search-card">
+        <label for="dniSearch">Ingresá tu DNI</label>
+        <div class="search-row">
+          <input id="dniSearch" type="text" inputmode="numeric" placeholder="Ej. 20345678" maxlength="12">
+          <button id="searchBtn" class="primary-btn">Consultar</button>
+        </div>
+        <small>Ingresá el DNI de tu operación para ver el estado actualizado.</small>
+      </div>
+    </div>
+
+    <div id="emptyState" class="empty-state">
+      <div class="empty-icon">🚗</div>
+      <h2>Consultá tu operación</h2>
+      <p>Ingresá el DNI para visualizar el avance, la entrega inicial y el estado de tus cuotas.</p>
+    </div>
+
+    <div id="clientPanel" class="client-panel hidden"></div>
+  </section>
+
+  <section id="view-admin" class="view">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">PANEL INTERNO</span>
+        <h2>Cargar y administrar clientes</h2>
+        <p>Registrá operaciones, confirmá comprobantes y gestioná el retiro.</p>
+      </div>
+      <button id="newClientBtn" class="secondary-btn">＋ Nuevo cliente</button>
+    </div>
+
+    <div class="admin-grid">
+      <div class="form-card">
+        <div class="card-title">
+          <div>
+            <h3>Datos de la operación</h3>
+            <p>Los cambios se guardan directamente en Supabase.</p>
+          </div>
+          <span class="live-dot">● SUPABASE</span>
+        </div>
+
+        <form id="clientForm">
+          <input type="hidden" id="clientId">
+          <input type="hidden" id="initialProof">
+          <input type="hidden" id="initialProofDate">
+          <input type="hidden" id="initialConfirmedDate">
+          <input type="hidden" id="folderPaidDate">
+
+          <div class="form-section">
+            <h4>Cliente</h4>
+            <div class="fields two">
+              <label>Nombre y apellido<input id="name" required placeholder="Ej. Juan Pérez"></label>
+              <label>DNI<input id="dni" required inputmode="numeric" placeholder="Ej. 20345678"></label>
+              <label>Teléfono<input id="phone" placeholder="Ej. 351 555 5555"></label>
+              <label>Asesor<input id="advisor" placeholder="Ej. Mariano"></label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h4>Carpeta pagada</h4>
+            <div class="fields two">
+              <label>Estado de carpeta
+                <select id="folderStatus">
+                  <option value="pending">Pendiente</option>
+                  <option value="paid">Pagada</option>
+                </select>
+              </label>
+              <label>Fecha de pago<input id="folderPaidDateVisible" type="date"></label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h4>Entrega inicial</h4>
+            <div class="fields two">
+              <label>Monto total<input id="initialAmount" type="number" min="0" placeholder="850000"></label>
+              <label>Seña abonada<input id="initialDepositAmount" type="number" min="0" placeholder="0"></label>
+              <label>Estado
+                <select id="initialStatus">
+                  <option value="pending">Pendiente</option>
+                  <option value="verifying">Verificando comprobante</option>
+                  <option value="half">Mitad confirmada (50%)</option>
+                  <option value="paid">Pago completo (100%)</option>
+                </select>
+              </label>
+              <label>Vencimiento base<input id="initialDueDate" type="date"></label>
+              <label>Días de extensión<input id="initialExtensionDays" type="number" min="0" value="0"></label>
+            </div>
+            <p id="initialProofInfo" class="proof-info"></p>
+            <div id="initialProofPreview"></div>
+          </div>
+
+          <div class="form-section">
+            <h4>Plan de cuotas</h4>
+            <div class="fields two">
+              <label>Valor de cuota<input id="installmentValue" type="number" min="0" placeholder="410000"></label>
+              <label>Cantidad de cuotas<input id="installmentCount" type="number" min="1" max="20" value="5"></label>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="commitment-heading">
+              <div>
+                <h4>Compromisos de pago</h4>
+                <p>Definí vencimiento y estado de cada cuota. La última cuota habilita el retiro.</p>
+              </div>
+              <button type="button" id="generatePayments" class="mini-btn">Generar cuotas</button>
+            </div>
+            <div id="paymentEditor" class="payment-editor"></div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" id="resetForm" class="ghost-btn">Limpiar</button>
+            <button type="submit" class="primary-btn">Guardar operación</button>
+          </div>
+        </form>
+      </div>
+
+      <aside class="list-card">
+        <div class="card-title">
+          <div>
+            <h3>Operaciones</h3>
+            <p id="clientCount">0 clientes</p>
+          </div>
+        </div>
+        <div id="clientList" class="client-list"></div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>MundoAuto · Portal de Compromisos y Retiro</span>
+  <span>Datos protegidos por SSL y bajo la Ley N° 25.326 de Protección de Datos Personales</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// La "publishable key" es la clave pública (anon) de Supabase: está
+// diseñada para exponerse en el navegador. El acceso real se controla
+// con Row Level Security (RLS) del lado del servidor.
+const SUPABASE_URL = "https://pamiixztulwcjymllzle.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_iP1AfoZzzSmkN_gAIGqs7g_-sHv1Sht";
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const PROOF_BUCKET = "comprobantes";
+const ADMIN_PASSWORD = "MA24568";
+
+/* -----------------------------------------------------------
+   A partir de acá la app funciona 100% contra Supabase:
+   no se usa localStorage ni datos hardcodeados en el navegador.
+------------------------------------------------------------ */
+
+let currentClientId = null;   // cliente mostrado en la vista "Consulta"
+let currentClientData = null; // último objeto de cliente renderizado (para refrescar)
+let adminClients = [];        // caché de la lista del panel de administración
+let adminUnlocked = false;
+
+// ---------------------------------------------------------
+// Mapeo: filas de Supabase (clients + payments) -> forma que
+// usa renderClient() (misma forma que devuelve get_client_by_dni)
+// ---------------------------------------------------------
+function mapDbClient(row, paymentsRows){
+  const payments = (paymentsRows||[]).slice().sort((a,b)=>a.n-b.n).map(p=>({
+    n: p.n,
+    due: p.due,
+    status: p.status,
+    paid: p.paid_date || "",
+    proof: p.proof || "",
+    proofDate: p.proof_date || "",
+    note: p.note || ""
+  }));
+  return {
+    id: row.id,
+    name: row.name,
+    dni: row.dni,
+    phone: row.phone || "",
+    advisor: row.advisor || "",
+    initial: {
+      amount: Number(row.initial_amount)||0,
+      depositAmount: Number(row.initial_deposit_amount)||0,
+      status: row.initial_status || "pending",
+      proof: row.initial_proof || "",
+      proofDate: row.initial_proof_date || "",
+      confirmedDate: row.initial_confirmed_date || "",
+      dueDate: row.initial_due_date || "",
+      extensionDays: Number(row.initial_extension_days)||0
+    },
+    folder: {
+      paid: !!row.folder_paid,
+      paidDate: row.folder_paid_date || ""
+    },
+    installmentValue: Number(row.installment_value)||0,
+    installmentCount: Number(row.installment_count)||payments.length,
+    payments,
+    retiroRequested: !!row.retiro_requested,
+    transferBonusActive: !!row.transfer_bonus_active || row.initial_status === "paid",
+    createdAt: row.created_at || ""
+  };
+}
+
+// Trae un cliente completo (con cuotas) por id
+async function fetchClientById(id){
+  const { data: row, error } = await sb.from("clients").select("*").eq("id", id).maybeSingle();
+  if(error || !row) return null;
+  const { data: pays } = await sb.from("payments").select("*").eq("client_id", id).order("n");
+  return mapDbClient(row, pays||[]);
+}
+
+// Trae un cliente completo por DNI (usa la función RPC del lado del servidor)
+async function fetchClientByDni(dni){
+  const { data, error } = await sb.rpc("get_client_by_dni", { p_dni: dni });
+  if(error){ console.error(error); return { error: true }; }
+  if(!data) return null;
+  return data; // ya viene con la misma forma (name, dni, initial{...}, payments[], ...)
+}
+
+// ---------------------------------------------------------
+// Previsualización de comprobantes (foto / imagen / captura / PDF)
+// ---------------------------------------------------------
+function isPdfUrl(url){ return /\.pdf(\?|$)/i.test(url||""); }
+function isImageUrl(url){ return /\.(png|jpe?g|gif|webp|heic|bmp)(\?|$)/i.test(url||""); }
+function proofPreviewHtml(url, dateStr){
+  if(!url) return `<p class="proof-none">Todavía no se recibió comprobante.</p>`;
+  const dateTxt = dateStr ? ` · ${formatDate(dateStr)}` : "";
+  if(isPdfUrl(url)){
+    return `<div class="proof-preview"><a class="proof-pdf-link" href="${url}" target="_blank" rel="noopener">📄 Ver comprobante (PDF)${dateTxt}</a></div>`;
+  }
+  if(isImageUrl(url)){
+    return `<div class="proof-preview"><a href="${url}" target="_blank" rel="noopener"><img src="${url}" alt="Comprobante"></a><a class="proof-img-link" href="${url}" target="_blank" rel="noopener">🖼️ Ver en grande${dateTxt}</a></div>`;
+  }
+  return `<div class="proof-preview"><a class="proof-img-link" href="${url}" target="_blank" rel="noopener">📎 Ver comprobante${dateTxt}</a></div>`;
+}
+
+// Sube un archivo (foto/imagen/captura/PDF) al bucket de Storage y devuelve su URL pública
+async function uploadProofFile(file, pathPrefix){
+  const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g,"_");
+  const path = `${pathPrefix}/${Date.now()}-${safeName}`;
+  const { error } = await sb.storage.from(PROOF_BUCKET).upload(path, file, {
+    cacheControl: "3600",
+    upsert: false,
+    contentType: file.type || undefined
+  });
+  if(error) throw error;
+  const { data } = sb.storage.from(PROOF_BUCKET).getPublicUrl(path);
+  return data.publicUrl;
+}
+
+function money(v){
+  return new Intl.NumberFormat("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0}).format(Number(v)||0);
+}
+function formatDate(s){
+  if(!s) return "—";
+  const d = new Date(s+"T12:00:00");
+  return d.toLocaleDateString("es-AR",{day:"2-digit",month:"2-digit",year:"numeric"});
+}
+function dateOnly(s){
+  if(!s) return "";
+  return String(s).slice(0,10);
+}
+function addDays(dateStr, days){
+  const base = dateStr ? new Date(dateOnly(dateStr)+"T12:00:00") : new Date();
+  base.setDate(base.getDate() + Number(days||0));
+  return base.toISOString().slice(0,10);
+}
+function statusOf(c){
+  const p = c.payments || [];
+  if(p.some(x => x.status === "failed")) return "failed";
+  if(p.some(x => x.status === "risk")) return "risk";
+  const now = new Date(); now.setHours(0,0,0,0);
+  const overdue = p.some(x => x.status === "pending" && x.due && new Date(x.due+"T12:00:00") < now);
+  if(overdue) return "risk";
+  return "green";
+}
+function statusLabel(s){
+  return s==="green" ? "COMPROMETIDO" : s==="risk" ? "EN RIESGO" : "INCUMPLIDO";
+}
+function statusClass(s){ return s==="green" ? "status-green" : s==="risk" ? "status-yellow" : "status-red"; }
+
+function paymentStatusText(s){
+  return s==="paid" ? "PAGADA" : s==="verifying" ? "VERIFICANDO" : s==="risk" ? "EN RIESGO" : s==="failed" ? "INCUMPLIDA" : "PENDIENTE";
+}
+function paymentStatusClass(s){
+  return s==="paid" ? "status-green" : s==="verifying" ? "status-blue" : s==="risk" ? "status-yellow" : s==="failed" ? "status-red" : "status-grey";
+}
+
+function initialDeposit(initial){
+  if(!initial) return 0;
+  if(initial.status==="paid") return Number(initial.amount)||0;
+  return Math.max(0, Math.min(Number(initial.depositAmount)||0, Number(initial.amount)||0));
+}
+function initialBalance(initial){
+  return Math.max(0, (Number(initial?.amount)||0) - initialDeposit(initial));
+}
+function initialPercent(initial){
+  if(!initial) return 0;
+  if(initial.status==="paid") return 100;
+  const amount = Number(initial.amount)||0;
+  if(!amount) return initial.status==="half" ? 50 : 0;
+  return Math.max(0, Math.min(99, Math.round(initialDeposit(initial) / amount * 100)));
+}
+function initialMessage(status){
+  if(status==="paid") return "Entrega inicial confirmada al 100%. ¡Estás un paso más cerca de tu auto!";
+  if(status==="half") return "¡Vas por la mitad! Ya confirmamos el 50% de tu entrega inicial.";
+  if(status==="verifying") return "Recibimos tu comprobante y lo estamos verificando. Te avisamos apenas se confirme.";
+  return "Subí el comprobante de tu entrega inicial y damos el primer paso hacia tu auto.";
+}
+function initialBadgeClass(status){
+  return status==="paid" ? "status-green" : status==="half" ? "status-yellow" : status==="verifying" ? "status-blue" : "status-grey";
+}
+function initialDueDate(c){
+  const initial = c.initial || {};
+  const baseDue = initial.dueDate || addDays(c.createdAt || new Date().toISOString(), 10);
+  return addDays(baseDue, initial.extensionDays || 0);
+}
+function currentCommitmentDate(c, entregaInicialDone){
+  if(!entregaInicialDone) return initialDueDate(c);
+  const next = (c.payments||[]).find(p=>p.status!=="paid");
+  return next?.due || "";
+}
+function initialCountdownText(initial){
+  if(initial.status==="paid") return "Entrega inicial completa";
+  if(initial.status==="half") return "Seña recibida: podés completar o extender desde administración";
+  return "Plazo para completar la entrega inicial, pagar una seña o solicitar extensión";
+}
+
+function isRetiroReady(c){
+  const initOk = c.initial && c.initial.status === "paid";
+  const cuotasOk = (c.payments||[]).length>0 && (c.payments||[]).every(p=>p.status==="paid");
+  return initOk && cuotasOk;
+}
+
+// La carpeta y la entrega inicial son compromisos separados:
+// la seña/50% avanza la entrega inicial, pero no reemplaza el estado
+// administrativo de carpeta pagada.
+function computeAvance(c){
+  const initial = c.initial || {amount:0,status:"pending"};
+  const carpetaDone = !!(c.folder && c.folder.paid);
+  const entregaInicialDone = initial.status === "paid";
+  const payments = c.payments || [];
+  const paidCuotas = payments.filter(p=>p.status==="paid").sort((a,b)=>a.n-b.n);
+
+  const completedItems = [];
+  if(carpetaDone) completedItems.push("Carpeta pagada");
+  if(entregaInicialDone) completedItems.push("Entrega inicial pagada");
+  paidCuotas.forEach(p => completedItems.push(`Cuota ${p.n} pagada`));
+
+  const totalCount = 2 + (payments.length || c.installmentCount || 0);
+  const completedCount = completedItems.length;
+  const percent = totalCount ? Math.round(completedCount/totalCount*100) : 0;
+
+  return { carpetaDone, entregaInicialDone, completedItems, totalCount, completedCount, percent };
+}
+
+function renderClient(c){
+  currentClientId = c.id;
+  const status = statusOf(c);
+  const paid = (c.payments||[]).filter(p=>p.status==="paid").length;
+  const total = c.payments?.length || c.installmentCount || 0;
+  const percent = total ? Math.round(paid/total*100) : 0;
+  const next = (c.payments||[]).find(p=>p.status!=="paid");
+  const initial = c.initial || {amount:0,status:"pending"};
+  const initPct = initialPercent(initial);
+  const ready = isRetiroReady(c);
+  const avance = computeAvance(c);
+  const carpetaDone = avance.carpetaDone;
+  const entregaInicialDone = avance.entregaInicialDone;
+  const dueInitial = initialDueDate(c);
+  const bonusActive = !!c.transferBonusActive || entregaInicialDone;
+  const depositAmount = initialDeposit(initial);
+  const balanceAmount = initialBalance(initial);
+  const currentCommitment = currentCommitmentDate(c, entregaInicialDone);
+
+  const panel = document.getElementById("clientPanel");
+  panel.innerHTML = `
+    <div class="client-top">
+      <div class="identity">
+        <div class="avatar">${initials(c.name)}</div>
+        <div><h2>${escapeHtml(c.name)}</h2><p>DNI ${escapeHtml(c.dni)} · Asesor: ${escapeHtml(c.advisor||"—")}</p></div>
+      </div>
+      <div class="status-badge ${statusClass(status)}">● ${statusLabel(status)}<small style="display:block;font-weight:600;margin-top:4px">${statusText(status)}</small></div>
+    </div>
+
+    <div class="overview">
+      <div class="metric"><small>COMPROMISO ACTUAL</small><strong>${currentCommitment ? formatDate(currentCommitment) : "Completado"}</strong></div>
+      <div class="metric">
+        <small>COMPROMISOS CUMPLIDOS</small>
+        <strong class="metric-list">${avance.completedItems.length ? avance.completedItems.join(", ") : "Aún sin pagos confirmados"}</strong>
+      </div>
+      <div class="metric"><small>ESTADO DE RETIRO</small><strong>${ready ? "Habilitado" : "En proceso"}</strong></div>
+    </div>
+
+    <div class="initial-card">
+      <div class="initial-head">
+        <h3>💳 Entrega inicial</h3>
+        <span class="badge ${initialBadgeClass(initial.status)}">${initial.status==="paid"?"100% CONFIRMADA":initial.status==="half"?"50% CONFIRMADA":initial.status==="verifying"?"VERIFICANDO":"PENDIENTE"}</span>
+      </div>
+      <div class="initial-progress-track"><div class="initial-progress-fill ${initPct===100?'full':''}" style="width:${initPct}%"></div></div>
+      <div class="initial-foot">
+        <div>
+          <div class="initial-amount">Saldo entrega inicial: ${money(balanceAmount)}</div>
+          <div class="initial-breakdown"><span>Total: ${money(initial.amount)}</span><span>Seña: ${money(depositAmount)}</span></div>
+          <div class="initial-message">${initialMessage(initial.status)}</div>
+          <div class="initial-deadline">
+            <div class="countdown-wrap"><span class="countdown-label">⏰ Entrega inicial</span><span id="initialCountdownTimer" class="countdown-timer">--</span></div>
+            <small>Vence ${formatDate(dueInitial)} · ${initialCountdownText(initial)}</small>
+          </div>
+          <div class="bonus-tag ${bonusActive?"active":""}">${bonusActive?"✓":"○"} Traslado a domicilio bonificado ${bonusActive?"activo":"al completar la entrega inicial"}</div>
+          ${initial.proof ? `<div class="proof-tag">📎 <a href="${initial.proof}" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700">Ver comprobante</a>${initial.proofDate ? " · "+formatDate(initial.proofDate) : ""}</div>` : ""}
+        </div>
+        <button class="icon-btn" onclick="uploadProofInitial('${c.id}')" ${initial.status==="paid"?"disabled":""}>📎 ${initial.proof ? "Actualizar comprobante" : "Cargar comprobante"}</button>
+      </div>
+    </div>
+
+    <div class="progress-card">
+      <div class="progress-head"><div><h3>Tu avance hacia el retiro</h3><div class="progress-caption">Compromiso actual: ${currentCommitment ? formatDate(currentCommitment) : "Completado"}</div></div><b>${avance.percent}%</b></div>
+      <div class="progress-track"><div class="progress-fill" style="width:${avance.percent}%"></div></div>
+      <div class="progress-caption">Cada pago confirmado acerca un paso más al objetivo de retirar el auto.</div>
+    </div>
+
+    <div class="timeline-wrap">
+      <div class="timeline-title"><h3>📍 Línea de tiempo de tu operación</h3><span class="eyebrow">${statusLabel(status)}</span></div>
+      <div class="timeline">
+        <div class="step ${carpetaDone?"done":""}">
+          <div class="step-dot">${carpetaDone?"✓":"$"}</div>
+          <h4>CARPETA PAGADA</h4><p>¡Felicitaciones por tu compromiso con tu auto!</p><strong>${carpetaDone?"Completado":"Pendiente"}</strong>
+        </div>
+        <div class="step ${entregaInicialDone?"done":initial.status==="verifying"?"verifying":initial.status==="half"?"risk":""}">
+          <div class="step-dot">${entregaInicialDone?"✓":initial.status==="verifying"?"⏳":initial.status==="half"?"50%":"$"}</div>
+          <h4>ENTREGA INICIAL</h4><p>Vence ${formatDate(dueInitial)}<br>${money(initial.amount)}</p><strong>${initial.status==="paid"?"Pagada":initial.status==="half"?"Seña / mitad":paymentStatusText(initial.status)}</strong>
+        </div>
+        ${(c.payments||[]).map(p => {
+          const isLastStep = p.n === total;
+          const cls=p.status==="paid"?"done":p.status==="risk"?"risk":p.status==="failed"?"failed":p.status==="verifying"?"verifying":"";
+          const icon=p.status==="paid"?"✓":p.status==="risk"?"!":p.status==="verifying"?"⏳":"$";
+          if(isLastStep){
+            const finalReady = p.status==="paid" && ready;
+            return `<div class="step final-combo ${finalReady?"unlocked":"locked"}">
+              <div class="step-dot final-dot">🚗</div>
+              <h4>CUOTA ${p.n} · TU AUTO</h4>
+              <p>${money(c.installmentValue)}<br>Vence ${formatDate(p.due)}</p>
+              <strong>${finalReady ? "🎉 ¡Retiro habilitado!" : "🔒 Retiro bloqueado · "+paymentStatusText(p.status)}</strong>
+              <small class="final-caption">Se habilita al completar todo</small>
+            </div>`;
+          }
+          return `<div class="step ${cls}"><div class="step-dot">${icon}</div><h4>CUOTA ${p.n}</h4><p>${money(c.installmentValue)}<br>Vence ${formatDate(p.due)}</p><strong>${paymentStatusText(p.status)}</strong></div>`;
+        }).join("")}
+      </div>
+    </div>
+
+    <div class="commitments">
+      <h3>📋 Compromisos de pago</h3>
+      <div class="payment-row folder-row">
+        <div class="payment-number ${carpetaDone?"":"folder-pending"}">${carpetaDone?"✓":"$"}</div>
+        <div class="payment-info"><b>Carpeta pagada</b><small>¡Felicitaciones por tu compromiso con tu auto!</small></div>
+        <div class="payment-amount">—</div>
+        <div class="payment-meta"><span class="payment-status ${carpetaDone?"status-green":"status-grey"}">${carpetaDone?"COMPLETADO":"PENDIENTE"}</span></div>
+        <div class="payment-actions"></div>
+      </div>
+      <div class="payment-row ${!entregaInicialDone?"current-row":""}">
+        <div class="payment-number ${entregaInicialDone?"":"pulse"}">${entregaInicialDone?"✓":"$"}</div>
+        <div class="payment-info">
+          <b>Entrega inicial</b>
+          <small>Vencimiento: ${formatDate(dueInitial)}</small>
+          ${!entregaInicialDone ? `<div class="countdown-wrap"><span class="countdown-label">⏰ Tiempo restante</span><span id="initialCommitmentTimer" class="countdown-timer">--</span></div>` : ""}
+        </div>
+        <div class="payment-amount">${money(balanceAmount)}</div>
+        <div class="payment-meta"><span class="payment-status ${initialBadgeClass(initial.status)}">${initial.status==="paid"?"PAGADA":initial.status==="half"?"SEÑA / 50%":paymentStatusText(initial.status)}</span></div>
+        <div class="payment-actions"><button class="icon-btn" onclick="uploadProofInitial('${c.id}')" ${entregaInicialDone?"disabled":""}>📎</button></div>
+      </div>
+      ${(function(){
+        const payments = c.payments||[];
+
+        if(payments.length>0 && !entregaInicialDone){
+          return `
+            <div class="locked-teaser">🔒 Completá tu entrega inicial (100%) para habilitar el pago de la Cuota 1 y desbloquear el resto de las cuotas.</div>
+            <div class="meta-row"><div class="meta-icon">🚗</div><div class="meta-text"><b>META: RETIRO DE TU AUTO</b><small>Cada cuota confirmada te acerca a esta meta.</small></div></div>`;
+        }
+
+        const curIdx = payments.findIndex(p=>p.status!=="paid");
+        const hasCurrent = curIdx!==-1;
+        const visible = hasCurrent ? payments.slice(0,curIdx+1) : payments.slice();
+        const hiddenCount = payments.length - visible.length;
+        const allDone = !hasCurrent && payments.length>0;
+
+        const rows = visible.map((p,i)=>{
+          const isCurrent = hasCurrent && i===curIdx;
+          if(isCurrent){
+            return `
+            <div class="payment-row current-row">
+              <div class="payment-number pulse">${p.n}</div>
+              <div class="payment-info">
+                <b>Cuota ${p.n} · ¡Es tu turno!</b>
+                <small>Vencimiento: ${formatDate(p.due)}</small>
+                <div class="countdown-wrap"><span class="countdown-label">⏰ Tiempo restante</span><span id="countdownTimer" class="countdown-timer">--</span></div>
+              </div>
+              <div class="payment-amount">${money(c.installmentValue)}</div>
+              <div class="payment-meta"><span class="payment-status ${paymentStatusClass(p.status)}">${paymentStatusText(p.status)}</span></div>
+              <div class="payment-actions"><button class="icon-btn" onclick="uploadProof('${c.id}',${p.n})" title="Cargar comprobante">📎</button></div>
+            </div>`;
+          }
+          return `
+            <div class="payment-row">
+              <div class="payment-number">${p.n}</div>
+              <div class="payment-info"><b>Cuota ${p.n}</b><small>Vencimiento: ${formatDate(p.due)}</small></div>
+              <div class="payment-amount">${money(c.installmentValue)}</div>
+              <div class="payment-meta"><span class="payment-status ${paymentStatusClass(p.status)}">${paymentStatusText(p.status)}</span><small>${p.paid?" · Confirmada "+formatDate(p.paid):""}</small></div>
+              <div class="payment-actions"><button class="icon-btn" disabled title="Cuota confirmada">✓</button></div>
+            </div>`;
+        }).join("");
+
+        const lockedTeaser = hiddenCount>0 ? `<div class="locked-teaser">🔒 ${hiddenCount} cuota${hiddenCount>1?"s":""} más se desbloquea${hiddenCount>1?"n":""} al confirmar esta.</div>` : "";
+        const metaText = allDone ? "¡Meta cumplida! Ya podés gestionar el retiro de tu auto." : "Cada cuota confirmada te acerca a esta meta.";
+        const metaRow = `<div class="meta-row"><div class="meta-icon">🚗</div><div class="meta-text"><b>META: RETIRO DE TU AUTO</b><small>${metaText}</small></div></div>`;
+
+        return rows + lockedTeaser + metaRow;
+      })()}
+    </div>
+
+    <div class="retiro-card">
+      <div><h3>🚗 Gestión de retiro</h3><p>${withdrawalMessage(status, paid, total, ready)}</p></div>
+      <button class="primary-btn ${ready?"":"locked-btn"}" onclick="gestionarRetiro('${c.id}')">
+        ${c.retiroRequested ? "✅ Retiro solicitado" : ready ? "🚗 Gestionar retiro" : "🔒 Gestionar retiro"}
+      </button>
+    </div>
+  `;
+  document.getElementById("emptyState").classList.add("hidden");
+  panel.classList.remove("hidden");
+  if(!entregaInicialDone) {
+    startCountdown(dueInitial, "initialCountdownTimer");
+    startCountdown(dueInitial, "initialCommitmentTimer");
+  } else {
+    setCountdownComplete("initialCountdownTimer", "Completada");
+  }
+  const currentPayment = entregaInicialDone ? (c.payments||[]).find(p=>p.status!=="paid") : null;
+  if(currentPayment && currentPayment.due) startCountdown(currentPayment.due); else clearInterval(window.__countdownTimer_countdownTimer);
+}
+
+function setCountdownComplete(id, text){
+  const el = document.getElementById(id);
+  if(el) {
+    el.textContent = text;
+    el.classList.remove("expired");
+  }
+}
+
+function startCountdown(due, id="countdownTimer"){
+  const key = "__countdownTimer_" + id;
+  clearInterval(window[key]);
+  function tick(){
+    const el = document.getElementById(id);
+    if(!el){ clearInterval(window[key]); return; }
+    const target = new Date(due+"T23:59:59");
+    const diff = target - new Date();
+    if(diff <= 0){
+      el.textContent = "¡Venció! Regularizá cuanto antes";
+      el.classList.add("expired");
+      clearInterval(window[key]);
+      return;
+    }
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor((diff%86400000)/3600000);
+    const m = Math.floor((diff%3600000)/60000);
+    const s = Math.floor((diff%60000)/1000);
+    el.textContent = `${d}d ${h}h ${m}m ${s}s`;
+  }
+  tick();
+  window[key] = setInterval(tick, 1000);
+}
+
+function statusText(s){
+  if(s==="green") return "Pagó y cumple fechas";
+  if(s==="risk") return "Tiene un atraso o reprogramación";
+  return "No cumple compromisos";
+}
+function withdrawalMessage(s,paid,total,ready){
+  if(ready) return "¡Todos los compromisos están cumplidos! Ya podés gestionar el retiro de tu auto.";
+  if(s==="green") return "Cliente al día. El retiro se habilita al confirmar la entrega inicial y todas las cuotas.";
+  if(s==="risk") return "Requiere revisión y/o reprogramación antes de poder habilitar el retiro.";
+  return "No se recomienda habilitar el retiro hasta regularizar la operación.";
+}
+function initials(name){
+  return (name||"MA").split(" ").slice(0,2).map(x=>x[0]).join("").toUpperCase();
+}
+function escapeHtml(str){
+  return String(str??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+}
+
+async function searchClient(){
+  const dniRaw = document.getElementById("dniSearch").value;
+  const dni = dniRaw.replace(/\D/g,"");
+  if(!dni){ showToast("Ingresá un DNI para consultar."); return; }
+  const btn = document.getElementById("searchBtn");
+  btn.disabled = true; const originalLabel = btn.textContent; btn.textContent = "Buscando...";
+  try{
+    const c = await fetchClientByDni(dni);
+    if(c && c.error){ showToast("No pudimos conectar con la base de datos. Probá de nuevo."); return; }
+    if(!c){ showToast("No encontramos una operación con ese DNI."); return; }
+    currentClientId = c.id;
+    currentClientData = c;
+    renderClient(c);
+    document.getElementById("clientPanel").scrollIntoView({behavior:"smooth",block:"start"});
+  } finally {
+    btn.disabled = false; btn.textContent = originalLabel;
+  }
+}
+
+// Vuelve a traer al cliente actualmente abierto (después de subir un
+// comprobante, cambiar un estado o pedir el retiro) y lo vuelve a pintar.
+async function refreshCurrentClient(){
+  if(!currentClientId) return;
+  const c = await fetchClientById(currentClientId);
+  if(c){ currentClientData = c; renderClient(c); }
+}
+
+function renderPaymentEditor(count=5, existing=[]){
+  const wrap=document.getElementById("paymentEditor");
+  wrap.innerHTML = Array.from({length:Number(count)||1},(_,i)=>{
+    const p=existing[i]||{n:i+1,due:"",status:"pending"};
+    const proofLine = p.proof
+      ? `<div class="editor-proof-line"><a href="${p.proof}" target="_blank" rel="noopener">👁️ Ver comprobante</a><span>${p.proofDate?formatDate(p.proofDate):""}</span></div>`
+      : "";
+    return `<div class="editor-row-wrap">
+      <div class="editor-row">
+        <div class="number">#${i+1}</div>
+        <input type="date" class="pay-due" value="${p.due||""}">
+        <input type="number" class="pay-value" value="${Number(document.getElementById("installmentValue").value)||0}" min="0">
+        <select class="pay-status">
+          <option value="pending" ${p.status==="pending"?"selected":""}>Pendiente</option>
+          <option value="verifying" ${p.status==="verifying"?"selected":""}>Verificando comprobante</option>
+          <option value="paid" ${p.status==="paid"?"selected":""}>Pagada</option>
+          <option value="risk" ${p.status==="risk"?"selected":""}>En riesgo</option>
+          <option value="failed" ${p.status==="failed"?"selected":""}>Incumplida</option>
+        </select>
+      </div>
+      ${proofLine}
+    </div>`;
+  }).join("");
+}
+
+function getFormClient(){
+  const id=document.getElementById("clientId").value || null; // null = cliente nuevo (Supabase genera el id)
+  const existingClient = adminClients.find(x=>x.id===id);
+  const rows=[...document.querySelectorAll(".editor-row")];
+  const today = new Date().toISOString().slice(0,10);
+
+  const initStatus = document.getElementById("initialStatus").value;
+  const folderStatus = document.getElementById("folderStatus").value;
+  const folderPaidDate = document.getElementById("folderPaidDateVisible").value || document.getElementById("folderPaidDate").value;
+  const initial = {
+    amount: Number(document.getElementById("initialAmount").value)||0,
+    depositAmount: Number(document.getElementById("initialDepositAmount").value)||0,
+    status: initStatus,
+    proof: document.getElementById("initialProof").value || "",
+    proofDate: document.getElementById("initialProofDate").value || "",
+    confirmedDate: (initStatus==="half"||initStatus==="paid")
+      ? (document.getElementById("initialConfirmedDate").value || today)
+      : "",
+    dueDate: document.getElementById("initialDueDate").value || "",
+    extensionDays: Number(document.getElementById("initialExtensionDays").value)||0
+  };
+
+  return {
+    id,
+    name:document.getElementById("name").value.trim(),
+    dni:document.getElementById("dni").value.replace(/\D/g,""),
+    phone:document.getElementById("phone").value.trim(),
+    advisor:document.getElementById("advisor").value.trim(),
+    initial,
+    folder: {
+      paid: folderStatus === "paid",
+      paidDate: folderStatus === "paid" ? (folderPaidDate || today) : null
+    },
+    installmentValue:Number(document.getElementById("installmentValue").value)||0,
+    installmentCount:Number(document.getElementById("installmentCount").value)||rows.length,
+    payments:rows.map((row,i)=>{
+      const existingP = existingClient?.payments?.[i];
+      const status = row.querySelector(".pay-status").value;
+      return {
+        n:i+1,
+        due:row.querySelector(".pay-due").value,
+        status,
+        paid: status==="paid" ? (existingP?.paid || today) : null,
+        note: existingP?.note || null
+      };
+    }),
+    retiroRequested: existingClient?.retiroRequested || false
+  };
+}
+
+function editClient(id){
+  const c=adminClients.find(x=>x.id===id); if(!c)return;
+  document.querySelector('[data-view="admin"]').click();
+  document.getElementById("clientId").value=c.id;
+  for(const [fid,val] of Object.entries({name:c.name,dni:c.dni,phone:c.phone,advisor:c.advisor,installmentValue:c.installmentValue,installmentCount:c.installmentCount})){
+    document.getElementById(fid).value=val??"";
+  }
+  const initial = c.initial || {amount:0,status:"pending",proof:"",proofDate:"",confirmedDate:""};
+  const folder = c.folder || {paid:false,paidDate:""};
+  document.getElementById("folderStatus").value = folder.paid ? "paid" : "pending";
+  document.getElementById("folderPaidDate").value = folder.paidDate||"";
+  document.getElementById("folderPaidDateVisible").value = folder.paidDate||"";
+  document.getElementById("initialAmount").value = initial.amount||"";
+  document.getElementById("initialDepositAmount").value = initial.depositAmount||"";
+  document.getElementById("initialStatus").value = initial.status||"pending";
+  document.getElementById("initialDueDate").value = initial.dueDate || addDays(c.createdAt || new Date().toISOString(), 10);
+  document.getElementById("initialExtensionDays").value = initial.extensionDays||0;
+  document.getElementById("initialProof").value = initial.proof||"";
+  document.getElementById("initialProofDate").value = initial.proofDate||"";
+  document.getElementById("initialConfirmedDate").value = initial.confirmedDate||"";
+  document.getElementById("initialProofInfo").textContent = initial.proof ? `📎 Comprobante recibido${initial.proofDate?" el "+formatDate(initial.proofDate):""}:` : "Todavía no se recibió comprobante de la entrega inicial.";
+  document.getElementById("initialProofPreview").innerHTML = proofPreviewHtml(initial.proof, initial.proofDate);
+  renderPaymentEditor(c.installmentCount,c.payments);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+async function deleteClient(id){
+  if(!confirm("¿Eliminar esta operación? Esta acción no se puede deshacer."))return;
+  const { error } = await sb.from("clients").delete().eq("id", id);
+  if(error){ showToast("No se pudo eliminar. Probá de nuevo."); console.error(error); return; }
+  showToast("Operación eliminada.");
+  await loadAdminClients();
+}
+
+function uploadProofInitial(id){
+  if(!currentClientData || currentClientData.initial.status==="paid"){ showToast("La entrega inicial ya está confirmada al 100%."); return; }
+  const input=document.createElement("input"); input.type="file"; input.accept="image/*,.pdf";
+  input.onchange=async ()=>{
+    const file=input.files[0]; if(!file) return;
+    showToast("Subiendo comprobante...");
+    try{
+      const url = await uploadProofFile(file, `entrega-inicial/${id}`);
+      const { error } = await sb.rpc("submit_initial_proof", { p_client_id: id, p_proof: url });
+      if(error) throw error;
+      await refreshCurrentClient();
+      showToast("Comprobante recibido. Lo estamos verificando.");
+    }catch(err){
+      console.error(err);
+      showToast("No se pudo subir el comprobante. Probá de nuevo.");
+    }
+  };
+  input.click();
+}
+
+function uploadProof(id,n){
+  const p = currentClientData?.payments?.find(x=>x.n===n);
+  if(!p){ showToast("No encontramos esa cuota."); return; }
+  if(p.status==="paid"){ showToast(`La cuota ${n} ya está confirmada.`); return; }
+  const input=document.createElement("input"); input.type="file"; input.accept="image/*,.pdf";
+  input.onchange=async ()=>{
+    const file=input.files[0]; if(!file) return;
+    showToast("Subiendo comprobante...");
+    try{
+      const url = await uploadProofFile(file, `cuotas/${id}/cuota-${n}`);
+      const { error } = await sb.rpc("submit_payment_proof", { p_client_id: id, p_n: n, p_proof: url });
+      if(error) throw error;
+      await refreshCurrentClient();
+      showToast(`Comprobante de la cuota ${n} recibido. Lo estamos verificando.`);
+    }catch(err){
+      console.error(err);
+      showToast(err.message && err.message.includes("entrega inicial")
+        ? "Completá la entrega inicial (100%) antes de abonar cuotas."
+        : "No se pudo subir el comprobante. Probá de nuevo.");
+    }
+  };
+  input.click();
+}
+
+async function gestionarRetiro(id){
+  try{
+    const { error } = await sb.rpc("request_retiro", { p_client_id: id });
+    if(error) throw error;
+    await refreshCurrentClient();
+    showToast("¡Listo! Tu solicitud de retiro fue enviada. Te contactaremos para coordinar la entrega.");
+  }catch(err){
+    console.error(err);
+    const msg = err.message||"";
+    if(msg.includes("habilitado")) showToast("Todavía hay compromisos pendientes para habilitar el retiro.");
+    else showToast("No se pudo procesar la solicitud. Probá de nuevo.");
+  }
+}
+
+// ---------------------------------------------------------
+// Panel de administración: lectura/escritura directa en Supabase
+// ---------------------------------------------------------
+async function loadAdminClients(){
+  const wrap=document.getElementById("clientList");
+  wrap.innerHTML = `<div class="empty-state" style="padding:30px 10px"><p>Cargando operaciones...</p></div>`;
+  const { data, error } = await sb
+    .from("clients")
+    .select("*, payments(*)")
+    .order("created_at", { ascending:false });
+  if(error){
+    console.error(error);
+    wrap.innerHTML = `<div class="empty-state" style="padding:30px 10px"><p>No se pudo conectar con Supabase.</p></div>`;
+    return;
+  }
+  adminClients = (data||[]).map(row => mapDbClient(row, row.payments));
+  renderClientList();
+}
+
+function renderClientList(){
+  const wrap=document.getElementById("clientList");
+  document.getElementById("clientCount").textContent=`${adminClients.length} ${adminClients.length===1?"cliente":"clientes"}`;
+  wrap.innerHTML=adminClients.map(c=>{
+    const s=statusOf(c);
+    return `<div class="client-item" onclick="editClient('${c.id}')"><div class="client-item-top"><b>${escapeHtml(c.name)}</b><span class="dot ${s==="green"?"green":s==="risk"?"yellow":"red"}"></span></div><small>DNI ${escapeHtml(c.dni)}</small><small>${statusLabel(s)}</small><div style="display:flex;gap:6px;margin-top:9px"><button class="mini-btn" onclick="event.stopPropagation();editClient('${c.id}')">Editar</button><button class="mini-btn" onclick="event.stopPropagation();deleteClient('${c.id}')">Eliminar</button></div></div>`;
+  }).join("") || `<div class="empty-state" style="padding:30px 10px"><div>📋</div><p>No hay operaciones cargadas.</p></div>`;
+}
+
+function resetForm(){
+  document.getElementById("clientForm").reset();
+  document.getElementById("clientId").value="";
+  document.getElementById("initialProof").value="";
+  document.getElementById("initialProofDate").value="";
+  document.getElementById("initialConfirmedDate").value="";
+  document.getElementById("folderPaidDate").value="";
+  document.getElementById("folderPaidDateVisible").value="";
+  document.getElementById("initialDueDate").value=addDays(new Date().toISOString(), 10);
+  document.getElementById("initialExtensionDays").value=0;
+  document.getElementById("initialDepositAmount").value="";
+  document.getElementById("initialProofInfo").textContent="Todavía no se recibió comprobante de la entrega inicial.";
+  document.getElementById("initialProofPreview").innerHTML="";
+  document.getElementById("installmentCount").value=5;
+  renderPaymentEditor(5);
+}
+function showToast(msg){
+  const t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show");
+  clearTimeout(window.__toast); window.__toast=setTimeout(()=>t.classList.remove("show"),2600);
+}
+
+function activateView(btn){
+  document.querySelectorAll(".nav-btn").forEach(x=>x.classList.remove("active")); btn.classList.add("active");
+  document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));
+  document.getElementById("view-"+btn.dataset.view).classList.add("active");
+  if(btn.dataset.view==="admin") loadAdminClients();
+}
+
+function showAdminLock(){
+  const lock=document.getElementById("adminLock");
+  document.getElementById("adminPassword").value="";
+  document.getElementById("adminLockError").textContent="";
+  lock.classList.add("show");
+  lock.setAttribute("aria-hidden","false");
+  setTimeout(()=>document.getElementById("adminPassword").focus(), 40);
+}
+
+function hideAdminLock(){
+  const lock=document.getElementById("adminLock");
+  lock.classList.remove("show");
+  lock.setAttribute("aria-hidden","true");
+}
+
+document.querySelectorAll(".nav-btn").forEach(btn=>btn.addEventListener("click",()=>{
+  if(btn.dataset.view==="admin" && !adminUnlocked){
+    showAdminLock();
+    return;
+  }
+  activateView(btn);
+}));
+document.getElementById("adminLockForm").addEventListener("submit", e=>{
+  e.preventDefault();
+  if(document.getElementById("adminPassword").value===ADMIN_PASSWORD){
+    adminUnlocked = true;
+    hideAdminLock();
+    activateView(document.querySelector('[data-view="admin"]'));
+    return;
+  }
+  document.getElementById("adminLockError").textContent="Contraseña incorrecta.";
+});
+document.getElementById("adminLockCancel").addEventListener("click",hideAdminLock);
+document.getElementById("adminPassword").addEventListener("keydown",e=>{if(e.key==="Escape")hideAdminLock()});
+document.getElementById("searchBtn").addEventListener("click",searchClient);
+document.getElementById("dniSearch").addEventListener("keydown",e=>{if(e.key==="Enter")searchClient()});
+document.getElementById("newClientBtn").addEventListener("click",()=>{resetForm();document.getElementById("clientForm").scrollIntoView({behavior:"smooth"})});
+document.getElementById("resetForm").addEventListener("click",resetForm);
+document.getElementById("folderStatus").addEventListener("change",e=>{
+  const paidDate = document.getElementById("folderPaidDateVisible");
+  if(e.target.value==="paid" && !paidDate.value) paidDate.value = new Date().toISOString().slice(0,10);
+  if(e.target.value!=="paid") paidDate.value = "";
+});
+document.getElementById("installmentCount").addEventListener("change",e=>renderPaymentEditor(e.target.value));
+document.getElementById("installmentValue").addEventListener("input",()=>{
+  document.querySelectorAll(".pay-value").forEach(x=>x.value=document.getElementById("installmentValue").value);
+});
+document.getElementById("generatePayments").addEventListener("click",()=>{
+  const count=Number(document.getElementById("installmentCount").value)||5;
+  const start=new Date(); start.setDate(start.getDate()+30);
+  renderPaymentEditor(count);
+  document.querySelectorAll(".pay-due").forEach((el,i)=>{const d=new Date(start);d.setMonth(d.getMonth()+i);el.value=d.toISOString().slice(0,10)});
+});
+document.getElementById("clientForm").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const c=getFormClient();
+  if(!c.name||!c.dni){showToast("Completá nombre y DNI.");return}
+  if(c.payments.some(p=>!p.due)){showToast("Cargá la fecha de vencimiento de todas las cuotas (o usá \"Generar cuotas\").");return}
+
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  submitBtn.disabled = true; const originalLabel = submitBtn.textContent; submitBtn.textContent = "Guardando...";
+
+  try{
+    const clientRow = {
+      name: c.name,
+      dni: c.dni,
+      phone: c.phone || null,
+      advisor: c.advisor || null,
+      folder_paid: c.folder.paid,
+      folder_paid_date: c.folder.paidDate || null,
+      initial_amount: c.initial.amount,
+      initial_deposit_amount: c.initial.depositAmount,
+      initial_status: c.initial.status,
+      initial_confirmed_date: c.initial.confirmedDate || null,
+      initial_due_date: c.initial.dueDate || null,
+      initial_extension_days: c.initial.extensionDays || 0,
+      installment_value: c.installmentValue,
+      installment_count: c.installmentCount,
+      transfer_bonus_active: c.initial.status === "paid"
+    };
+    // No se pisan initial_proof / initial_proof_date acá: esos campos
+    // sólo los actualiza el propio cliente al subir su comprobante.
+
+    let clientId = c.id;
+    if(clientId){
+      const { error } = await sb.from("clients").update(clientRow).eq("id", clientId);
+      if(error) throw error;
+    } else {
+      const { data, error } = await sb.from("clients").insert(clientRow).select("id").single();
+      if(error) throw error;
+      clientId = data.id;
+    }
+
+    if(c.payments.length){
+      const paymentRows = c.payments.map(p => ({
+        client_id: clientId,
+        n: p.n,
+        due: p.due || null,
+        status: p.status,
+        paid_date: p.paid
+      }));
+      const { error: payErr } = await sb.from("payments").upsert(paymentRows, { onConflict: "client_id,n" });
+      if(payErr) throw payErr;
+    }
+    // Si se redujo la cantidad de cuotas, borramos las que sobran
+    await sb.from("payments").delete().eq("client_id", clientId).gt("n", c.installmentCount);
+
+    showToast("Operación guardada correctamente.");
+    document.getElementById("clientId").value=clientId;
+    await loadAdminClients();
+  }catch(err){
+    console.error(err);
+    const raw = err.message||"";
+    let msg = "No se pudo guardar. Revisá los datos e intentá de nuevo.";
+    if(raw.includes("duplicate key")) msg = "Ya existe un cliente con ese DNI.";
+    else if(raw.includes('column "due"')) msg = 'Faltan fechas de vencimiento en las cuotas. Ejecutá el fix de la base (fix_due_nullable.sql) o completá todas las fechas.';
+    else if(raw.includes("row-level security")) msg = "La base rechazó el guardado por permisos (RLS). Revisá el script fix_rls.sql.";
+    showToast(msg);
+  }finally{
+    submitBtn.disabled = false; submitBtn.textContent = originalLabel;
+  }
+});
+
+renderPaymentEditor(5);
+
+window.editClient=editClient; window.deleteClient=deleteClient; window.uploadProof=uploadProof; window.uploadProofInitial=uploadProofInitial; window.gestionarRetiro=gestionarRetiro;
+</script>
+</body>
+</html>
