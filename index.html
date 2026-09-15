@@ -43,6 +43,8 @@ input,select{width:100%;border:1px solid var(--line);background:#fff;border-radi
 .initial-progress-fill.full{background:linear-gradient(90deg,var(--green),#7bea49)}
 .initial-foot{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-top:14px}
 .initial-amount{font:900 22px Montserrat}
+.initial-breakdown{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;color:var(--muted);font-size:12px;font-weight:800}
+.initial-breakdown span{padding:6px 9px;border-radius:9px;background:#f4f7fb}
 .initial-message{color:var(--muted);font-size:13px;margin-top:4px;max-width:520px}
 .proof-tag{color:var(--muted);font-size:12px;margin-top:6px}
 .bonus-tag{display:inline-flex;align-items:center;gap:7px;margin-top:9px;padding:7px 11px;border-radius:10px;background:#eaf4ff;color:var(--blue);font-size:12px;font-weight:900}
@@ -199,6 +201,7 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
             <h4>Entrega inicial</h4>
             <div class="fields two">
               <label>Monto total<input id="initialAmount" type="number" min="0" placeholder="850000"></label>
+              <label>Seña abonada<input id="initialDepositAmount" type="number" min="0" placeholder="0"></label>
               <label>Estado
                 <select id="initialStatus">
                   <option value="pending">Pendiente</option>
@@ -299,6 +302,7 @@ function mapDbClient(row, paymentsRows){
     advisor: row.advisor || "",
     initial: {
       amount: Number(row.initial_amount)||0,
+      depositAmount: Number(row.initial_deposit_amount)||0,
       status: row.initial_status || "pending",
       proof: row.initial_proof || "",
       proofDate: row.initial_proof_date || "",
@@ -404,8 +408,20 @@ function paymentStatusClass(s){
   return s==="paid" ? "status-green" : s==="verifying" ? "status-blue" : s==="risk" ? "status-yellow" : s==="failed" ? "status-red" : "status-grey";
 }
 
-function initialPercent(status){
-  return status==="paid" ? 100 : status==="half" ? 50 : 0;
+function initialDeposit(initial){
+  if(!initial) return 0;
+  if(initial.status==="paid") return Number(initial.amount)||0;
+  return Math.max(0, Math.min(Number(initial.depositAmount)||0, Number(initial.amount)||0));
+}
+function initialBalance(initial){
+  return Math.max(0, (Number(initial?.amount)||0) - initialDeposit(initial));
+}
+function initialPercent(initial){
+  if(!initial) return 0;
+  if(initial.status==="paid") return 100;
+  const amount = Number(initial.amount)||0;
+  if(!amount) return initial.status==="half" ? 50 : 0;
+  return Math.max(0, Math.min(99, Math.round(initialDeposit(initial) / amount * 100)));
 }
 function initialMessage(status){
   if(status==="paid") return "Entrega inicial confirmada al 100%. ¡Estás un paso más cerca de tu auto!";
@@ -420,6 +436,11 @@ function initialDueDate(c){
   const initial = c.initial || {};
   const baseDue = initial.dueDate || addDays(c.createdAt || new Date().toISOString(), 10);
   return addDays(baseDue, initial.extensionDays || 0);
+}
+function currentCommitmentDate(c, entregaInicialDone){
+  if(!entregaInicialDone) return initialDueDate(c);
+  const next = (c.payments||[]).find(p=>p.status!=="paid");
+  return next?.due || "";
 }
 function initialCountdownText(initial){
   if(initial.status==="paid") return "Entrega inicial completa";
@@ -463,13 +484,16 @@ function renderClient(c){
   const percent = total ? Math.round(paid/total*100) : 0;
   const next = (c.payments||[]).find(p=>p.status!=="paid");
   const initial = c.initial || {amount:0,status:"pending"};
-  const initPct = initialPercent(initial.status);
+  const initPct = initialPercent(initial);
   const ready = isRetiroReady(c);
   const avance = computeAvance(c);
   const carpetaDone = avance.carpetaDone;
   const entregaInicialDone = avance.entregaInicialDone;
   const dueInitial = initialDueDate(c);
   const bonusActive = !!c.transferBonusActive || entregaInicialDone;
+  const depositAmount = initialDeposit(initial);
+  const balanceAmount = initialBalance(initial);
+  const currentCommitment = currentCommitmentDate(c, entregaInicialDone);
 
   const panel = document.getElementById("clientPanel");
   panel.innerHTML = `
@@ -482,11 +506,10 @@ function renderClient(c){
     </div>
 
     <div class="overview">
-      <div class="metric"><small>PRÓXIMO COMPROMISO</small><strong>${next ? formatDate(next.due) : "Completado"}</strong></div>
+      <div class="metric"><small>COMPROMISO ACTUAL</small><strong>${currentCommitment ? formatDate(currentCommitment) : "Completado"}</strong></div>
       <div class="metric">
         <small>COMPROMISOS CUMPLIDOS</small>
         <strong class="metric-list">${avance.completedItems.length ? avance.completedItems.join(", ") : "Aún sin pagos confirmados"}</strong>
-        <div class="metric-fraction">${avance.completedCount} de ${avance.totalCount}</div>
       </div>
       <div class="metric"><small>ESTADO DE RETIRO</small><strong>${ready ? "Habilitado" : "En proceso"}</strong></div>
     </div>
@@ -499,7 +522,8 @@ function renderClient(c){
       <div class="initial-progress-track"><div class="initial-progress-fill ${initPct===100?'full':''}" style="width:${initPct}%"></div></div>
       <div class="initial-foot">
         <div>
-          <div class="initial-amount">${money(initial.amount)}</div>
+          <div class="initial-amount">Saldo entrega inicial: ${money(balanceAmount)}</div>
+          <div class="initial-breakdown"><span>Total: ${money(initial.amount)}</span><span>Seña: ${money(depositAmount)}</span></div>
           <div class="initial-message">${initialMessage(initial.status)}</div>
           <div class="initial-deadline">
             <div class="countdown-wrap"><span class="countdown-label">⏰ Entrega inicial</span><span id="initialCountdownTimer" class="countdown-timer">--</span></div>
@@ -513,7 +537,7 @@ function renderClient(c){
     </div>
 
     <div class="progress-card">
-      <div class="progress-head"><div><h3>Tu avance hacia el retiro</h3><div class="progress-caption">${avance.completedCount} de ${avance.totalCount} compromisos cumplidos</div></div><b>${avance.percent}%</b></div>
+      <div class="progress-head"><div><h3>Tu avance hacia el retiro</h3><div class="progress-caption">Compromiso actual: ${currentCommitment ? formatDate(currentCommitment) : "Completado"}</div></div><b>${avance.percent}%</b></div>
       <div class="progress-track"><div class="progress-fill" style="width:${avance.percent}%"></div></div>
       <div class="progress-caption">Cada pago confirmado acerca un paso más al objetivo de retirar el auto.</div>
     </div>
@@ -564,7 +588,7 @@ function renderClient(c){
           <small>Vencimiento: ${formatDate(dueInitial)}</small>
           ${!entregaInicialDone ? `<div class="countdown-wrap"><span class="countdown-label">⏰ Tiempo restante</span><span id="initialCommitmentTimer" class="countdown-timer">--</span></div>` : ""}
         </div>
-        <div class="payment-amount">${money(initial.amount)}</div>
+        <div class="payment-amount">${money(balanceAmount)}</div>
         <div class="payment-meta"><span class="payment-status ${initialBadgeClass(initial.status)}">${initial.status==="paid"?"PAGADA":initial.status==="half"?"SEÑA / 50%":paymentStatusText(initial.status)}</span></div>
         <div class="payment-actions"><button class="icon-btn" onclick="uploadProofInitial('${c.id}')" ${entregaInicialDone?"disabled":""}>📎</button></div>
       </div>
@@ -749,6 +773,7 @@ function getFormClient(){
   const folderPaidDate = document.getElementById("folderPaidDateVisible").value || document.getElementById("folderPaidDate").value;
   const initial = {
     amount: Number(document.getElementById("initialAmount").value)||0,
+    depositAmount: Number(document.getElementById("initialDepositAmount").value)||0,
     status: initStatus,
     proof: document.getElementById("initialProof").value || "",
     proofDate: document.getElementById("initialProofDate").value || "",
@@ -800,6 +825,7 @@ function editClient(id){
   document.getElementById("folderPaidDate").value = folder.paidDate||"";
   document.getElementById("folderPaidDateVisible").value = folder.paidDate||"";
   document.getElementById("initialAmount").value = initial.amount||"";
+  document.getElementById("initialDepositAmount").value = initial.depositAmount||"";
   document.getElementById("initialStatus").value = initial.status||"pending";
   document.getElementById("initialDueDate").value = initial.dueDate || addDays(c.createdAt || new Date().toISOString(), 10);
   document.getElementById("initialExtensionDays").value = initial.extensionDays||0;
@@ -916,6 +942,7 @@ function resetForm(){
   document.getElementById("folderPaidDateVisible").value="";
   document.getElementById("initialDueDate").value=addDays(new Date().toISOString(), 10);
   document.getElementById("initialExtensionDays").value=0;
+  document.getElementById("initialDepositAmount").value="";
   document.getElementById("initialProofInfo").textContent="Todavía no se recibió comprobante de la entrega inicial.";
   document.getElementById("initialProofPreview").innerHTML="";
   document.getElementById("installmentCount").value=5;
@@ -969,6 +996,7 @@ document.getElementById("clientForm").addEventListener("submit", async e=>{
       folder_paid: c.folder.paid,
       folder_paid_date: c.folder.paidDate || null,
       initial_amount: c.initial.amount,
+      initial_deposit_amount: c.initial.depositAmount,
       initial_status: c.initial.status,
       initial_confirmed_date: c.initial.confirmedDate || null,
       initial_due_date: c.initial.dueDate || null,
