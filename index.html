@@ -129,7 +129,7 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
   </div>
   <div class="top-actions">
     <button class="nav-btn active" data-view="consulta">🔎 Consulta</button>
-    <!--button class="nav-btn" data-view="admin">⚙️ Administración</button!-->
+    <button class="nav-btn" data-view="admin">⚙️ Administración</button>
   </div>
 </header>
 
@@ -568,7 +568,12 @@ function renderClient(c){
           <div class="step-dot">${entregaInicialDone?"✓":initial.status==="verifying"?"⏳":initial.status==="half"?"50%":"$"}</div>
           <h4>ENTREGA INICIAL</h4><p>Vence ${formatDate(dueInitial)}<br>${money(initial.amount)}</p><strong>${initial.status==="paid"?"Pagada":initial.status==="half"?"Seña / mitad":paymentStatusText(initial.status)}</strong>
         </div>
-        ${(c.payments||[]).map(p => {
+        ${(function(){
+          const payments = c.payments || [];
+          if(!entregaInicialDone) return "";
+          const currentIdx = payments.findIndex(p=>p.status!=="paid");
+          const visiblePayments = currentIdx===-1 ? payments : payments.slice(0, currentIdx + 1);
+          return visiblePayments.map(p => {
           const isLastStep = p.n === total;
           const cls=p.status==="paid"?"done":p.status==="risk"?"risk":p.status==="failed"?"failed":p.status==="verifying"?"verifying":"";
           const icon=p.status==="paid"?"✓":p.status==="risk"?"!":p.status==="verifying"?"⏳":"$";
@@ -577,13 +582,14 @@ function renderClient(c){
             return `<div class="step final-combo ${finalReady?"unlocked":"locked"}">
               <div class="step-dot final-dot">🚗</div>
               <h4>CUOTA ${p.n} · TU AUTO</h4>
-              <p>${money(c.installmentValue)}<br>Vence ${formatDate(p.due)}</p>
+              <p>${money(c.installmentValue)}</p>
               <strong>${finalReady ? "🎉 ¡Retiro habilitado!" : "🔒 Retiro bloqueado · "+paymentStatusText(p.status)}</strong>
               <small class="final-caption">Se habilita al completar todo</small>
             </div>`;
           }
-          return `<div class="step ${cls}"><div class="step-dot">${icon}</div><h4>CUOTA ${p.n}</h4><p>${money(c.installmentValue)}<br>Vence ${formatDate(p.due)}</p><strong>${paymentStatusText(p.status)}</strong></div>`;
-        }).join("")}
+          return `<div class="step ${cls}"><div class="step-dot">${icon}</div><h4>CUOTA ${p.n}</h4><p>${money(c.installmentValue)}</p><strong>${paymentStatusText(p.status)}</strong></div>`;
+          }).join("");
+        })()}
       </div>
     </div>
 
