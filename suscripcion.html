@@ -28,7 +28,7 @@ a{transition:color .15s ease,border-color .15s ease}
 ::-webkit-scrollbar-thumb:hover{background:#a9bcd6}
 .topbar{height:76px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 5%;position:sticky;top:0;z-index:20;box-shadow:0 5px 25px #06152d44}
 .brand{display:flex;align-items:center;gap:12px}.brand-logo{width:172px;height:57px;object-fit:contain;border-radius:8px;background:#fff;padding:4px;display:block}.brand strong{display:block;font:900 19px Montserrat;letter-spacing:-.6px}.brand strong span{color:var(--blue)}.brand small{color:#b9c9e2;font-size:10px;letter-spacing:1.5px;text-transform:uppercase}
-.top-actions{display:flex;gap:8px}.nav-btn{border:1px solid #ffffff22;background:transparent;color:#dce8f8;padding:11px 15px;border-radius:10px;font-weight:700}.nav-btn.active,.nav-btn:hover{background:#ffffff12;color:#fff;border-color:#ffffff38}.nav-btn.active{box-shadow:inset 0 0 0 1px #ffffff28}
+.top-actions{display:flex;gap:8px}.nav-btn,.nav-link-btn{border:1px solid #ffffff22;background:transparent;color:#dce8f8;padding:11px 15px;border-radius:10px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center}.nav-btn.active,.nav-btn:hover,.nav-link-btn:hover{background:#ffffff12;color:#fff;border-color:#ffffff38}.nav-btn.active{box-shadow:inset 0 0 0 1px #ffffff28}
 main{min-height:calc(100vh - 130px)}.view{display:none}.view.active{display:block;animation:viewIn .35s ease}
 @keyframes viewIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 @media (prefers-reduced-motion: reduce){.view.active{animation:none}}
@@ -134,7 +134,7 @@ input,select{width:100%;border:1px solid var(--line);background:#fff;border-radi
 .toast{position:fixed;right:25px;bottom:25px;background:var(--navy);color:#fff;padding:14px 18px;border-radius:12px;box-shadow:var(--shadow);transform:translateY(120px);opacity:0;transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .25s ease;z-index:50;font-weight:700;max-width:320px}.toast.show{transform:translateY(0);opacity:1}
 footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;font-size:11px;border-top:1px solid var(--line);gap:15px}
 @media(max-width:900px){.hero{grid-template-columns:1fr;padding:45px 6%}.admin-grid{grid-template-columns:1fr}.client-top{grid-template-columns:1fr}.payment-row{grid-template-columns:55px 1fr auto}.payment-row .payment-meta{display:none}.payment-actions{justify-content:flex-end}.section-head{align-items:start;flex-direction:column}.trust-strip{margin:-28px 5% 34px;padding:20px}.trust-inner{grid-template-columns:repeat(2,1fr);row-gap:16px}.trust-item:nth-child(odd){border-left:0;padding-left:0}.trust-item:nth-child(n+3){border-left:0;padding-left:0}.transfer-steps{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.topbar{padding:0 4%;height:68px}.brand-logo{width:126px;height:42px}.brand strong,.brand small{display:none}.top-actions{gap:4px}.nav-btn{padding:9px;font-size:11px}.hero{padding:38px 5%}.hero h1{font-size:42px}.search-row{flex-direction:column}.client-panel{padding:25px 4%}.overview{grid-template-columns:1fr 1fr}.metric{padding:14px}.identity h2{font-size:21px}.avatar{width:54px;height:54px}.timeline-wrap{padding:20px 12px;overflow-x:auto}.timeline{min-width:840px}.commitments{padding:18px}.payment-row{grid-template-columns:45px 1fr auto}.payment-amount{font-size:12px}.fields.two{grid-template-columns:1fr}.full{grid-column:auto}.admin-grid,.section-head{padding-left:4%;padding-right:4%}.form-card,.list-card{padding:18px}.editor-row{grid-template-columns:35px 1fr;row-gap:6px}.editor-row select{grid-column:1/-1}.retiro-card{flex-direction:column;align-items:start}footer{flex-direction:column}}
+@media(max-width:600px){.topbar{padding:0 4%;height:68px}.brand-logo{width:126px;height:42px}.brand strong,.brand small{display:none}.top-actions{gap:4px}.nav-btn,.nav-link-btn{padding:9px;font-size:11px}.hero{padding:38px 5%}.hero h1{font-size:42px}.search-row{flex-direction:column}.client-panel{padding:25px 4%}.overview{grid-template-columns:1fr 1fr}.metric{padding:14px}.identity h2{font-size:21px}.avatar{width:54px;height:54px}.timeline-wrap{padding:20px 12px;overflow-x:auto}.timeline{min-width:840px}.commitments{padding:18px}.payment-row{grid-template-columns:45px 1fr auto}.payment-amount{font-size:12px}.fields.two{grid-template-columns:1fr}.full{grid-column:auto}.admin-grid,.section-head{padding-left:4%;padding-right:4%}.form-card,.list-card{padding:18px}.editor-row{grid-template-columns:35px 1fr;row-gap:6px}.editor-row select{grid-column:1/-1}.retiro-card{flex-direction:column;align-items:start}footer{flex-direction:column}}
 @media(max-width:600px){
   .timeline-wrap{padding:20px 16px;overflow:hidden}
   .timeline-title{align-items:flex-start;gap:10px;flex-direction:column;margin-bottom:20px}
@@ -248,14 +248,14 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
     </div>
   </div>
   <div class="top-actions">
-    <button class="nav-btn" data-view="consulta">🔎 Consulta</button>
+    <a class="nav-link-btn" href="index.html">🔎 Consulta</a>
     <button class="nav-btn active" data-view="suscripcion">📝 Suscribirme 95% OFF</button>
-    <button class="nav-btn" data-view="admin">⚙️ Administración</button>
+    <!--button class="nav-btn" data-view="admin">⚙️ Administración</button-->
   </div>
 </header>
 
 <main>
-  <section id="view-consulta" class="view active">
+  <section id="view-consulta" class="view">
     <div class="hero">
       <div class="hero-copy">
         <span class="eyebrow">SEGUIMIENTO DE OPERACIÓN</span>
@@ -399,7 +399,7 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
   </section>
 
   <!-- ============ VISTA: SUSCRIPCIÓN CON BONIFICACIÓN ============ -->
-  <section id="view-suscripcion" class="view">
+  <section id="view-suscripcion" class="view active">
     <div class="sus-hero">
       <div>
         <span class="eyebrow">¡BONIFICACIÓN ESPECIAL!</span>
@@ -550,6 +550,7 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
           <div class="sus-code" id="susCode">—</div>
           <div class="sus-resume" id="susResume"></div>
           <div class="sus-ok-actions">
+            <a id="susConsult" class="primary-btn" href="index.html">Consultar DNI y abonar carpeta</a>
             <a id="susWa" class="wa-btn" href="#" target="_blank" rel="noopener">💬 Enviar por WhatsApp</a>
             <button type="button" id="susDownload" class="secondary-btn">⬇️ Descargar copia</button>
             <button type="button" id="susNew" class="ghost-btn">Cargar otra solicitud</button>
@@ -1703,6 +1704,12 @@ const PROVINCIAS = ["Buenos Aires","CABA","Catamarca","Chaco","Chubut","Córdoba
     try{
       const { error } = await sb.from(SUS_TABLE).insert(payload);
       if(error) throw error;
+      const { error: clientErr } = await sb.rpc("ensure_client_for_subscription", {
+        p_name: d.nombre,
+        p_dni: d.dni,
+        p_phone: d.telefono
+      });
+      if(clientErr) throw clientErr;
     }catch(dbErr){
       console.error(dbErr);
       guardado = false;
@@ -1713,8 +1720,9 @@ const PROVINCIAS = ["Buenos Aires","CABA","Catamarca","Chaco","Chubut","Córdoba
     pintarResumen(d, docs);
     $("susCode").textContent = "Código " + codigo;
     $("susOkMsg").textContent = guardado
-      ? "Recibimos tus datos y ya quedaron registrados. Un asesor se comunica con vos a la brevedad para confirmar la bonificación de la gestión de carpeta." + avisoDocs
+      ? "Recibimos tus datos. Ahora podés consultar tu DNI y abonar la carpeta con la bonificación del 95% durante 30 minutos para comenzar este maravilloso camino hacia tu auto." + avisoDocs
       : "Tus datos se completaron correctamente, pero no pudimos registrarlos automáticamente. Enviálos por WhatsApp con el botón de abajo o descargá la copia para no perderlos." + avisoDocs;
+    $("susConsult").href = "index.html?dni=" + encodeURIComponent(d.dni);
     $("susWa").href = "https://wa.me/" + SUS_WHATSAPP + "?text=" + encodeURIComponent(texto);
     $("susDownload").onclick = ()=>{
       const blob = new Blob([texto], {type:"text/plain;charset=utf-8"});
