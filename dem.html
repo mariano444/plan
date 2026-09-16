@@ -323,6 +323,68 @@ footer{padding:26px 6%;color:#7b879a;font-size:12px;border-top:1px solid var(--l
   .bank-grid{grid-template-columns:1fr}
   .bank-line{display:grid;grid-template-columns:54px 1fr auto;align-items:center}
 }
+
+/* ===== Bloques de transparencia y confianza ===== */
+.summary-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:22px 24px;box-shadow:var(--shadow);margin-bottom:22px}
+.summary-card h3{margin:0 0 4px;font:700 18px Montserrat}
+.summary-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;line-height:1.55}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:13px}
+.summary-item{background:var(--sky);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px}
+.summary-item small{display:block;color:var(--muted);font-weight:700;font-size:11.5px;margin-bottom:6px;letter-spacing:.3px}
+.summary-item strong{font:700 19px Montserrat;display:block}
+.summary-item span{display:block;color:var(--muted);font-size:11.5px;margin-top:5px;line-height:1.45}
+.summary-item.paid{background:var(--green-light);border-color:#cdeedc}
+.summary-item.paid strong{color:var(--green-deep)}
+.summary-item.balance{background:var(--gold-light);border-color:#f0e2bd}
+.summary-item.now{background:var(--blue-light);border-color:#cfe1f8}
+.summary-item.now strong{color:var(--blue-deep)}
+.summary-bar{height:10px;background:#e9eef6;border-radius:20px;overflow:hidden;margin:18px 0 9px}
+.summary-bar>div{height:100%;background:linear-gradient(90deg,var(--green),var(--green-deep));border-radius:20px;transition:.5s}
+.summary-note{color:var(--muted);font-size:12.5px;line-height:1.6;margin:0}
+.summary-detail{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+.summary-detail summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--blue-deep);list-style:none}
+.summary-detail summary::-webkit-details-marker{display:none}
+.summary-detail summary:before{content:"▸ ";transition:.2s}
+.summary-detail[open] summary:before{content:"▾ "}
+.detail-line{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px}
+.detail-line:last-child{border-bottom:0}
+.detail-line span{color:var(--muted)}
+.detail-line b{white-space:nowrap}
+.detail-line.total{font-weight:800;color:var(--ink)}
+
+.verify-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;margin:14px 0 2px}
+.verify-step{display:flex;gap:11px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:13px 14px}
+.verify-step .vnum{width:26px;height:26px;border-radius:8px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:800;flex-shrink:0}
+.verify-step b{display:block;font-size:13px;margin-bottom:3px}
+.verify-step span{display:block;color:var(--muted);font-size:12px;line-height:1.5}
+
+.receipt-strip{display:flex;gap:9px;align-items:center;flex-wrap:wrap;background:var(--blue-light);border:1px solid #cfe1f8;color:var(--blue-deep);border-radius:var(--r-md);padding:11px 14px;margin-top:12px;font-size:12.5px;font-weight:600;line-height:1.5}
+.receipt-strip a{color:var(--blue-deep);font-weight:800}
+.receipt-strip.done{background:var(--green-light);border-color:#cdeedc;color:var(--green-deep)}
+.receipt-strip.done a{color:var(--green-deep)}
+
+.help-card{background:#fff;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:var(--r-lg);padding:22px 24px;box-shadow:var(--shadow-sm);margin-bottom:22px}
+.help-card h3{margin:0 0 6px;font:700 17px Montserrat}
+.help-card>p{margin:0 0 14px;color:var(--muted);font-size:13.5px;line-height:1.6}
+.help-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:12px}
+.help-option{border:1px solid var(--line);border-radius:var(--r-md);padding:13px 15px;background:var(--bg)}
+.help-option b{display:block;font-size:13.5px;margin-bottom:4px}
+.help-option span{color:var(--muted);font-size:12.5px;line-height:1.5}
+
+.support-bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:var(--r-lg);padding:20px 24px;margin-bottom:22px}
+.support-bar b{display:block;font:700 16px Montserrat;margin-bottom:3px}
+.support-bar p{margin:0;color:#bcd4f2;font-size:13px;line-height:1.5}
+.support-actions{display:flex;gap:10px;flex-wrap:wrap}
+.support-actions a{background:#fff;color:var(--navy);text-decoration:none;font-weight:800;font-size:13.5px;padding:11px 16px;border-radius:10px;display:inline-flex;gap:8px;align-items:center}
+.support-actions a.ghost{background:#ffffff1a;color:#fff;border:1px solid #ffffff38}
+.support-actions a:hover{opacity:.92}
+
+.countdown-timer.calm{background:var(--blue-light);color:var(--blue-deep)}
+.deadline-help{display:block;margin-top:6px;color:var(--muted);font-size:11.5px;line-height:1.5}
+@media(max-width:700px){
+  .support-bar{flex-direction:column;align-items:flex-start}
+  .support-actions a{width:100%;justify-content:center}
+}
 </style>
 </head>
 <body>
@@ -360,7 +422,7 @@ footer{padding:26px 6%;color:#7b879a;font-size:12px;border-top:1px solid var(--l
       <div class="hero-copy">
         <span class="eyebrow">Seguimiento de tu operación en tiempo real</span>
         <h1>Cada pago te acerca<br>un paso más a <em>tu auto</em>.</h1>
-        <p>Consultá el estado de tu entrega inicial y tus cuotas, subí tus comprobantes y seguí tu avance hasta el día del retiro, todo desde un mismo lugar.</p>
+        <p>Consultá el estado de tu entrega inicial y tus cuotas, subí tus comprobantes y seguí tu avance hasta el día del retiro, todo desde un mismo lugar. Cada importe que abonás queda registrado con su fecha y su comprobante, y lo podés revisar cuando quieras.</p>
       </div>
       <div class="search-card">
         <label for="dniSearch">Consultá tu operación</label>
@@ -375,7 +437,7 @@ footer{padding:26px 6%;color:#7b879a;font-size:12px;border-top:1px solid var(--l
     <div class="trust-strip">
       <div class="trust-inner">
         <div class="trust-item"><div class="trust-icon">🔐</div><div><b>Datos protegidos</b><span>Conexión segura y Ley N° 25.326</span></div></div>
-        <div class="trust-item"><div class="trust-icon">🏦</div><div><b>Cuentas verificadas</b><span>A nombre de MundoAuto Multimarcas S.A.</span></div></div>
+        <div class="trust-item"><div class="trust-icon">🏦</div><div><b>Cuentas a nombre de la empresa</b><span>MundoAuto Multimarcas S.A. · CUIT 30-71234681-3</span></div></div>
         <div class="trust-item"><div class="trust-icon">🧾</div><div><b>Comprobante con respaldo</b><span>Cada pago queda registrado y validado</span></div></div>
         <div class="trust-item"><div class="trust-icon">🤝</div><div><b>Acompañamiento real</b><span>Tu asesor te guía en cada etapa</span></div></div>
       </div>
@@ -500,8 +562,17 @@ footer{padding:26px 6%;color:#7b879a;font-size:12px;border-top:1px solid var(--l
 </main>
 
 <footer>
-  <span>MundoAuto · Portal de Compromisos y Retiro</span>
-  <span>Datos protegidos por SSL y bajo la Ley N° 25.326 de Protección de Datos Personales</span>
+  <div class="footer-inner">
+    <span>
+      <b>MUNDOAUTO MULTIMARCAS S.A.</b> · CUIT 30-71234681-3<br>
+      Av. Ejemplo 1234, Córdoba · Lunes a viernes de 9 a 18 h · +54 351 000-0000
+    </span>
+    <div class="footer-trust">
+      <span>🔒 Conexión cifrada (HTTPS)</span>
+      <span>📋 Tus datos se tratan según la Ley N° 25.326</span>
+      <span>🧾 Cada pago queda registrado con su comprobante</span>
+    </div>
+  </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -513,7 +584,25 @@ const SUPABASE_URL = "https://pamiixztulwcjymllzle.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_iP1AfoZzzSmkN_gAIGqs7g_-sHv1Sht";
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const PROOF_BUCKET = "comprobantes";
-const ADMIN_PASSWORD = "MA24568";
+const ADMIN_PASSWORD = "MA24568"; // ⚠️ Ver notas: esto NO protege el panel, cualquiera puede leerlo desde el navegador.
+
+// ---------------------------------------------------------
+// ⬇️ COMPLETAR CON LOS DATOS REALES DE LA EMPRESA ⬇️
+// Son los que más confianza generan: un cliente que puede
+// llamar, escribir o ir a la sucursal duda mucho menos.
+// ---------------------------------------------------------
+const CONTACTO = {
+  whatsapp: "5493510000000",                 // sólo números, con código de país
+  telefonoVisible: "+54 351 000-0000",
+  direccion: "Av. Ejemplo 1234, Córdoba",
+  horario: "Lunes a viernes de 9 a 18 h",
+  plazoValidacion: "24 a 48 horas hábiles",
+  razonSocial: "MUNDOAUTO MULTIMARCAS S.A.",
+  cuit: "30-71234681-3"
+};
+function waLink(texto){
+  return "https://wa.me/" + CONTACTO.whatsapp + "?text=" + encodeURIComponent(texto);
+}
 
 /* -----------------------------------------------------------
    A partir de acá la app funciona 100% contra Supabase:
@@ -740,6 +829,19 @@ function renderClient(c){
   const balanceAmount = initialBalance(initial);
   const currentCommitment = currentCommitmentDate(c, entregaInicialDone);
 
+  // --- Resumen económico: el cliente ve exactamente cuánto es el total,
+  // --- cuánto lleva pagado y cuánto le falta. Nada oculto.
+  const cuotasTotales   = total || c.installmentCount || 0;
+  const cuotasPagadas   = paid;
+  const montoCuotas     = (Number(c.installmentValue)||0) * cuotasTotales;
+  const montoCuotasPago = (Number(c.installmentValue)||0) * cuotasPagadas;
+  const totalOperacion  = (Number(initial.amount)||0) + montoCuotas;
+  const totalPagado     = depositAmount + montoCuotasPago;
+  const saldoTotal      = Math.max(0, totalOperacion - totalPagado);
+  const pctPagado       = totalOperacion ? Math.round(totalPagado/totalOperacion*100) : 0;
+  const montoAhora      = !entregaInicialDone ? balanceAmount : (Number(c.installmentValue)||0);
+  const conceptoAhora   = !entregaInicialDone ? "Entrega inicial" : (next ? `Cuota ${next.n} de ${cuotasTotales}` : "Todo al día");
+
   const panel = document.getElementById("clientPanel");
   panel.innerHTML = `
     <div class="client-top">
@@ -759,6 +861,30 @@ function renderClient(c){
       <div class="metric"><small>ESTADO DE RETIRO</small><strong>${ready ? "Habilitado" : "En proceso"}</strong></div>
     </div>
 
+    <div class="summary-card">
+      <h3>📊 Resumen de tu operación</h3>
+      <p class="summary-sub">Estos son todos los números de tu plan, tal como están cargados en el sistema. Si alguno no coincide con lo que firmaste, avisanos antes de transferir.</p>
+      <div class="summary-grid">
+        <div class="summary-item"><small>TOTAL DE LA OPERACIÓN</small><strong>${money(totalOperacion)}</strong><span>Entrega inicial + ${cuotasTotales} cuota${cuotasTotales===1?"":"s"}</span></div>
+        <div class="summary-item paid"><small>YA ABONASTE</small><strong>${money(totalPagado)}</strong><span>${pctPagado}% del total, confirmado por MundoAuto</span></div>
+        <div class="summary-item balance"><small>TE FALTA</small><strong>${money(saldoTotal)}</strong><span>Saldo restante hasta el retiro</span></div>
+        <div class="summary-item now"><small>A PAGAR AHORA</small><strong>${ready ? "—" : money(montoAhora)}</strong><span>${escapeHtml(conceptoAhora)}${currentCommitment && !ready ? " · vence "+formatDate(currentCommitment) : ""}</span></div>
+      </div>
+      <div class="summary-bar"><div style="width:${pctPagado}%"></div></div>
+      <p class="summary-note">Cada importe que confirmamos queda registrado acá con su fecha y su comprobante. Podés consultar esta página cuando quieras con tu DNI.</p>
+      <details class="summary-detail">
+        <summary>Ver el detalle completo</summary>
+        <div style="margin-top:10px">
+          <div class="detail-line"><span>Carpeta</span><b>${carpetaDone?"Pagada":"Pendiente"}${c.folder && c.folder.paidDate ? " · "+formatDate(c.folder.paidDate) : ""}</b></div>
+          <div class="detail-line"><span>Entrega inicial</span><b>${money(initial.amount)}</b></div>
+          <div class="detail-line"><span>Abonado de la entrega inicial</span><b>${money(depositAmount)}</b></div>
+          <div class="detail-line"><span>${cuotasTotales} cuota${cuotasTotales===1?"":"s"} de ${money(c.installmentValue)}</span><b>${money(montoCuotas)}</b></div>
+          <div class="detail-line"><span>Cuotas confirmadas (${cuotasPagadas}/${cuotasTotales})</span><b>${money(montoCuotasPago)}</b></div>
+          <div class="detail-line total"><span>Saldo pendiente</span><b>${money(saldoTotal)}</b></div>
+        </div>
+      </details>
+    </div>
+
     <div class="initial-card">
       <div class="initial-head">
         <h3>💳 Entrega inicial</h3>
@@ -773,9 +899,14 @@ function renderClient(c){
           <div class="initial-deadline">
             <div class="countdown-wrap"><span class="countdown-label">⏰ Entrega inicial</span><span id="initialCountdownTimer" class="countdown-timer">--</span></div>
             <small>Vence ${formatDate(dueInitial)} · ${initialCountdownText(initial)}</small>
+            <small class="deadline-help">¿No llegás con la fecha? Escribinos antes del vencimiento y la reprogramamos sin vueltas.</small>
           </div>
           <div class="bonus-tag ${bonusActive?"active":""}">${bonusActive?"✓":"○"} Traslado a domicilio bonificado ${bonusActive?"activo":"al completar la entrega inicial"}</div>
-          ${initial.proof ? `<div class="proof-tag">📎 <a href="${initial.proof}" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700">Ver comprobante</a>${initial.proofDate ? " · "+formatDate(initial.proofDate) : ""}</div>` : ""}
+          ${initial.proof ? `<div class="receipt-strip ${entregaInicialDone?"done":""}">
+            <span>${entregaInicialDone?"✅":"📎"} Recibimos tu comprobante${initial.proofDate ? " el "+formatDate(initial.proofDate) : ""}.</span>
+            <span>${entregaInicialDone?"Pago confirmado por MundoAuto.":"Lo validamos en "+CONTACTO.plazoValidacion+" y te avisamos por WhatsApp."}</span>
+            <a href="${initial.proof}" target="_blank" rel="noopener">Ver comprobante</a>
+          </div>` : ""}
         </div>
         <button class="icon-btn" onclick="uploadProofInitial('${c.id}')" ${initial.status==="paid"?"disabled":""}>📎 ${initial.proof ? "Actualizar comprobante" : "Cargar comprobante"}</button>
       </div>
@@ -835,7 +966,13 @@ function renderClient(c){
           <span>CUIT 30-71234681-3</span>
         </div>
       </div>
-      <div class="security-note">⚠️ <span><b>Transferí solo a estos datos.</b> Son las únicas cuentas oficiales de MundoAuto. Si alguien te pide pagar a otra cuenta o por otro medio, desconfiá y avisá a tu asesor antes de transferir.</span></div>
+      <div class="security-note">⚠️ <span><b>Transferí sólo a estas cuentas.</b> Son las únicas cuentas oficiales de MundoAuto. Nunca te vamos a pedir claves, tokens ni códigos de tu home banking, ni te vamos a pedir que pagues a un alias a nombre de una persona. Si alguien lo hace, cortá y llamanos al ${CONTACTO.telefonoVisible}.</span></div>
+      <div class="verify-steps">
+        <div class="verify-step"><div class="vnum">1</div><div><b>Pegá el CBU o el alias</b><span>Copialos desde acá con el botón, así evitás errores de tipeo.</span></div></div>
+        <div class="verify-step"><div class="vnum">2</div><div><b>Confirmá el titular</b><span>Antes de aceptar, tu banco tiene que mostrar <b>${CONTACTO.razonSocial}</b>, CUIT ${CONTACTO.cuit}. Si aparece otro nombre, no transfieras.</span></div></div>
+        <div class="verify-step"><div class="vnum">3</div><div><b>Subí el comprobante</b><span>Desde el clip 📎 de la cuota. Queda guardado en tu operación con fecha y hora.</span></div></div>
+        <div class="verify-step"><div class="vnum">4</div><div><b>Esperá la confirmación</b><span>Validamos en ${CONTACTO.plazoValidacion} y vas a ver el estado cambiar a “PAGADA” en esta misma pantalla.</span></div></div>
+      </div>
       <div class="bank-grid">
         <div class="bank-card">
           <h4>Bancor</h4>
@@ -862,7 +999,7 @@ function renderClient(c){
           <div class="bank-line"><small>Alias</small><b>MUNDOAUTO.GALICIA</b><button class="copy-btn" onclick="copyPaymentData('MUNDOAUTO.GALICIA')">Copiar</button></div>
         </div>
       </div>
-      <p class="advisor-note">Si preferís otro método de pago, coordiná directamente con tu asesor.</p>
+      <p class="advisor-note">¿Preferís otro medio de pago o pagar en la sucursal? Coordinalo con tu asesor: ${CONTACTO.direccion} · ${CONTACTO.horario}.</p>
     </div>
 
     <div class="commitments">
@@ -910,6 +1047,7 @@ function renderClient(c){
                 <b>Cuota ${p.n} · ¡Es tu turno!</b>
                 <small>Vencimiento: ${formatDate(p.due)}</small>
                 <div class="countdown-wrap"><span class="countdown-label">⏰ Tiempo restante</span><span id="countdownTimer" class="countdown-timer">--</span></div>
+                ${p.proof ? `<div class="receipt-strip"><span>📎 Comprobante recibido${p.proofDate?" el "+formatDate(p.proofDate):""} · lo estamos validando.</span><a href="${p.proof}" target="_blank" rel="noopener">Ver</a></div>` : ""}
               </div>
               <div class="payment-amount">${money(c.installmentValue)}</div>
               <div class="payment-meta"><span class="payment-status ${paymentStatusClass(p.status)}">${paymentStatusText(p.status)}</span></div>
@@ -932,6 +1070,29 @@ function renderClient(c){
 
         return rows + lockedTeaser + metaRow;
       })()}
+    </div>
+
+    ${!ready ? `
+    <div class="help-card">
+      <h3>🤝 ¿Y si este mes se te complica?</h3>
+      <p>Preferimos que nos avises antes del vencimiento y no que dejes la operación en el aire. Estas son tus opciones reales, sin letra chica:</p>
+      <div class="help-options">
+        <div class="help-option"><b>Pagar una parte</b><span>Podés abonar una seña y descontarla del saldo. Queda registrada acá con su comprobante.</span></div>
+        <div class="help-option"><b>Pedir una extensión</b><span>Si avisás antes del vencimiento, movemos la fecha del compromiso sin perder lo abonado.</span></div>
+        <div class="help-option"><b>Reprogramar el plan</b><span>Tu asesor puede recalcular las cuotas que faltan según lo que puedas pagar por mes.</span></div>
+        <div class="help-option"><b>Hablar con una persona</b><span>Escribinos por WhatsApp o acercate a la sucursal: ${CONTACTO.direccion}, ${CONTACTO.horario}.</span></div>
+      </div>
+    </div>` : ""}
+
+    <div class="support-bar">
+      <div>
+        <b>¿Alguna duda antes de transferir?</b>
+        <p>Hablá con ${escapeHtml(c.advisor||"tu asesor")} antes de hacer el pago. Preguntar siempre es gratis.</p>
+      </div>
+      <div class="support-actions">
+        <a href="${waLink("Hola, soy "+(c.name||"")+" (DNI "+(c.dni||"")+"). Tengo una consulta sobre mi operación en MundoAuto.")}" target="_blank" rel="noopener">💬 WhatsApp</a>
+        <a class="ghost" href="tel:${CONTACTO.telefonoVisible.replace(/[^+\d]/g,"")}">📞 ${CONTACTO.telefonoVisible}</a>
+      </div>
     </div>
 
     <div class="retiro-card">
@@ -970,16 +1131,20 @@ function startCountdown(due, id="countdownTimer"){
     const target = new Date(due+"T23:59:59");
     const diff = target - new Date();
     if(diff <= 0){
-      el.textContent = "¡Venció! Regularizá cuanto antes";
+      el.textContent = "Venció el " + formatDate(dateOnly(due)) + " · reprogramalo con tu asesor";
       el.classList.add("expired");
+      el.classList.remove("calm");
       clearInterval(window[key]);
       return;
     }
     const d = Math.floor(diff/86400000);
     const h = Math.floor((diff%86400000)/3600000);
     const m = Math.floor((diff%3600000)/60000);
-    const s = Math.floor((diff%60000)/1000);
-    el.textContent = `${d}d ${h}h ${m}m ${s}s`;
+    // Sin segundos: informa el plazo real sin generar una sensación de apuro artificial.
+    if(d > 0)      el.textContent = `${d} día${d===1?"":"s"} · ${h} h`;
+    else if(h > 0) el.textContent = `${h} h ${m} min`;
+    else           el.textContent = `${m} min`;
+    el.classList.toggle("calm", d >= 3);
   }
   tick();
   window[key] = setInterval(tick, 1000);
