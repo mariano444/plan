@@ -63,27 +63,6 @@ input,select{width:100%;border:1px solid var(--line);background:#fff;border-radi
 .proof-tag{color:var(--muted);font-size:12px;margin-top:6px}
 .bonus-tag{display:inline-flex;align-items:center;gap:7px;margin-top:9px;padding:7px 11px;border-radius:10px;background:#eaf4ff;color:var(--blue);font-size:12px;font-weight:900}
 .bonus-tag.active{background:#e5faed;color:#087d37}
-.folder-offer{position:relative;overflow:hidden;background:linear-gradient(135deg,#071b3a 0%,#0b3f86 48%,#ffd51a 160%);color:#fff;border-radius:22px;padding:26px;border:1px solid #ffffff26;box-shadow:0 24px 70px rgba(7,27,58,.22);margin-bottom:25px}
-.folder-offer:before{content:"";position:absolute;inset:-40% -18% auto auto;width:340px;height:340px;background:radial-gradient(circle,#ffd51a66 0,#ffd51a00 66%);pointer-events:none}
-.folder-offer-grid{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center}
-.folder-kicker{display:inline-flex;align-items:center;gap:8px;background:#ffffff18;border:1px solid #ffffff2d;border-radius:999px;padding:7px 12px;font-size:11px;font-weight:900;letter-spacing:.8px;color:#ffe877}
-.folder-offer h3{font:900 clamp(28px,4vw,52px)/1 Montserrat;margin:14px 0 12px;letter-spacing:-1.2px}
-.folder-offer p{margin:0;color:#dce8f8;line-height:1.55;max-width:650px}
-.folder-price-row{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin:18px 0 12px}
-.folder-price{font:900 clamp(38px,5vw,62px)/.9 Montserrat;color:#fff}
-.folder-old-price{font:900 20px Montserrat;color:#ffdf6b;text-decoration:line-through;text-decoration-thickness:3px}
-.folder-savings{display:inline-flex;background:#18c95b;color:#062a16;border-radius:12px;padding:8px 12px;font-weight:900;font-size:12px}
-.folder-countdown{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px;max-width:360px}
-.folder-timebox{background:#ffffff14;border:1px solid #ffffff24;border-radius:14px;padding:12px;text-align:center}
-.folder-timebox b{display:block;font:900 24px Montserrat;color:#ffd51a}
-.folder-timebox span{display:block;font-size:10px;font-weight:900;color:#c9d8ed;letter-spacing:.8px;margin-top:2px}
-.folder-offer-card{background:#fff;color:var(--ink);border-radius:18px;padding:18px;box-shadow:0 18px 45px #0002}
-.folder-offer-card h4{font:900 16px Montserrat;margin:0 0 10px;color:var(--navy)}
-.folder-offer-card .primary-btn{width:100%;margin-top:14px;font-size:15px;background:linear-gradient(135deg,#18c95b,#0caa48);color:#052411}
-.folder-status-note{font-size:12px;color:var(--muted);line-height:1.5;margin-top:10px}
-.folder-status-note strong{color:var(--navy)}
-.folder-verified{background:#e5faed;color:#087d37;border:1px solid #b9efca}
-.folder-expired{background:#fff2f2;color:#a52323;border:1px solid #ffd0d0}
 
 .progress-card{background:#fff;border-radius:22px;padding:26px;border:1px solid var(--line);box-shadow:var(--shadow);margin-bottom:25px}.progress-head{display:flex;justify-content:space-between;gap:15px;align-items:end}.progress-head h3{margin:0;font:900 20px Montserrat}.progress-head b{font-size:28px;color:var(--green2)}.progress-track{height:13px;background:#e8eef5;border-radius:20px;overflow:hidden;margin:17px 0 8px}.progress-fill{height:100%;background:linear-gradient(90deg,var(--green),#7bea49);border-radius:20px;transition:.5s}.progress-caption{color:var(--muted);font-size:13px}
 .timeline-wrap{background:#fff;border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow);padding:28px;margin-bottom:25px;overflow:hidden}.timeline-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}.timeline-title h3{margin:0;font:900 20px Montserrat}.timeline{display:flex;position:relative;min-width:840px}.timeline:before{content:"";position:absolute;left:6%;right:6%;top:42px;height:5px;background:#e4ebf3;border-radius:10px}.step{position:relative;z-index:1;flex:1;text-align:center}.step-dot{width:84px;height:84px;border-radius:50%;margin:auto;background:#fff;border:6px solid #dce6f1;display:grid;place-items:center;font-size:25px;box-shadow:0 7px 18px #071b3a12;transition:border-color .3s ease,background .3s ease}.step.done .step-dot{border-color:var(--green);background:#eafff0}.step.risk .step-dot{border-color:var(--yellow);background:#fffbe7}.step.failed .step-dot{border-color:var(--red);background:#fff0f0}.step.verifying .step-dot{border-color:var(--blue);background:#eaf4ff}.step h4{margin:12px 0 4px;font-size:12px}.step p{margin:0;color:var(--muted);font-size:11px;line-height:1.45}.step strong{display:block;margin-top:5px}
@@ -155,8 +134,7 @@ input,select{width:100%;border:1px solid var(--line);background:#fff;border-radi
 .toast{position:fixed;right:25px;bottom:25px;background:var(--navy);color:#fff;padding:14px 18px;border-radius:12px;box-shadow:var(--shadow);transform:translateY(120px);opacity:0;transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .25s ease;z-index:50;font-weight:700;max-width:320px}.toast.show{transform:translateY(0);opacity:1}
 footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;font-size:11px;border-top:1px solid var(--line);gap:15px}
 @media(max-width:900px){.hero{grid-template-columns:1fr;padding:45px 6%}.admin-grid{grid-template-columns:1fr}.client-top{grid-template-columns:1fr}.payment-row{grid-template-columns:55px 1fr auto}.payment-row .payment-meta{display:none}.payment-actions{justify-content:flex-end}.section-head{align-items:start;flex-direction:column}.trust-strip{margin:-28px 5% 34px;padding:20px}.trust-inner{grid-template-columns:repeat(2,1fr);row-gap:16px}.trust-item:nth-child(odd){border-left:0;padding-left:0}.trust-item:nth-child(n+3){border-left:0;padding-left:0}.transfer-steps{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:900px){.folder-offer-grid{grid-template-columns:1fr}.folder-offer-card{max-width:620px}.folder-countdown{max-width:none}}
-@media(max-width:600px){.topbar{padding:0 4%;height:68px}.brand-logo{width:126px;height:42px}.brand strong,.brand small{display:none}.top-actions{gap:4px}.nav-btn{padding:9px;font-size:11px}.hero{padding:38px 5%}.hero h1{font-size:42px}.search-row{flex-direction:column}.client-panel{padding:25px 4%}.overview{grid-template-columns:1fr 1fr}.metric{padding:14px}.identity h2{font-size:21px}.avatar{width:54px;height:54px}.folder-offer{padding:20px}.folder-price{font-size:42px}.folder-countdown{grid-template-columns:repeat(3,minmax(0,1fr))}.folder-timebox{padding:10px 6px}.folder-timebox b{font-size:19px}.timeline-wrap{padding:20px 12px;overflow-x:auto}.timeline{min-width:840px}.commitments{padding:18px}.payment-row{grid-template-columns:45px 1fr auto}.payment-amount{font-size:12px}.fields.two{grid-template-columns:1fr}.full{grid-column:auto}.admin-grid,.section-head{padding-left:4%;padding-right:4%}.form-card,.list-card{padding:18px}.editor-row{grid-template-columns:35px 1fr;row-gap:6px}.editor-row select{grid-column:1/-1}.retiro-card{flex-direction:column;align-items:start}footer{flex-direction:column}}
+@media(max-width:600px){.topbar{padding:0 4%;height:68px}.brand-logo{width:126px;height:42px}.brand strong,.brand small{display:none}.top-actions{gap:4px}.nav-btn{padding:9px;font-size:11px}.hero{padding:38px 5%}.hero h1{font-size:42px}.search-row{flex-direction:column}.client-panel{padding:25px 4%}.overview{grid-template-columns:1fr 1fr}.metric{padding:14px}.identity h2{font-size:21px}.avatar{width:54px;height:54px}.timeline-wrap{padding:20px 12px;overflow-x:auto}.timeline{min-width:840px}.commitments{padding:18px}.payment-row{grid-template-columns:45px 1fr auto}.payment-amount{font-size:12px}.fields.two{grid-template-columns:1fr}.full{grid-column:auto}.admin-grid,.section-head{padding-left:4%;padding-right:4%}.form-card,.list-card{padding:18px}.editor-row{grid-template-columns:35px 1fr;row-gap:6px}.editor-row select{grid-column:1/-1}.retiro-card{flex-direction:column;align-items:start}footer{flex-direction:column}}
 @media(max-width:600px){
   .timeline-wrap{padding:20px 16px;overflow:hidden}
   .timeline-title{align-items:flex-start;gap:10px;flex-direction:column;margin-bottom:20px}
@@ -183,6 +161,67 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
   .trust-item:not(:first-child){padding-top:14px;border-top:1px solid var(--line)}
   .transfer-steps{grid-template-columns:1fr}
 }
+/* ===== Vista Suscripción / Bonificación de carpeta ===== */
+.sus-hero{background:radial-gradient(circle at 80% 20%,#1a65b8 0,#0c2c5d 40%,var(--navy) 78%);color:#fff;padding:54px 6% 64px;display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+.sus-hero h1{font:900 clamp(32px,4.4vw,56px)/1.02 Montserrat;margin:12px 0 14px;letter-spacing:-2px}
+.sus-hero h1 span{color:var(--cyan)}
+.sus-hero p{color:#c9d8ed;font-size:16.5px;line-height:1.65;max-width:560px;margin:0 0 20px}
+.sus-bullets{display:flex;flex-wrap:wrap;gap:10px;padding:0;margin:0;list-style:none}
+.sus-bullets li{background:#ffffff14;border:1px solid #ffffff2b;padding:9px 13px;border-radius:999px;font-size:13px;font-weight:700}
+.promo-card{background:#fff;color:var(--ink);border-radius:24px;padding:26px;box-shadow:0 25px 65px #0005;text-align:center;position:relative;overflow:hidden}
+.promo-tag{display:inline-block;background:var(--red);color:#fff;font:900 13px Montserrat;letter-spacing:1px;padding:8px 16px;border-radius:999px;transform:rotate(-2deg)}
+.promo-off{font:900 clamp(52px,7vw,84px)/1 Montserrat;color:var(--red);margin:14px 0 2px;letter-spacing:-3px}
+.promo-off small{display:block;font:900 15px Montserrat;letter-spacing:1.5px;color:var(--ink)}
+.promo-prices{display:flex;align-items:center;justify-content:center;gap:16px;margin:18px 0 6px;flex-wrap:wrap}
+.promo-before{color:var(--muted);font-weight:800;text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:3px;font-size:20px}
+.promo-now{background:var(--yellow);border-radius:14px;padding:10px 18px;font:900 30px Montserrat;color:var(--navy);letter-spacing:-1px;box-shadow:0 10px 24px #ffd51a55}
+.promo-now b{display:block;font:900 11px Inter;letter-spacing:2px;color:#7a5c00}
+.promo-note{color:var(--muted);font-size:13px;margin:10px 0 0}
+.sus-wrap{max-width:1020px;margin:-32px auto 60px;padding:0 5%}
+.sus-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px;box-shadow:var(--shadow)}
+.sus-steps{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.sus-step{flex:1;min-width:170px;background:#f7faff;border:1px solid var(--line);border-radius:14px;padding:13px 15px;font-size:13px;color:var(--muted)}
+.sus-step b{display:block;color:var(--ink);font-size:14px;margin-bottom:2px}
+.sus-section{border-top:1px solid var(--line);padding-top:22px;margin-top:22px}
+.sus-section:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.sus-section h3{font:900 19px Montserrat;margin:0 0 4px}
+.sus-section > p{color:var(--muted);margin:0 0 16px;font-size:14px}
+.sus-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sus-fields label{display:block;font-weight:700;font-size:13.5px}
+.sus-fields label span.req{color:var(--red)}
+.sus-fields input,.sus-fields select{margin-top:6px}
+.sus-fields .full{grid-column:1/-1}
+.hint{display:block;color:var(--muted);font-weight:500;font-size:12px;margin-top:5px}
+.sus-docs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.doc-box{border:2px dashed #c6d7ea;border-radius:16px;padding:18px;text-align:center;background:#f9fcff;transition:.2s}
+.doc-box:hover{border-color:var(--blue);background:#f2f8ff}
+.doc-box b{display:block;font-size:14px;margin-bottom:4px}
+.doc-box small{color:var(--muted);display:block;margin-bottom:12px}
+.doc-box input[type=file]{display:none}
+.doc-box .mini-btn{width:auto}
+.doc-prev{margin-top:12px}
+.doc-prev img{max-width:100%;max-height:150px;border-radius:10px;border:1px solid var(--line)}
+.doc-prev .file-name{display:block;font-size:12px;color:var(--muted);margin-top:6px;word-break:break-all}
+.doc-optional{background:#fff8e1;border:1px solid #ffe08a;border-radius:14px;padding:14px 16px;font-size:13.5px;color:#7a5c00;margin-top:14px}
+.sus-legal{display:flex;gap:10px;align-items:flex-start;margin-top:22px;font-size:13px;color:var(--muted)}
+.sus-legal input{width:18px;height:18px;margin-top:2px;flex:0 0 auto}
+.sus-actions{display:flex;gap:12px;justify-content:flex-end;margin-top:24px;flex-wrap:wrap}
+.sus-error{background:#ffe7e7;color:#a52323;border-radius:12px;padding:12px 15px;font-weight:700;font-size:13.5px;margin-top:16px;display:none}
+.sus-error.show{display:block}
+.sus-ok{text-align:center;padding:26px 10px}
+.sus-ok .ok-icon{width:76px;height:76px;border-radius:50%;background:#e5faed;color:#0caa48;display:grid;place-items:center;font-size:38px;margin:0 auto 16px}
+.sus-ok h2{font:900 27px Montserrat;margin:0 0 8px}
+.sus-ok p{color:var(--muted);max-width:520px;margin:0 auto 10px}
+.sus-code{display:inline-block;background:var(--navy);color:#fff;font:900 18px Montserrat;letter-spacing:2px;padding:10px 20px;border-radius:12px;margin:12px 0 18px}
+.sus-resume{text-align:left;background:#f7faff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;max-width:560px;margin:0 auto 18px;font-size:13.5px}
+.sus-resume div{display:flex;justify-content:space-between;gap:14px;padding:5px 0;border-bottom:1px dashed #e2eaf4}
+.sus-resume div:last-child{border-bottom:0}
+.sus-resume span:first-child{color:var(--muted)}
+.sus-resume span:last-child{font-weight:700;text-align:right}
+.sus-ok-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.wa-btn{border:0;background:#25d366;color:#fff;border-radius:11px;padding:13px 19px;font-weight:800;box-shadow:0 8px 20px #25d36640;text-decoration:none;display:inline-block}
+@media(max-width:860px){.sus-hero{grid-template-columns:1fr;padding:34px 5% 48px;gap:28px}.sus-wrap{margin-top:-20px}}
+@media(max-width:600px){.sus-fields,.sus-docs{grid-template-columns:1fr}.sus-card{padding:20px}.sus-actions{flex-direction:column-reverse}.sus-actions button{width:100%}}
 </style>
 </head>
 <body>
@@ -209,7 +248,8 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
     </div>
   </div>
   <div class="top-actions">
-    <button class="nav-btn active" data-view="consulta">🔎 Consulta</button>
+    <button class="nav-btn" data-view="consulta">🔎 Consulta</button>
+    <button class="nav-btn active" data-view="suscripcion">📝 Suscribirme 95% OFF</button>
     <!--button class="nav-btn" data-view="admin">⚙️ Administración</button-->
   </div>
 </header>
@@ -276,8 +316,6 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
           <input type="hidden" id="initialProofDate">
           <input type="hidden" id="initialConfirmedDate">
           <input type="hidden" id="folderPaidDate">
-          <input type="hidden" id="folderProof">
-          <input type="hidden" id="folderProofDate">
 
           <div class="form-section">
             <h4>Cliente</h4>
@@ -295,14 +333,11 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
               <label>Estado de carpeta
                 <select id="folderStatus">
                   <option value="pending">Pendiente</option>
-                  <option value="verifying">Verificando comprobante</option>
                   <option value="paid">Pagada</option>
                 </select>
               </label>
               <label>Fecha de pago<input id="folderPaidDateVisible" type="date"></label>
             </div>
-            <p id="folderProofInfo" class="proof-info"></p>
-            <div id="folderProofPreview"></div>
           </div>
 
           <div class="form-section">
@@ -362,6 +397,168 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
       </aside>
     </div>
   </section>
+
+  <!-- ============ VISTA: SUSCRIPCIÓN CON BONIFICACIÓN ============ -->
+  <section id="view-suscripcion" class="view">
+    <div class="sus-hero">
+      <div>
+        <span class="eyebrow">¡BONIFICACIÓN ESPECIAL!</span>
+        <h1>Gestión de<br><span>la carpeta</span></h1>
+        <p>Olvidate de los costos de gestión y empezá hoy tu plan de manera simple, rápida y segura. Completá el formulario y un asesor se comunica con vos para confirmar tu suscripción.</p>
+        <ul class="sus-bullets">
+          <li>🛡️ Seguridad en tu compra</li>
+          <li>🤝 Atención personalizada</li>
+          <li>🚗 Amplia variedad de vehículos</li>
+          <li>🔧 Servicio post venta</li>
+        </ul>
+      </div>
+      <div class="promo-card">
+        <span class="promo-tag">¡TU PLAN, MÁS CERCA!</span>
+        <div class="promo-off">95%<small>DE DESCUENTO</small></div>
+        <div class="promo-prices">
+          <span class="promo-before" id="promoBefore">$300.000</span>
+          <span class="promo-now"><b>AHORA</b><span id="promoNow">$15.000</span></span>
+        </div>
+        <p class="promo-note">Promoción sujeta a disponibilidad. El valor bonificado se confirma al momento de la suscripción.</p>
+      </div>
+    </div>
+
+    <div class="sus-wrap">
+      <div class="sus-card" id="susFormCard">
+        <div class="sus-steps">
+          <div class="sus-step"><b>1 · Completá tus datos</b>Personales y laborales.</div>
+          <div class="sus-step"><b>2 · Subí tu DNI (opcional)</b>Frente y dorso. Podés enviarlo después.</div>
+          <div class="sus-step"><b>3 · Te contactamos</b>Un asesor confirma la bonificación.</div>
+        </div>
+
+        <form id="susForm" novalidate>
+          <div class="sus-section">
+            <h3>Datos personales</h3>
+            <p>Completá los campos con los datos tal como figuran en tu DNI.</p>
+            <div class="sus-fields">
+              <label class="full">Nombre y apellido <span class="req">*</span>
+                <input id="susNombre" required placeholder="Ej. Juan Pérez" autocomplete="name">
+              </label>
+              <label>DNI <span class="req">*</span>
+                <input id="susDni" required inputmode="numeric" maxlength="12" placeholder="Ej. 20345678">
+              </label>
+              <label>Fecha de nacimiento <span class="req">*</span>
+                <input id="susNacimiento" type="date" required>
+              </label>
+              <label>Estado civil <span class="req">*</span>
+                <select id="susEstadoCivil" required>
+                  <option value="">Seleccioná una opción</option>
+                  <option>Soltero/a</option>
+                  <option>Casado/a</option>
+                  <option>En pareja / Concubinato</option>
+                  <option>Divorciado/a</option>
+                  <option>Viudo/a</option>
+                </select>
+              </label>
+              <label>Teléfono <span class="req">*</span>
+                <input id="susTelefono" required inputmode="tel" placeholder="Ej. 351 555 5555" autocomplete="tel">
+              </label>
+              <label class="full">Domicilio (calle, número, piso/dpto) <span class="req">*</span>
+                <input id="susDomicilio" required placeholder="Ej. Av. San Martín 1234, Piso 2 Dpto B">
+              </label>
+              <label>Código postal <span class="req">*</span>
+                <input id="susCp" required inputmode="numeric" maxlength="8" placeholder="Ej. 5152">
+              </label>
+              <label>Localidad <span class="req">*</span>
+                <input id="susLocalidad" required placeholder="Ej. Villa Carlos Paz">
+              </label>
+              <label class="full">Provincia <span class="req">*</span>
+                <select id="susProvincia" required>
+                  <option value="">Seleccioná una provincia</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="sus-section">
+            <h3>Datos laborales e ingresos</h3>
+            <p>Esta información nos permite armar el plan que mejor se adapte a vos.</p>
+            <div class="sus-fields">
+              <label>Profesión / Ocupación <span class="req">*</span>
+                <input id="susProfesion" required placeholder="Ej. Comerciante">
+              </label>
+              <label>Situación laboral <span class="req">*</span>
+                <select id="susSituacion" required>
+                  <option value="">Seleccioná una opción</option>
+                  <option>Relación de dependencia</option>
+                  <option>Cuenta propia / Autónomo</option>
+                  <option>Monotributista</option>
+                  <option>Jubilado / Pensionado</option>
+                  <option>Otro</option>
+                </select>
+              </label>
+              <label class="full">Empresa / Actividad y antigüedad
+                <input id="susEmpleo" placeholder="Ej. Distribuidora Sur S.A. · 3 años">
+                <span class="hint">Opcional, pero agiliza la aprobación.</span>
+              </label>
+              <label>Ingresos mensuales aproximados <span class="req">*</span>
+                <input id="susIngresos" type="number" min="0" step="1000" required placeholder="Ej. 900000">
+              </label>
+              <label>Fecha de cobro <span class="req">*</span>
+                <input id="susFechaCobro" required placeholder="Ej. día 5 de cada mes">
+                <span class="hint">Indicá el día del mes en que cobrás.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="sus-section">
+            <h3>Documentación (opcional)</h3>
+            <p>Subí la foto del DNI frente y dorso. <b>No es obligatorio:</b> si no la subís ahora, tu formulario se envía igual y podés mandarla después por WhatsApp.</p>
+            <div class="sus-docs">
+              <div class="doc-box">
+                <b>🪪 DNI · Frente</b>
+                <small>JPG, PNG o PDF · hasta 10 MB</small>
+                <input type="file" id="susDocFrente" accept="image/*,application/pdf">
+                <button type="button" class="mini-btn" data-file="susDocFrente">Seleccionar archivo</button>
+                <div class="doc-prev" id="prevFrente"></div>
+              </div>
+              <div class="doc-box">
+                <b>🪪 DNI · Dorso</b>
+                <small>JPG, PNG o PDF · hasta 10 MB</small>
+                <input type="file" id="susDocDorso" accept="image/*,application/pdf">
+                <button type="button" class="mini-btn" data-file="susDocDorso">Seleccionar archivo</button>
+                <div class="doc-prev" id="prevDorso"></div>
+              </div>
+            </div>
+            <div class="doc-optional">ℹ️ Si preferís no subir el documento, dejá los campos vacíos y presioná <b>Enviar solicitud</b>. Tu suscripción queda registrada como <b>“documentación pendiente”</b> y un asesor te la pide luego.</div>
+          </div>
+
+          <label class="sus-legal">
+            <input type="checkbox" id="susLegal" checked>
+            <span>Autorizo a MundoAuto Multimarcas S.A. a contactarme y a tratar mis datos personales con fines de evaluación de la solicitud, conforme a la Ley N° 25.326 de Protección de Datos Personales.</span>
+          </label>
+
+          <div id="susError" class="sus-error"></div>
+
+          <div class="sus-actions">
+            <button type="button" id="susReset" class="ghost-btn">Limpiar formulario</button>
+            <button type="submit" id="susSubmit" class="primary-btn">Enviar solicitud y obtener el 95% OFF</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="sus-card hidden" id="susOkCard">
+        <div class="sus-ok">
+          <div class="ok-icon">✓</div>
+          <h2>¡Solicitud enviada!</h2>
+          <p id="susOkMsg">Recibimos tus datos. Un asesor se comunica con vos a la brevedad para confirmar la bonificación de la gestión de carpeta.</p>
+          <div class="sus-code" id="susCode">—</div>
+          <div class="sus-resume" id="susResume"></div>
+          <div class="sus-ok-actions">
+            <a id="susWa" class="wa-btn" href="#" target="_blank" rel="noopener">💬 Enviar por WhatsApp</a>
+            <button type="button" id="susDownload" class="secondary-btn">⬇️ Descargar copia</button>
+            <button type="button" id="susNew" class="ghost-btn">Cargar otra solicitud</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer>
@@ -387,9 +584,6 @@ const SUPABASE_ANON_KEY = "sb_publishable_iP1AfoZzzSmkN_gAIGqs7g_-sHv1Sht";
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const PROOF_BUCKET = "comprobantes";
 const ADMIN_PASSWORD = "MA24568";
-const FOLDER_PROMO_PRICE = 15000;
-const FOLDER_LIST_PRICE = 300000;
-const FOLDER_PROMO_MINUTES = 30;
 
 /* -----------------------------------------------------------
    A partir de acá la app funciona 100% contra Supabase:
@@ -434,10 +628,7 @@ function mapDbClient(row, paymentsRows){
     },
     folder: {
       paid: !!row.folder_paid,
-      paidDate: row.folder_paid_date || "",
-      status: row.folder_status || (row.folder_paid ? "paid" : "pending"),
-      proof: row.folder_proof || "",
-      proofDate: row.folder_proof_date || ""
+      paidDate: row.folder_paid_date || ""
     },
     installmentValue: Number(row.installment_value)||0,
     installmentCount: Number(row.installment_count)||payments.length,
@@ -497,74 +688,6 @@ async function uploadProofFile(file, pathPrefix){
 
 function money(v){
   return new Intl.NumberFormat("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:0}).format(Number(v)||0);
-}
-function folderStatus(folder){
-  if(folder?.paid) return "paid";
-  return folder?.status || (folder?.proof ? "verifying" : "pending");
-}
-function folderStatusText(folder){
-  const status = folderStatus(folder);
-  if(status==="paid") return "CARPETA ABONADA";
-  if(status==="verifying") return "COMPROBANTE EN VERIFICACION";
-  return "PENDIENTE DE PAGO";
-}
-function folderOfferEndsAt(c){
-  const base = c.createdAt ? new Date(c.createdAt) : new Date();
-  return new Date(base.getTime() + FOLDER_PROMO_MINUTES * 60000);
-}
-function isFolderPromoActive(c){
-  return folderOfferEndsAt(c).getTime() > Date.now();
-}
-function folderCurrentPrice(c){
-  return isFolderPromoActive(c) ? FOLDER_PROMO_PRICE : FOLDER_LIST_PRICE;
-}
-function renderFolderOffer(c){
-  const folder = c.folder || {};
-  const status = folderStatus(folder);
-  const paid = status === "paid";
-  const verifying = status === "verifying";
-  const promoActive = isFolderPromoActive(c);
-  const price = paid ? FOLDER_PROMO_PRICE : folderCurrentPrice(c);
-  const statusClassName = paid ? "folder-verified" : promoActive ? "" : "folder-expired";
-  const buttonText = paid ? "Carpeta abonada" : verifying ? "Actualizar comprobante" : "Subir comprobante y reservar bonificacion";
-  const statusText = paid
-    ? "Tu comprobante fue verificado por administracion. Tu perfil ya esta activo para avanzar."
-    : verifying
-      ? "Recibimos tu comprobante. Administracion lo esta verificando para activar tu perfil."
-      : promoActive
-        ? "Abona ahora la carpeta por transferencia y carga el comprobante para conservar la bonificacion."
-        : "La vigencia de 30 minutos finalizo. El valor de carpeta vuelve a su precio regular.";
-
-  return `
-    <div class="folder-offer ${statusClassName}">
-      <div class="folder-offer-grid">
-        <div>
-          <span class="folder-kicker">${folderStatusText(folder)} · BONIFICACION EXCLUSIVA</span>
-          <h3>Abona la carpeta y empeza este maravilloso camino hacia tu auto</h3>
-          <p>Primer paso para gestionar la carpeta de la compra de tu auto. Descuento del 95% disponible solo durante 30 minutos luego de cargar tus datos.</p>
-          <div class="folder-price-row">
-            <span class="folder-price">${money(price)}</span>
-            ${!paid ? `<span class="folder-old-price">${money(FOLDER_LIST_PRICE)}</span><span class="folder-savings">95% OFF</span>` : `<span class="folder-savings">PERFIL ACTIVO</span>`}
-          </div>
-          ${paid ? `<div class="folder-status-note"><strong>Carpeta confirmada.</strong> Ya podes continuar con tu gestion.</div>` : `
-            <div class="folder-countdown" id="folderCountdown">
-              <div class="folder-timebox"><b id="folderMinutes">--</b><span>MINUTOS</span></div>
-              <div class="folder-timebox"><b id="folderSeconds">--</b><span>SEGUNDOS</span></div>
-              <div class="folder-timebox"><b>${promoActive ? "95%" : "0%"}</b><span>DESCUENTO</span></div>
-            </div>`}
-        </div>
-        <div class="folder-offer-card">
-          <h4>Datos oficiales para transferir</h4>
-          <div class="bank-line"><small>Titular</small><b>MUNDOAUTO MULTIMARCAS S.A.</b></div>
-          <div class="bank-line"><small>CUIT</small><b>30-71234681-3</b><button class="copy-btn" onclick="copyPaymentData('30-71234681-3')">Copiar</button></div>
-          <div class="bank-line"><small>Alias</small><b>MUNDOAUTO.BANCOR</b><button class="copy-btn" onclick="copyPaymentData('MUNDOAUTO.BANCOR')">Copiar</button></div>
-          <div class="bank-line"><small>CBU</small><b>020091420100002515701</b><button class="copy-btn" onclick="copyPaymentData('020091420100002515701')">Copiar</button></div>
-          <div class="folder-status-note">${statusText}</div>
-          ${folder.proof ? `<div class="proof-tag">📎 <a href="${folder.proof}" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700">Ver comprobante</a>${folder.proofDate ? " · "+formatDate(folder.proofDate) : ""}</div>` : ""}
-          <button class="primary-btn" onclick="uploadProofFolder('${c.id}')" ${paid?"disabled":""}>${buttonText}</button>
-        </div>
-      </div>
-    </div>`;
 }
 function formatDate(s){
   if(!s) return "—";
@@ -689,23 +812,6 @@ function renderClient(c){
   const currentCommitment = currentCommitmentDate(c, entregaInicialDone);
 
   const panel = document.getElementById("clientPanel");
-  if(!carpetaDone){
-    panel.innerHTML = `
-      <div class="client-top">
-        <div class="identity">
-          <div class="avatar">${initials(c.name)}</div>
-          <div><h2>${escapeHtml(c.name)}</h2><p>DNI ${escapeHtml(c.dni)} · Asesor: ${escapeHtml(c.advisor||"—")}</p></div>
-        </div>
-        <div class="status-badge status-yellow">● CARPETA PENDIENTE<small style="display:block;font-weight:600;margin-top:4px">Primer paso para activar tu perfil</small></div>
-      </div>
-      ${renderFolderOffer(c)}
-    `;
-    document.getElementById("emptyState").classList.add("hidden");
-    panel.classList.remove("hidden");
-    startFolderOfferCountdown(c);
-    return;
-  }
-
   panel.innerHTML = `
     <div class="client-top">
       <div class="identity">
@@ -723,8 +829,6 @@ function renderClient(c){
       </div>
       <div class="metric"><small>ESTADO DE RETIRO</small><strong>${ready ? "Habilitado" : "En proceso"}</strong></div>
     </div>
-
-    ${renderFolderOffer(c)}
 
     <div class="initial-card">
       <div class="initial-head">
@@ -936,7 +1040,6 @@ function renderClient(c){
   }
   const currentPayment = entregaInicialDone ? (c.payments||[]).find(p=>p.status!=="paid") : null;
   if(currentPayment && currentPayment.due) startCountdown(currentPayment.due); else clearInterval(window.__countdownTimer_countdownTimer);
-  startFolderOfferCountdown(c);
 }
 
 function setCountdownComplete(id, text){
@@ -969,32 +1072,6 @@ function startCountdown(due, id="countdownTimer"){
   }
   tick();
   window[key] = setInterval(tick, 1000);
-}
-
-function startFolderOfferCountdown(c){
-  clearInterval(window.__folderOfferTimer);
-  if(folderStatus(c.folder)==="paid") return;
-  const target = folderOfferEndsAt(c);
-  if(target <= new Date()) return;
-  function tick(){
-    const minEl = document.getElementById("folderMinutes");
-    const secEl = document.getElementById("folderSeconds");
-    if(!minEl || !secEl){ clearInterval(window.__folderOfferTimer); return; }
-    const diff = target - new Date();
-    if(diff <= 0){
-      minEl.textContent = "00";
-      secEl.textContent = "00";
-      clearInterval(window.__folderOfferTimer);
-      if(currentClientData?.id === c.id) renderClient(currentClientData);
-      return;
-    }
-    const m = Math.floor(diff / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    minEl.textContent = String(m).padStart(2,"0");
-    secEl.textContent = String(s).padStart(2,"0");
-  }
-  tick();
-  window.__folderOfferTimer = setInterval(tick, 1000);
 }
 
 function statusText(s){
@@ -1075,8 +1152,6 @@ function getFormClient(){
   const initStatus = document.getElementById("initialStatus").value;
   const folderStatus = document.getElementById("folderStatus").value;
   const folderPaidDate = document.getElementById("folderPaidDateVisible").value || document.getElementById("folderPaidDate").value;
-  const folderProof = document.getElementById("folderProof").value || "";
-  const folderProofDate = document.getElementById("folderProofDate").value || "";
   const initial = {
     amount: Number(document.getElementById("initialAmount").value)||0,
     depositAmount: Number(document.getElementById("initialDepositAmount").value)||0,
@@ -1099,10 +1174,7 @@ function getFormClient(){
     initial,
     folder: {
       paid: folderStatus === "paid",
-      paidDate: folderStatus === "paid" ? (folderPaidDate || today) : null,
-      status: folderStatus,
-      proof: folderProof,
-      proofDate: folderProofDate
+      paidDate: folderStatus === "paid" ? (folderPaidDate || today) : null
     },
     installmentValue:Number(document.getElementById("installmentValue").value)||0,
     installmentCount:Number(document.getElementById("installmentCount").value)||rows.length,
@@ -1129,14 +1201,10 @@ function editClient(id){
     document.getElementById(fid).value=val??"";
   }
   const initial = c.initial || {amount:0,status:"pending",proof:"",proofDate:"",confirmedDate:""};
-  const folder = c.folder || {paid:false,paidDate:"",status:"pending",proof:"",proofDate:""};
-  document.getElementById("folderStatus").value = folderStatus(folder);
+  const folder = c.folder || {paid:false,paidDate:""};
+  document.getElementById("folderStatus").value = folder.paid ? "paid" : "pending";
   document.getElementById("folderPaidDate").value = folder.paidDate||"";
   document.getElementById("folderPaidDateVisible").value = folder.paidDate||"";
-  document.getElementById("folderProof").value = folder.proof||"";
-  document.getElementById("folderProofDate").value = folder.proofDate||"";
-  document.getElementById("folderProofInfo").textContent = folder.proof ? `📎 Comprobante de carpeta recibido${folder.proofDate?" el "+formatDate(folder.proofDate):""}:` : "Todavía no se recibió comprobante de carpeta.";
-  document.getElementById("folderProofPreview").innerHTML = proofPreviewHtml(folder.proof, folder.proofDate);
   document.getElementById("initialAmount").value = initial.amount||"";
   document.getElementById("initialDepositAmount").value = initial.depositAmount||"";
   document.getElementById("initialStatus").value = initial.status||"pending";
@@ -1175,27 +1243,6 @@ function uploadProofInitial(id){
     }catch(err){
       console.error(err);
       showToast("No se pudo subir el comprobante. Probá de nuevo.");
-    }
-  };
-  input.click();
-}
-
-function uploadProofFolder(id){
-  if(!currentClientData){ showToast("Consultá tu DNI nuevamente para cargar el comprobante."); return; }
-  if(folderStatus(currentClientData.folder)==="paid"){ showToast("La carpeta ya está abonada y verificada."); return; }
-  const input=document.createElement("input"); input.type="file"; input.accept="image/*,.pdf";
-  input.onchange=async ()=>{
-    const file=input.files[0]; if(!file) return;
-    showToast("Subiendo comprobante de carpeta...");
-    try{
-      const url = await uploadProofFile(file, `carpetas/${id}`);
-      const { error } = await sb.rpc("submit_folder_proof", { p_client_id: id, p_proof: url });
-      if(error) throw error;
-      await refreshCurrentClient();
-      showToast("Comprobante recibido. Administracion lo verificara para activar tu perfil.");
-    }catch(err){
-      console.error(err);
-      showToast("No se pudo subir el comprobante de carpeta. Probá de nuevo.");
     }
   };
   input.click();
@@ -1275,10 +1322,6 @@ function resetForm(){
   document.getElementById("initialConfirmedDate").value="";
   document.getElementById("folderPaidDate").value="";
   document.getElementById("folderPaidDateVisible").value="";
-  document.getElementById("folderProof").value="";
-  document.getElementById("folderProofDate").value="";
-  document.getElementById("folderProofInfo").textContent="Todavía no se recibió comprobante de carpeta.";
-  document.getElementById("folderProofPreview").innerHTML="";
   document.getElementById("initialDueDate").value=addDays(new Date().toISOString(), 10);
   document.getElementById("initialExtensionDays").value=0;
   document.getElementById("initialDepositAmount").value="";
@@ -1400,9 +1443,6 @@ document.getElementById("clientForm").addEventListener("submit", async e=>{
       advisor: c.advisor || null,
       folder_paid: c.folder.paid,
       folder_paid_date: c.folder.paidDate || null,
-      folder_status: c.folder.status || (c.folder.paid ? "paid" : "pending"),
-      folder_proof: c.folder.proof || null,
-      folder_proof_date: c.folder.proofDate || null,
       initial_amount: c.initial.amount,
       initial_deposit_amount: c.initial.depositAmount,
       initial_status: c.initial.status,
@@ -1458,7 +1498,258 @@ document.getElementById("clientForm").addEventListener("submit", async e=>{
 
 renderPaymentEditor(5);
 
-window.editClient=editClient; window.deleteClient=deleteClient; window.uploadProof=uploadProof; window.uploadProofInitial=uploadProofInitial; window.uploadProofFolder=uploadProofFolder; window.gestionarRetiro=gestionarRetiro; window.copyPaymentData=copyPaymentData;
+
+/* =========================================================
+   VISTA SUSCRIPCIÓN · Bonificación gestión de carpeta 95% OFF
+   - Guarda en la tabla "suscripciones" de Supabase.
+   - Las fotos del DNI son OPCIONALES: si no se suben (o si falla
+     la subida), la solicitud se envía igual y queda marcada como
+     "documentación pendiente".
+   - Si la base no responde, los datos NO se pierden: se ofrece
+     enviar por WhatsApp y descargar una copia.
+========================================================= */
+const SUS_TABLE   = "suscripciones";        // tabla en Supabase
+const SUS_BUCKET  = PROOF_BUCKET;           // reutiliza el bucket "comprobantes"
+const SUS_WHATSAPP = "5493541000000";       // <-- CAMBIAR por el WhatsApp de la concesionaria
+const SUS_PRECIO_LISTA = 300000;
+const SUS_PRECIO_PROMO = 15000;
+
+const PROVINCIAS = ["Buenos Aires","CABA","Catamarca","Chaco","Chubut","Córdoba","Corrientes","Entre Ríos","Formosa","Jujuy","La Pampa","La Rioja","Mendoza","Misiones","Neuquén","Río Negro","Salta","San Juan","San Luis","Santa Cruz","Santa Fe","Santiago del Estero","Tierra del Fuego","Tucumán"];
+
+(function initSuscripcion(){
+  const $ = id => document.getElementById(id);
+  const form = $("susForm");
+  if(!form) return;
+
+  // Provincias
+  const selProv = $("susProvincia");
+  PROVINCIAS.forEach(p=>{ const o=document.createElement("option"); o.textContent=p; selProv.appendChild(o); });
+  selProv.value = "Córdoba";
+
+  // Precios del cartel
+  $("promoBefore").textContent = money(SUS_PRECIO_LISTA);
+  $("promoNow").textContent    = money(SUS_PRECIO_PROMO);
+
+  // Botones que abren el selector de archivos
+  document.querySelectorAll("[data-file]").forEach(btn=>{
+    btn.addEventListener("click", ()=> $(btn.dataset.file).click());
+  });
+
+  function previewFile(input, box){
+    const f = input.files && input.files[0];
+    box.innerHTML = "";
+    if(!f) return;
+    if(f.size > 10*1024*1024){
+      box.innerHTML = `<span class="file-name">⚠️ El archivo supera los 10 MB. Elegí uno más liviano o enviálo luego por WhatsApp.</span>`;
+      input.value = "";
+      return;
+    }
+    if(f.type.startsWith("image/")){
+      const url = URL.createObjectURL(f);
+      box.innerHTML = `<img src="${url}" alt="Vista previa"><span class="file-name">${f.name}</span>`;
+    } else {
+      box.innerHTML = `<span class="file-name">📄 ${f.name}</span>`;
+    }
+  }
+  $("susDocFrente").addEventListener("change", e=>previewFile(e.target, $("prevFrente")));
+  $("susDocDorso").addEventListener("change",  e=>previewFile(e.target, $("prevDorso")));
+
+  // Solo números en DNI / CP
+  ["susDni","susCp"].forEach(id=>{
+    $(id).addEventListener("input", e=>{ e.target.value = e.target.value.replace(/\D/g,""); });
+  });
+
+  function showError(msg){
+    const box = $("susError");
+    box.textContent = msg;
+    box.classList.add("show");
+    box.scrollIntoView({behavior:"smooth", block:"center"});
+  }
+  function clearError(){ $("susError").classList.remove("show"); }
+
+  function collect(){
+    return {
+      nombre:       $("susNombre").value.trim(),
+      dni:          $("susDni").value.trim(),
+      nacimiento:   $("susNacimiento").value,
+      estado_civil: $("susEstadoCivil").value,
+      domicilio:    $("susDomicilio").value.trim(),
+      telefono:     $("susTelefono").value.trim(),
+      cp:           $("susCp").value.trim(),
+      localidad:    $("susLocalidad").value.trim(),
+      provincia:    $("susProvincia").value,
+      profesion:    $("susProfesion").value.trim(),
+      situacion:    $("susSituacion").value,
+      empleo:       $("susEmpleo").value.trim(),
+      ingresos:     Number($("susIngresos").value)||0,
+      fecha_cobro:  $("susFechaCobro").value.trim()
+    };
+  }
+
+  const OBLIGATORIOS = {
+    nombre:"Nombre y apellido", dni:"DNI", nacimiento:"Fecha de nacimiento",
+    estado_civil:"Estado civil", domicilio:"Domicilio", telefono:"Teléfono",
+    cp:"Código postal", localidad:"Localidad", provincia:"Provincia",
+    profesion:"Profesión", situacion:"Situación laboral",
+    ingresos:"Ingresos mensuales", fecha_cobro:"Fecha de cobro"
+  };
+
+  function validar(d){
+    const faltan = Object.keys(OBLIGATORIOS).filter(k=> !d[k] || (k==="ingresos" && d.ingresos<=0));
+    if(faltan.length) return "Completá estos campos: " + faltan.map(k=>OBLIGATORIOS[k]).join(", ") + ".";
+    if(d.dni.length < 7) return "El DNI debe tener al menos 7 dígitos.";
+    if(d.telefono.replace(/\D/g,"").length < 8) return "Revisá el teléfono: parece incompleto.";
+    if(!$("susLegal").checked) return "Necesitamos tu autorización para tratar los datos y poder contactarte.";
+    return null;
+  }
+
+  function resumenTexto(d, codigo, docs){
+    return [
+      "*SOLICITUD DE SUSCRIPCIÓN - MUNDOAUTO*",
+      "Bonificación gestión de carpeta 95% OFF ("+money(SUS_PRECIO_LISTA)+" → "+money(SUS_PRECIO_PROMO)+")",
+      "Código: "+codigo,
+      "",
+      "Nombre y apellido: "+d.nombre,
+      "DNI: "+d.dni,
+      "Fecha de nacimiento: "+formatDate(d.nacimiento),
+      "Estado civil: "+d.estado_civil,
+      "Domicilio: "+d.domicilio,
+      "Teléfono: "+d.telefono,
+      "Código postal: "+d.cp,
+      "Localidad: "+d.localidad,
+      "Provincia: "+d.provincia,
+      "",
+      "Profesión: "+d.profesion,
+      "Situación laboral: "+d.situacion,
+      (d.empleo ? "Empleo/Actividad: "+d.empleo : null),
+      "Ingresos mensuales: "+money(d.ingresos),
+      "Fecha de cobro: "+d.fecha_cobro,
+      "",
+      "Documentación: "+(docs.frente||docs.dorso ? "adjunta" : "PENDIENTE (a enviar por WhatsApp)")
+    ].filter(Boolean).join("\n");
+  }
+
+  function pintarResumen(d, docs){
+    const filas = [
+      ["Nombre y apellido", d.nombre],
+      ["DNI", d.dni],
+      ["Fecha de nacimiento", formatDate(d.nacimiento)],
+      ["Estado civil", d.estado_civil],
+      ["Domicilio", d.domicilio + " · CP " + d.cp],
+      ["Localidad / Provincia", d.localidad + ", " + d.provincia],
+      ["Teléfono", d.telefono],
+      ["Profesión", d.profesion],
+      ["Situación laboral", d.situacion],
+      ["Ingresos mensuales", money(d.ingresos)],
+      ["Fecha de cobro", d.fecha_cobro],
+      ["Documentación", (docs.frente||docs.dorso) ? "Recibida" : "Pendiente de envío"]
+    ];
+    $("susResume").innerHTML = filas.map(f=>`<div><span>${f[0]}</span><span>${f[1]}</span></div>`).join("");
+  }
+
+  form.addEventListener("submit", async e=>{
+    e.preventDefault();
+    clearError();
+    const d = collect();
+    const err = validar(d);
+    if(err) return showError(err);
+
+    const btn = $("susSubmit");
+    const label = btn.textContent;
+    btn.disabled = true; btn.textContent = "Enviando…";
+
+    const codigo = "MA-" + d.dni.slice(-4) + "-" + String(Date.now()).slice(-5);
+    const docs = { frente:"", dorso:"" };
+    let avisoDocs = "";
+
+    // 1) Subida OPCIONAL de la documentación. Si falla, seguimos igual.
+    try{
+      const fFrente = $("susDocFrente").files[0];
+      const fDorso  = $("susDocDorso").files[0];
+      if(fFrente) docs.frente = await uploadProofFile(fFrente, `suscripciones/${d.dni}/frente`);
+      if(fDorso)  docs.dorso  = await uploadProofFile(fDorso,  `suscripciones/${d.dni}/dorso`);
+    }catch(upErr){
+      console.error("Documentación no subida:", upErr);
+      avisoDocs = " No pudimos subir la foto del DNI, pero tus datos quedaron registrados igual: podés enviarla por WhatsApp.";
+    }
+
+    const payload = {
+      codigo,
+      nombre: d.nombre,
+      dni: d.dni,
+      fecha_nacimiento: d.nacimiento,
+      estado_civil: d.estado_civil,
+      domicilio: d.domicilio,
+      telefono: d.telefono,
+      codigo_postal: d.cp,
+      localidad: d.localidad,
+      provincia: d.provincia,
+      profesion: d.profesion,
+      situacion_laboral: d.situacion,
+      datos_laborales: d.empleo || null,
+      ingresos_mensuales: d.ingresos,
+      fecha_cobro: d.fecha_cobro,
+      doc_frente_url: docs.frente || null,
+      doc_dorso_url: docs.dorso || null,
+      doc_estado: (docs.frente && docs.dorso) ? "completa" : (docs.frente||docs.dorso ? "parcial" : "pendiente"),
+      promo: "Gestión de carpeta 95% OFF",
+      precio_lista: SUS_PRECIO_LISTA,
+      precio_promo: SUS_PRECIO_PROMO,
+      estado: "nueva"
+    };
+
+    // 2) Guardado en Supabase. Si falla, no perdemos los datos.
+    let guardado = true;
+    try{
+      const { error } = await sb.from(SUS_TABLE).insert(payload);
+      if(error) throw error;
+    }catch(dbErr){
+      console.error(dbErr);
+      guardado = false;
+    }
+
+    // 3) Pantalla de confirmación (siempre se muestra: el formulario se completa igual)
+    const texto = resumenTexto(d, codigo, docs);
+    pintarResumen(d, docs);
+    $("susCode").textContent = "Código " + codigo;
+    $("susOkMsg").textContent = guardado
+      ? "Recibimos tus datos y ya quedaron registrados. Un asesor se comunica con vos a la brevedad para confirmar la bonificación de la gestión de carpeta." + avisoDocs
+      : "Tus datos se completaron correctamente, pero no pudimos registrarlos automáticamente. Enviálos por WhatsApp con el botón de abajo o descargá la copia para no perderlos." + avisoDocs;
+    $("susWa").href = "https://wa.me/" + SUS_WHATSAPP + "?text=" + encodeURIComponent(texto);
+    $("susDownload").onclick = ()=>{
+      const blob = new Blob([texto], {type:"text/plain;charset=utf-8"});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = `solicitud-${codigo}.txt`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    };
+
+    $("susFormCard").classList.add("hidden");
+    $("susOkCard").classList.remove("hidden");
+    window.scrollTo({top:0, behavior:"smooth"});
+    showToast(guardado ? "Solicitud enviada correctamente." : "Formulario completado. Enviá la copia por WhatsApp.");
+
+    btn.disabled = false; btn.textContent = label;
+  });
+
+  function limpiar(){
+    form.reset();
+    selProv.value = "Córdoba";
+    $("prevFrente").innerHTML = ""; $("prevDorso").innerHTML = "";
+    $("susLegal").checked = true;
+    clearError();
+  }
+  $("susReset").addEventListener("click", limpiar);
+  $("susNew").addEventListener("click", ()=>{
+    limpiar();
+    $("susOkCard").classList.add("hidden");
+    $("susFormCard").classList.remove("hidden");
+    window.scrollTo({top:0, behavior:"smooth"});
+  });
+})();
+
+window.editClient=editClient; window.deleteClient=deleteClient; window.uploadProof=uploadProof; window.uploadProofInitial=uploadProofInitial; window.gestionarRetiro=gestionarRetiro; window.copyPaymentData=copyPaymentData;
 </script>
 </body>
 </html>
