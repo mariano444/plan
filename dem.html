@@ -9,382 +9,219 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#0a2044; --navy2:#103764; --blue:#0b63c9; --blue-deep:#084a99;
-  --blue-light:#eaf2fc; --sky:#f3f8fe;
-  --green:#1a9d5a; --green-deep:#0f7d45; --green-light:#e7f8ee;
-  --amber:#b6790a; --amber-light:#fdf2df;
-  --red:#c93636; --red-light:#fbebeb;
-  --gold:#c89b3c; --gold-light:#fff8e8;
-  --ink:#15213a; --muted:#5c6b84; --line:#e2e8f1;
-  --bg:#f5f7fb; --white:#fff;
-  --shadow:0 16px 44px rgba(10,32,68,.10);
-  --shadow-sm:0 6px 18px rgba(10,32,68,.08);
-  --r-lg:20px; --r-md:14px; --r-sm:10px;
+  --navy:#071b3a; --navy2:#0c2a58; --blue:#0877dc; --cyan:#26b9ff;
+  --green:#18c95b; --green2:#0caa48; --yellow:#ffd51a; --orange:#f3a900;
+  --red:#ed3c3c; --ink:#10213f; --muted:#6b7890; --line:#dce6f1;
+  --bg:#f4f7fb; --white:#fff; --shadow:0 18px 55px rgba(7,27,58,.12);
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
 button,input,select{font:inherit}
-button{cursor:pointer}
-h1,h2,h3,h4{font-family:Montserrat,Inter,sans-serif}
+button{cursor:pointer;transition:background .18s ease,border-color .18s ease,color .18s ease,transform .12s ease,box-shadow .18s ease}
+a{transition:color .15s ease,border-color .15s ease}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+::selection{background:#0877dc33}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#c7d5e6;border-radius:20px}
+::-webkit-scrollbar-thumb:hover{background:#a9bcd6}
+.topbar{height:76px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 5%;position:sticky;top:0;z-index:20;box-shadow:0 5px 25px #06152d44}
+.brand{display:flex;align-items:center;gap:12px}.brand-logo{width:172px;height:57px;object-fit:contain;border-radius:8px;background:#fff;padding:4px;display:block}.brand strong{display:block;font:900 19px Montserrat;letter-spacing:-.6px}.brand strong span{color:var(--blue)}.brand small{color:#b9c9e2;font-size:10px;letter-spacing:1.5px;text-transform:uppercase}
+.top-actions{display:flex;gap:8px}.nav-btn{border:1px solid #ffffff22;background:transparent;color:#dce8f8;padding:11px 15px;border-radius:10px;font-weight:700}.nav-btn.active,.nav-btn:hover{background:#ffffff12;color:#fff;border-color:#ffffff38}.nav-btn.active{box-shadow:inset 0 0 0 1px #ffffff28}
+main{min-height:calc(100vh - 130px)}.view{display:none}.view.active{display:block;animation:viewIn .35s ease}
+@keyframes viewIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion: reduce){.view.active{animation:none}}
+.hero{background:radial-gradient(circle at 85% 25%,#1a65b8 0,#0c2c5d 37%,var(--navy) 75%);color:#fff;padding:70px 7%;display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;min-height:390px}.eyebrow{font-size:11px;font-weight:900;letter-spacing:2px;color:var(--yellow)}.hero h1{font:900 clamp(38px,5vw,67px)/1.02 Montserrat;margin:14px 0 18px;letter-spacing:-2.5px}.hero h1 span{color:var(--yellow)}.hero p{max-width:650px;color:#c9d8ed;font-size:17px;line-height:1.65}
+.search-card{background:#fff;color:var(--ink);padding:28px;border-radius:22px;box-shadow:0 25px 65px #0004}.search-card label{display:block;font-weight:800;margin-bottom:10px}.search-row{display:flex;gap:10px}.search-row input{min-width:0;flex:1}.search-card small{display:block;color:var(--muted);margin-top:12px}
+input,select{width:100%;border:1px solid var(--line);background:#fff;border-radius:11px;padding:13px 14px;outline:none;transition:.2s}input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 4px #0877dc15}
+.primary-btn{border:0;background:linear-gradient(135deg,var(--blue),#075fbe);color:#fff;border-radius:11px;padding:13px 19px;font-weight:800;box-shadow:0 8px 20px #0877dc33}.primary-btn:hover{transform:translateY(-1px);box-shadow:0 10px 26px #0877dc45}.primary-btn:active{transform:translateY(0)}.primary-btn:disabled{cursor:not-allowed;opacity:.55;transform:none;box-shadow:none}
+.secondary-btn,.ghost-btn,.mini-btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:11px 15px;font-weight:800}.secondary-btn:hover,.mini-btn:hover{border-color:var(--blue);color:var(--blue);box-shadow:0 6px 16px #071b3a0d}.secondary-btn:active,.mini-btn:active,.ghost-btn:active{transform:translateY(1px)}
+.empty-state{text-align:center;padding:75px 20px;color:var(--muted)}.empty-icon{font-size:48px;margin-bottom:12px;display:inline-block;animation:floatY 3s ease-in-out infinite}.empty-state h2{color:var(--ink);margin:0 0 8px}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@media (prefers-reduced-motion: reduce){.empty-icon{animation:none}}
+.client-panel{padding:36px 6%;max-width:1400px;margin:auto}.client-panel:not(.hidden){animation:panelIn .4s ease}.hidden{display:none!important}
+@keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion: reduce){.client-panel:not(.hidden){animation:none}}
+.client-top{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin-bottom:22px}.identity{display:flex;gap:18px;align-items:center}.avatar{width:66px;height:66px;border-radius:18px;background:var(--navy);color:#fff;display:grid;place-items:center;font:900 24px Montserrat}.identity h2{margin:0 0 4px;font:900 28px Montserrat}.identity p{margin:0;color:var(--muted)}
+.status-badge{padding:12px 17px;border-radius:13px;font-weight:900;text-align:center}.status-green{background:#e5faed;color:#087d37}.status-yellow{background:#fff5cc;color:#966e00}.status-red{background:#ffe7e7;color:#a52323}.status-blue{background:#e8f2ff;color:var(--blue)}.status-grey{background:#f2f4f8;color:var(--muted)}
+.overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:25px}.metric{background:#fff;border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:0 8px 25px #071b3a08;transition:box-shadow .2s ease,transform .2s ease}.metric:hover{box-shadow:0 12px 30px #071b3a14;transform:translateY(-2px)}.metric small{display:block;color:var(--muted);font-weight:700;margin-bottom:7px}.metric strong{font-size:21px}
+.metric-list{display:block;font-size:14px;line-height:1.4}.metric-fraction{margin-top:7px;color:var(--green2);font-size:12px;font-weight:900}
 
-.topbar{height:74px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 5%;position:sticky;top:0;z-index:20;box-shadow:0 4px 18px rgba(6,17,36,.35)}
-.brand{display:flex;align-items:center;gap:12px}
-.brand-logo{width:168px;height:54px;object-fit:contain;border-radius:8px;background:#fff;padding:4px;display:block}
-.brand strong{display:block;font:800 18px Montserrat;letter-spacing:-.4px}
-.brand strong span{color:#7fb4ec}
-.brand small{color:#9fb4d4;font-size:11px;letter-spacing:.6px}
-.top-actions{display:flex;gap:8px}
-.nav-btn{border:1px solid #ffffff26;background:transparent;color:#dce8f8;padding:10px 16px;border-radius:10px;font-weight:700;font-size:14px;transition:.15s}
-.nav-btn.active,.nav-btn:hover{background:#ffffff14;color:#fff;border-color:#ffffff40}
+.initial-card{background:#fff;border-radius:22px;padding:26px;border:1px solid var(--line);box-shadow:var(--shadow);margin-bottom:25px;transition:box-shadow .25s ease}.initial-card:hover{box-shadow:0 22px 60px rgba(7,27,58,.16)}
+.initial-head{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.initial-head h3{margin:0;font:900 20px Montserrat}
+.badge{padding:6px 13px;border-radius:20px;font-weight:800;font-size:12px;white-space:nowrap}
+.initial-progress-track{height:13px;background:#e8eef5;border-radius:20px;overflow:hidden;margin:16px 0 8px}
+.initial-progress-fill{height:100%;border-radius:20px;transition:.5s;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.initial-progress-fill.full{background:linear-gradient(90deg,var(--green),#7bea49)}
+.initial-foot{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-top:14px}
+.initial-amount{font:900 22px Montserrat}
+.initial-breakdown{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;color:var(--muted);font-size:12px;font-weight:800}
+.initial-breakdown span{padding:6px 9px;border-radius:9px;background:#f4f7fb}
+.initial-message{color:var(--muted);font-size:13px;margin-top:4px;max-width:520px}
+.proof-tag{color:var(--muted);font-size:12px;margin-top:6px}
+.bonus-tag{display:inline-flex;align-items:center;gap:7px;margin-top:9px;padding:7px 11px;border-radius:10px;background:#eaf4ff;color:var(--blue);font-size:12px;font-weight:900}
+.bonus-tag.active{background:#e5faed;color:#087d37}
 
-main{min-height:calc(100vh - 130px)}
-.view{display:none}.view.active{display:block}
-
-.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 55%,#0d3d76 100%);color:#fff;padding:64px 7% 0;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
-.eyebrow{font-size:13px;font-weight:700;color:#8fb6e8}
-.hero h1{font:800 clamp(34px,4.6vw,58px)/1.08 Montserrat;margin:12px 0 16px;letter-spacing:-1px}
-.hero h1 em{font-style:normal;color:#7fc4a0}
-.hero p{max-width:600px;color:#c3d3ea;font-size:16.5px;line-height:1.65;margin:0}
-.search-card{background:#fff;color:var(--ink);padding:26px;border-radius:var(--r-lg);box-shadow:0 22px 60px rgba(4,14,32,.35)}
-.search-card label{display:block;font-weight:700;margin-bottom:9px;font-size:14px}
-.search-row{display:flex;gap:10px}
-.search-row input{min-width:0;flex:1}
-.search-card small{display:block;color:var(--muted);margin-top:11px;font-size:12.5px;line-height:1.5}
-
-input,select{width:100%;border:1px solid var(--line);background:#fff;border-radius:var(--r-sm);padding:12px 14px;outline:none;transition:.15s;color:var(--ink)}
-input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(11,99,201,.13)}
-
-.primary-btn{border:0;background:var(--blue);color:#fff;border-radius:var(--r-sm);padding:12px 18px;font-weight:700;box-shadow:0 6px 16px rgba(11,99,201,.28);transition:.15s}
-.primary-btn:hover{background:var(--blue-deep)}
-.primary-btn:disabled{cursor:not-allowed;opacity:.5;box-shadow:none}
-.secondary-btn,.ghost-btn,.mini-btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:var(--r-sm);padding:10px 15px;font-weight:700;transition:.15s}
-.secondary-btn:hover,.mini-btn:hover{border-color:var(--blue);color:var(--blue)}
-
-/* Trust strip under hero */
-.trust-strip{background:#fff;border-bottom:1px solid var(--line)}
-.trust-inner{max-width:1300px;margin:0 auto;padding:20px 7%;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.trust-item{display:flex;align-items:center;gap:12px}
-.trust-icon{width:40px;height:40px;border-radius:11px;background:var(--blue-light);color:var(--blue);display:grid;place-items:center;font-size:18px;flex-shrink:0}
-.trust-item b{display:block;font-size:13.5px;color:var(--ink)}
-.trust-item span{display:block;font-size:12px;color:var(--muted);margin-top:1px}
-
-.empty-state{text-align:center;padding:70px 20px;color:var(--muted)}
-.empty-icon{font-size:44px;margin-bottom:10px}
-.empty-state h2{color:var(--ink);margin:0 0 8px;font-family:Montserrat}
-
-.client-panel{padding:34px 6% 10px;max-width:1400px;margin:auto}
-.hidden{display:none!important}
-.client-top{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin-bottom:20px}
-.identity{display:flex;gap:16px;align-items:center}
-.avatar{width:60px;height:60px;border-radius:16px;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 21px Montserrat}
-.identity h2{margin:0 0 3px;font:700 25px Montserrat}
-.identity p{margin:0;color:var(--muted);font-size:14px}
-.status-badge{padding:11px 16px;border-radius:12px;font-weight:700;text-align:center;font-size:13.5px}
-.status-green{background:var(--green-light);color:var(--green-deep)}
-.status-yellow{background:var(--amber-light);color:var(--amber)}
-.status-red{background:var(--red-light);color:var(--red)}
-.status-blue{background:var(--blue-light);color:var(--blue)}
-.status-grey{background:#f0f3f8;color:var(--muted)}
-
-.overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:22px}
-.metric{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:17px;box-shadow:var(--shadow-sm)}
-.metric small{display:block;color:var(--muted);font-weight:700;margin-bottom:7px;font-size:11.5px}
-.metric strong{font-size:19px;font-weight:700}
-.metric-list{display:block;font-size:13.5px;line-height:1.4;font-weight:600}
-.metric-fraction{margin-top:7px;color:var(--green-deep);font-size:12px;font-weight:700}
-
-.initial-card{background:#fff;border-radius:var(--r-lg);padding:24px;border:1px solid var(--line);box-shadow:var(--shadow);margin-bottom:22px}
-.initial-head{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap;margin-bottom:4px}
-.initial-head h3{margin:0;font:700 18px Montserrat}
-.badge{padding:6px 13px;border-radius:20px;font-weight:700;font-size:12px;white-space:nowrap}
-.initial-progress-track{height:11px;background:#e9eef6;border-radius:20px;overflow:hidden;margin:16px 0 8px}
-.initial-progress-fill{height:100%;border-radius:20px;transition:.5s;background:var(--blue)}
-.initial-progress-fill.full{background:var(--green)}
-.initial-foot{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-top:12px}
-.initial-amount{font:700 20px Montserrat}
-.initial-breakdown{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;color:var(--muted);font-size:12px;font-weight:700}
-.initial-breakdown span{padding:6px 9px;border-radius:9px;background:var(--bg)}
-.initial-message{color:var(--muted);font-size:13.5px;margin-top:6px;max-width:520px;line-height:1.5}
-.proof-tag{color:var(--muted);font-size:12.5px;margin-top:8px}
-.bonus-tag{display:inline-flex;align-items:center;gap:7px;margin-top:10px;padding:7px 12px;border-radius:10px;background:var(--blue-light);color:var(--blue-deep);font-size:12.5px;font-weight:700}
-.bonus-tag.active{background:var(--green-light);color:var(--green-deep)}
-
-.progress-card{background:#fff;border-radius:var(--r-lg);padding:24px;border:1px solid var(--line);box-shadow:var(--shadow);margin-bottom:22px}
-.progress-head{display:flex;justify-content:space-between;gap:15px;align-items:end}
-.progress-head h3{margin:0;font:700 18px Montserrat}
-.progress-head b{font-size:25px;color:var(--green-deep);font-family:Montserrat}
-.progress-track{height:11px;background:#e9eef6;border-radius:20px;overflow:hidden;margin:16px 0 8px}
-.progress-fill{height:100%;background:var(--green);border-radius:20px;transition:.5s}
-.progress-caption{color:var(--muted);font-size:13px}
-
-.timeline-wrap{background:#fff;border-radius:var(--r-lg);border:1px solid var(--line);box-shadow:var(--shadow);padding:26px;margin-bottom:22px;overflow:hidden}
-.timeline-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
-.timeline-title h3{margin:0;font:700 18px Montserrat}
-.timeline{display:flex;position:relative;min-width:840px}
-.timeline:before{content:"";position:absolute;left:6%;right:6%;top:38px;height:4px;background:#e6ecf4;border-radius:10px}
-.step{position:relative;z-index:1;flex:1;text-align:center}
-.step-dot{width:76px;height:76px;border-radius:50%;margin:auto;background:#fff;border:5px solid #dfe6f1;display:grid;place-items:center;font-size:22px;box-shadow:var(--shadow-sm)}
-.step.done .step-dot{border-color:var(--green);background:var(--green-light);color:var(--green-deep)}
-.step.risk .step-dot{border-color:var(--amber);background:var(--amber-light)}
-.step.failed .step-dot{border-color:var(--red);background:var(--red-light)}
-.step.verifying .step-dot{border-color:var(--blue);background:var(--blue-light)}
-.step h4{margin:12px 0 4px;font-size:11.5px;font-weight:700;letter-spacing:.2px}
-.step p{margin:0;color:var(--muted);font-size:11px;line-height:1.45}
-.step strong{display:block;margin-top:5px;font-size:12px}
-
-.step.final-combo{background:linear-gradient(160deg,var(--navy2),var(--navy));border-radius:var(--r-md);padding:16px 10px;margin-top:-4px}
-.step.final-combo h4{color:#bcd4f2;font-size:11.5px;letter-spacing:.2px}
-.step.final-combo p{color:#a9c2e2}
+.progress-card{background:#fff;border-radius:22px;padding:26px;border:1px solid var(--line);box-shadow:var(--shadow);margin-bottom:25px}.progress-head{display:flex;justify-content:space-between;gap:15px;align-items:end}.progress-head h3{margin:0;font:900 20px Montserrat}.progress-head b{font-size:28px;color:var(--green2)}.progress-track{height:13px;background:#e8eef5;border-radius:20px;overflow:hidden;margin:17px 0 8px}.progress-fill{height:100%;background:linear-gradient(90deg,var(--green),#7bea49);border-radius:20px;transition:.5s}.progress-caption{color:var(--muted);font-size:13px}
+.timeline-wrap{background:#fff;border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow);padding:28px;margin-bottom:25px;overflow:hidden}.timeline-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}.timeline-title h3{margin:0;font:900 20px Montserrat}.timeline{display:flex;position:relative;min-width:840px}.timeline:before{content:"";position:absolute;left:6%;right:6%;top:42px;height:5px;background:#e4ebf3;border-radius:10px}.step{position:relative;z-index:1;flex:1;text-align:center}.step-dot{width:84px;height:84px;border-radius:50%;margin:auto;background:#fff;border:6px solid #dce6f1;display:grid;place-items:center;font-size:25px;box-shadow:0 7px 18px #071b3a12;transition:border-color .3s ease,background .3s ease}.step.done .step-dot{border-color:var(--green);background:#eafff0}.step.risk .step-dot{border-color:var(--yellow);background:#fffbe7}.step.failed .step-dot{border-color:var(--red);background:#fff0f0}.step.verifying .step-dot{border-color:var(--blue);background:#eaf4ff}.step h4{margin:12px 0 4px;font-size:12px}.step p{margin:0;color:var(--muted);font-size:11px;line-height:1.45}.step strong{display:block;margin-top:5px}
+.step.final-combo{background:linear-gradient(160deg,#0c2a58,#071b3a);border-radius:20px;padding:16px 10px;margin-top:-6px}
+.step.final-combo h4{color:var(--yellow);font-size:12px;letter-spacing:.4px}
+.step.final-combo p{color:#c9d8ed}
 .step.final-combo strong{color:#fff}
-.step.final-combo .final-caption{display:block;color:#7f9bc3;font-size:10px;margin-top:4px}
-.step-dot.final-dot{background:#e2e8f1;border-color:#e2e8f1;color:#8b9bb5;font-size:28px}
-.step.final-combo.unlocked .step-dot.final-dot{background:var(--gold);border-color:var(--gold);color:var(--navy)}
-.step.final-combo.unlocked strong{color:var(--gold-light)}
-.step.final-combo.locked strong{color:#bcd4f2}
-
+.step.final-combo .final-caption{display:block;color:#8fa9cf;font-size:10px;margin-top:4px}
+.step-dot.final-dot{background:#dce6f1;border-color:#dce6f1;color:#8b9bb5;font-size:30px}
+.step.final-combo.unlocked .step-dot.final-dot{background:linear-gradient(135deg,var(--yellow),#ffec72);border-color:var(--yellow);color:var(--navy);animation:prizeGlow 1.8s ease-in-out infinite}
+.step.final-combo.locked strong{color:#ffd51a}
+@keyframes prizeGlow{0%,100%{box-shadow:0 0 0 0 #ffd51a66}50%{box-shadow:0 0 0 10px #ffd51a00}}
+@media (prefers-reduced-motion: reduce){.step.final-combo.unlocked .step-dot.final-dot{animation:none}}
 .payment-row.folder-row .payment-number{background:var(--green);color:#fff}
-.payment-row.folder-row .payment-number.folder-pending{background:var(--blue-light);color:var(--navy)}
-.payment-row.current-row{background:linear-gradient(120deg,#fdf6e8,#fffdf7);border:1.5px solid var(--amber);border-radius:var(--r-md);padding:15px 14px;margin:6px 0;box-shadow:0 8px 20px rgba(182,121,10,.13)}
-.payment-number.pulse{background:var(--amber);color:#fff}
-
+.payment-row.folder-row .payment-number.folder-pending{background:#eef5fc;color:var(--navy)}
+.payment-row.current-row{background:linear-gradient(120deg,#fff7e8,#fffdf6);border:2px solid var(--orange);border-radius:16px;padding:16px 14px;margin:6px 0;box-shadow:0 10px 25px #f3a90026}
+.payment-number.pulse{background:var(--orange);color:#fff;animation:pulseGlow 1.6s ease-in-out infinite}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 0 #f3a90055}50%{box-shadow:0 0 0 8px #f3a90000}}
+@media (prefers-reduced-motion: reduce){.payment-number.pulse{animation:none}}
 .countdown-wrap{display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
-.countdown-label{font-size:11.5px;font-weight:700;color:var(--amber)}
-.countdown-timer{font:700 14px Montserrat;color:#a9412f;background:var(--amber-light);padding:4px 10px;border-radius:8px;letter-spacing:.2px}
+.countdown-label{font-size:11px;font-weight:800;color:var(--orange)}
+.countdown-timer{font:900 15px Montserrat;color:var(--red);background:#fff0e0;padding:4px 10px;border-radius:8px;letter-spacing:.3px}
 .countdown-timer.expired{color:#fff;background:var(--red)}
-.initial-deadline{margin-top:12px;padding:13px;border-radius:var(--r-md);background:var(--sky);border:1px solid var(--line)}
+.initial-deadline{margin-top:12px;padding:13px;border-radius:14px;background:#f7fbff;border:1px solid var(--line)}
 .initial-deadline .countdown-wrap{margin-top:0}
-.initial-deadline small{display:block;color:var(--muted);margin-top:6px;font-size:12px;line-height:1.5}
-.locked-teaser{text-align:center;color:var(--muted);font-size:12.5px;font-weight:600;padding:14px 0 4px;border-top:1px dashed var(--line);margin-top:8px}
-.meta-row{display:flex;align-items:center;gap:14px;margin-top:16px;padding:16px;border-radius:var(--r-md);background:linear-gradient(120deg,var(--navy),var(--navy2));color:#fff}
-.meta-icon{width:46px;height:46px;border-radius:50%;background:#ffffff1f;display:grid;place-items:center;font-size:20px;flex-shrink:0}
-.meta-text b{display:block;font:700 12.5px Montserrat;letter-spacing:.2px;color:#e7c874}
-.meta-text small{display:block;color:#c3d3ea;font-size:12px;margin-top:3px}
-
-.payment-data-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:24px;margin-bottom:22px}
-.payment-data-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:16px}
-.payment-data-head h3{font:700 18px Montserrat;margin:0 0 7px}
-.payment-data-head p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
-.account-owner{background:linear-gradient(120deg,var(--navy),var(--navy2));color:#fff;border-radius:var(--r-md);padding:14px 16px;min-width:260px}
-.account-owner small{display:block;color:#9fb4d4;font-size:10.5px;font-weight:700;letter-spacing:.5px}
-.account-owner strong{display:block;margin:4px 0;font:700 14.5px Montserrat;color:#fff}
-.account-owner span{font-size:12.5px;font-weight:600;color:#c3d3ea}
-.security-note{display:flex;gap:10px;align-items:flex-start;background:var(--amber-light);border:1px solid #f0dcae;border-radius:var(--r-sm);padding:12px 14px;margin-bottom:16px;font-size:12.5px;color:#7a530a;line-height:1.55}
-.security-note b{color:#5c3e05}
-.bank-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.bank-card{border:1px solid var(--line);border-radius:var(--r-md);padding:15px;background:var(--sky)}
-.bank-card h4{margin:0 0 9px;font:700 13.5px Montserrat;color:var(--navy)}
-.bank-line{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:7px 0;border-top:1px solid #e6ecf4}
-.bank-line:first-of-type{border-top:0}
-.bank-line small{color:var(--muted);font-weight:700;font-size:11px}
-.bank-line b{font-size:12px;text-align:right;word-break:break-all}
-.copy-btn{border:1px solid var(--blue);background:#fff;color:var(--blue);border-radius:9px;padding:7px 9px;font-size:11px;font-weight:700;white-space:nowrap;transition:.15s}
-.copy-btn:hover{background:var(--blue-light)}
-.advisor-note{margin:16px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
-
-.commitments{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:24px}
-.commitments h3{font:700 18px Montserrat;margin:0 0 16px}
-.payment-row{display:grid;grid-template-columns:70px 1.4fr 1fr 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid #eef2f7}
-.payment-row:last-child{border-bottom:0}
-.payment-number{width:42px;height:42px;border-radius:11px;background:var(--blue-light);display:grid;place-items:center;font-weight:700;color:var(--navy)}
-.payment-info b{display:block}
-.payment-info small,.payment-meta small{color:var(--muted)}
-.payment-amount{font-weight:700}
-.payment-status{font-size:12px;font-weight:700;padding:6px 10px;border-radius:9px;display:inline-block}
-.payment-actions{display:flex;gap:6px}
-.icon-btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 10px;transition:.15s}
-.icon-btn:hover{border-color:var(--blue)}
-.icon-btn:disabled{opacity:.4;cursor:not-allowed}
-
-.retiro-card{margin-top:22px;border-radius:var(--r-lg);background:linear-gradient(120deg,var(--navy),var(--navy2));color:#fff;padding:26px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-.retiro-card h3{font:700 22px Montserrat;margin:0 0 8px}
-.retiro-card p{margin:0;color:#c3d3ea;max-width:520px;font-size:14px;line-height:1.5}
-.locked-btn{background:#ffffff1f!important;color:#c3d3ea!important;box-shadow:none!important}
-.locked-btn:hover{background:#ffffff1f!important}
-
-.section-head{padding:44px 6% 26px;display:flex;justify-content:space-between;align-items:end;gap:20px}
-.section-head h2{font:700 30px Montserrat;margin:6px 0}
-.section-head p{color:var(--muted);margin:0}
-.admin-grid{display:grid;grid-template-columns:1fr 390px;gap:22px;padding:0 6% 45px}
-.form-card,.list-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:24px}
-.card-title{display:flex;justify-content:space-between;gap:15px;align-items:start;border-bottom:1px solid #eef2f7;padding-bottom:16px;margin-bottom:18px}
-.card-title h3{margin:0;font:700 18px Montserrat}
-.card-title p{margin:5px 0 0;color:var(--muted);font-size:12px}
-.live-dot{font-size:10px;color:var(--green-deep);font-weight:700}
-.form-section{padding:17px 0;border-bottom:1px solid #eef2f7}
-.form-section h4{margin:0 0 13px;font-size:13.5px;font-weight:700}
-.fields{display:grid;gap:12px}
-.fields.two{grid-template-columns:1fr 1fr}
-.fields label{font-size:12px;font-weight:700;color:#43536c}
-.fields input,.fields select{margin-top:7px}
-.full{grid-column:1/-1}
-.commitment-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.commitment-heading p{margin:4px 0 0;color:var(--muted);font-size:12px}
-.payment-editor{display:grid;gap:9px}
-.editor-row{display:grid;grid-template-columns:55px 1fr 160px 170px;gap:8px;align-items:center}
-.editor-row .number{font-weight:700;color:var(--navy);text-align:center}
-.editor-row input,.editor-row select{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px;background:#fff}
-.form-actions{display:flex;justify-content:flex-end;gap:10px;padding-top:18px}
-
+.initial-deadline small{display:block;color:var(--muted);margin-top:6px;font-size:12px}
+.locked-teaser{text-align:center;color:var(--muted);font-size:12px;font-weight:700;padding:14px 0 4px;border-top:1px dashed #edf2f7;margin-top:8px}
+.meta-row{display:flex;align-items:center;gap:14px;margin-top:16px;padding:16px;border-radius:16px;background:linear-gradient(120deg,#071b3a,#0d3a75);color:#fff}
+.meta-icon{width:48px;height:48px;border-radius:50%;background:#ffffff20;display:grid;place-items:center;font-size:22px;flex-shrink:0}
+.meta-text b{display:block;font:900 13px Montserrat;letter-spacing:.5px;color:var(--yellow)}
+.meta-text small{display:block;color:#c9d8ed;font-size:12px;margin-top:3px}
+.payment-data-card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:26px;margin-bottom:25px}.payment-data-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:18px}.payment-data-head h3{font:900 20px Montserrat;margin:0 0 7px}.payment-data-head p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}.account-owner{background:linear-gradient(120deg,#071b3a,#0d3a75);color:#fff;border-radius:16px;padding:14px 16px;min-width:260px}.account-owner small{display:block;color:#c9d8ed;font-size:11px;font-weight:800;letter-spacing:.8px}.account-owner strong{display:block;margin:4px 0;font:900 15px Montserrat;color:var(--yellow)}.account-owner span{font-size:13px;font-weight:800}.bank-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.bank-card{border:1px solid var(--line);border-radius:16px;padding:15px;background:#f8fbff;transition:border-color .2s ease,box-shadow .2s ease}.bank-card:hover{border-color:#c7ddf5;box-shadow:0 10px 25px #071b3a0d}.bank-card h4{margin:0 0 9px;font:900 14px Montserrat;color:var(--navy)}.bank-line{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:7px 0;border-top:1px solid #e8eef5}.bank-line:first-of-type{border-top:0}.bank-line small{color:var(--muted);font-weight:900;font-size:11px}.bank-line b{font-size:12px;text-align:right;word-break:break-all}.copy-btn{border:1px solid var(--blue);background:#fff;color:var(--blue);border-radius:9px;padding:7px 9px;font-size:11px;font-weight:900;white-space:nowrap}.copy-btn:hover{background:#eaf4ff}.advisor-note{margin:16px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
+.transfer-warning{display:flex;align-items:flex-start;gap:10px;background:linear-gradient(120deg,#fff4e0,#fff9ee);border:1px solid #ffd680;color:#8a5600;border-radius:14px;padding:13px 16px;font-size:12.5px;font-weight:800;line-height:1.5;margin-bottom:20px}
+.transfer-warning b{font-weight:900}
+.verified-pill{display:inline-flex;align-items:center;gap:5px;background:#ffffff22;color:var(--yellow);font-size:10px;font-weight:900;letter-spacing:.8px;padding:4px 9px;border-radius:20px;margin-bottom:2px}
+.transfer-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:4px 0 24px}
+.t-step{background:#f8fbff;border:1px solid var(--line);border-radius:16px;padding:15px}
+.t-step-top{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+.t-step-num{width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font:900 11px Montserrat;flex-shrink:0}
+.t-step-top b{font:900 12.5px Montserrat;color:var(--navy);line-height:1.25}
+.t-step-desc{display:block;font-size:11.5px;color:var(--muted);line-height:1.55}
+.trust-strip{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);margin:-34px 7% 40px;position:relative;z-index:2;padding:22px 26px}
+.trust-inner{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.trust-item{display:flex;align-items:center;gap:13px;padding-left:20px;border-left:1px solid var(--line)}
+.trust-item:first-child{padding-left:0;border-left:0}
+.trust-icon{width:44px;height:44px;border-radius:13px;background:linear-gradient(120deg,#eaf4ff,#f7fbff);display:grid;place-items:center;font-size:20px;flex-shrink:0}
+.trust-item b{display:block;font:900 12.5px Montserrat;color:var(--navy);letter-spacing:-.2px;line-height:1.25}
+.trust-item span{display:block;font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4}
+.commitments{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:26px}.commitments h3{font:900 20px Montserrat;margin:0 0 16px}.payment-row{display:grid;grid-template-columns:70px 1.4fr 1fr 1fr auto;gap:14px;align-items:center;padding:15px 0;border-bottom:1px solid #edf2f7}.payment-row:last-child{border-bottom:0}.payment-number{width:43px;height:43px;border-radius:12px;background:#eef5fc;display:grid;place-items:center;font-weight:900;color:var(--navy)}.payment-info b{display:block}.payment-info small,.payment-meta small{color:var(--muted)}.payment-amount{font-weight:900}.payment-status{font-size:12px;font-weight:900;padding:7px 10px;border-radius:9px;display:inline-block}.payment-actions{display:flex;gap:6px}.icon-btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 10px}.icon-btn:hover{border-color:var(--blue)}.icon-btn:disabled{opacity:.4;cursor:not-allowed}
+.retiro-card{margin-top:25px;border-radius:22px;background:linear-gradient(120deg,#071b3a,#0d3a75);color:#fff;padding:28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.retiro-card h3{font:900 24px Montserrat;margin:0 0 8px}.retiro-card p{margin:0;color:#bed0e7;max-width:520px}.locked-btn{background:#ffffff22!important;color:#c9d8ed!important;box-shadow:none!important}.locked-btn:hover{transform:none!important}
+.section-head{padding:48px 6% 28px;display:flex;justify-content:space-between;align-items:end;gap:20px}.section-head h2{font:900 34px Montserrat;margin:7px 0}.section-head p{color:var(--muted);margin:0}
+.admin-grid{display:grid;grid-template-columns:1fr 390px;gap:24px;padding:0 6% 45px}.form-card,.list-card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:25px}.card-title{display:flex;justify-content:space-between;gap:15px;align-items:start;border-bottom:1px solid #edf2f7;padding-bottom:18px;margin-bottom:20px}.card-title h3{margin:0;font:900 20px Montserrat}.card-title p{margin:5px 0 0;color:var(--muted);font-size:12px}.live-dot{font-size:10px;color:var(--green2);font-weight:900}
+.form-section{padding:18px 0;border-bottom:1px solid #edf2f7}.form-section h4{margin:0 0 14px;font-size:14px}.fields{display:grid;gap:12px}.fields.two{grid-template-columns:1fr 1fr}.fields label{font-size:12px;font-weight:800;color:#43536c}.fields input,.fields select{margin-top:7px}.full{grid-column:1/-1}.commitment-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.commitment-heading p{margin:4px 0 0;color:var(--muted);font-size:12px}.payment-editor{display:grid;gap:9px}.editor-row{display:grid;grid-template-columns:55px 1fr 190px;gap:8px;align-items:center}.editor-row .number{font-weight:900;color:var(--navy);text-align:center}.editor-row input,.editor-row select{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px;background:#fff}.form-actions{display:flex;justify-content:flex-end;gap:10px;padding-top:20px}
 .proof-info{margin:0;color:var(--muted);font-size:12px}
 .proof-preview{margin-top:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.proof-preview img{width:88px;height:88px;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block}
-.proof-preview .proof-pdf-link,.proof-preview .proof-img-link{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;padding:9px 13px;font-weight:700;font-size:12px;color:var(--blue);text-decoration:none;background:var(--sky)}
+.proof-preview img{width:90px;height:90px;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block}
+.proof-preview .proof-pdf-link,.proof-preview .proof-img-link{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;padding:9px 13px;font-weight:800;font-size:12px;color:var(--blue);text-decoration:none;background:#f7fbff}
 .proof-preview .proof-pdf-link:hover,.proof-preview .proof-img-link:hover{border-color:var(--blue)}
 .proof-none{color:var(--muted);font-size:12px;margin-top:10px}
 .editor-row-wrap{display:grid;gap:4px}
 .editor-proof-line{grid-column:1/-1;display:flex;align-items:center;gap:8px;padding-left:63px}
-.editor-proof-line a{font-size:11px;font-weight:700;color:var(--blue);text-decoration:none;border:1px solid var(--line);padding:5px 10px;border-radius:8px}
+.editor-proof-line a{font-size:11px;font-weight:800;color:var(--blue);text-decoration:none;border:1px solid var(--line);padding:5px 10px;border-radius:8px}
 .editor-proof-line a:hover{border-color:var(--blue)}
 .editor-proof-line span{font-size:11px;color:var(--muted)}
-
-.admin-lock{position:fixed;inset:0;background:rgba(10,32,68,.82);display:none;align-items:center;justify-content:center;padding:20px;z-index:80}
-.admin-lock.show{display:flex}
-.admin-lock-card{width:min(420px,100%);background:#fff;border-radius:var(--r-lg);padding:26px;border:1px solid var(--line);box-shadow:var(--shadow)}
-.admin-lock-card h3{font:700 20px Montserrat;margin:0 0 7px}
-.admin-lock-card p{margin:0 0 18px;color:var(--muted);font-size:13px;line-height:1.5}
-.admin-lock-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:15px}
-.admin-lock-error{min-height:18px;margin-top:9px;color:var(--red);font-size:12px;font-weight:700}
-
-.client-list{display:grid;gap:9px;max-height:650px;overflow:auto}
-.client-item{border:1px solid var(--line);border-radius:var(--r-sm);padding:13px;cursor:pointer;transition:.15s}
-.client-item:hover{border-color:var(--blue);background:var(--sky)}
-.client-item-top{display:flex;justify-content:space-between;gap:10px}
-.client-item b{font-size:13px}
-.client-item small{color:var(--muted);display:block;margin-top:4px}
-.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px}
-.dot.green{background:var(--green)}.dot.yellow{background:var(--amber)}.dot.red{background:var(--red)}
-
-.toast{position:fixed;right:25px;bottom:25px;background:var(--navy);color:#fff;padding:14px 18px;border-radius:12px;box-shadow:var(--shadow);transform:translateY(120px);opacity:0;transition:.3s;z-index:50;font-weight:600;max-width:320px;font-size:14px}
-.toast.show{transform:translateY(0);opacity:1}
-
-footer{padding:26px 6%;color:#7b879a;font-size:12px;border-top:1px solid var(--line);background:#fff}
-.footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:1400px;margin:0 auto}
-.footer-trust{display:flex;gap:16px;flex-wrap:wrap}
-.footer-trust span{display:flex;align-items:center;gap:6px}
-
-@media (prefers-reduced-motion: reduce){*{animation-duration:.001ms!important}}
-
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;padding:40px 6% 0}
-  .admin-grid{grid-template-columns:1fr}
-  .client-top{grid-template-columns:1fr}
-  .payment-row{grid-template-columns:55px 1fr auto}
-  .payment-row .payment-meta{display:none}
-  .payment-actions{justify-content:flex-end}
-  .section-head{align-items:start;flex-direction:column}
-  .trust-inner{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:600px){
-  .topbar{padding:0 4%;height:66px}
-  .brand-logo{width:122px;height:40px}
-  .brand strong,.brand small{display:none}
-  .top-actions{gap:4px}
-  .nav-btn{padding:9px;font-size:11px}
-  .hero{padding:32px 5% 0}
-  .hero h1{font-size:36px}
-  .search-row{flex-direction:column}
-  .client-panel{padding:24px 4% 6px}
-  .overview{grid-template-columns:1fr 1fr}
-  .metric{padding:14px}
-  .identity h2{font-size:20px}
-  .avatar{width:52px;height:52px}
-  .timeline-wrap{padding:20px 12px;overflow-x:auto}
-  .timeline{min-width:840px}
-  .commitments{padding:18px}
-  .payment-row{grid-template-columns:45px 1fr auto}
-  .payment-amount{font-size:12px}
-  .fields.two{grid-template-columns:1fr}
-  .full{grid-column:auto}
-  .admin-grid,.section-head{padding-left:4%;padding-right:4%}
-  .form-card,.list-card{padding:18px}
-  .editor-row{grid-template-columns:35px 1fr 115px}
-  .editor-row select{grid-column:2/-1}
-  .retiro-card{flex-direction:column;align-items:start}
-  .footer-inner{flex-direction:column;gap:10px}
-  .trust-inner{grid-template-columns:1fr;padding:16px 5%}
-}
+.admin-lock{position:fixed;inset:0;background:#071b3acc;display:none;align-items:center;justify-content:center;padding:20px;z-index:80;opacity:0;transition:opacity .2s ease}.admin-lock.show{display:flex;opacity:1}.admin-lock.show .admin-lock-card{animation:lockCardIn .25s ease}.admin-lock-card{width:min(420px,100%);background:#fff;border-radius:22px;padding:26px;border:1px solid var(--line);box-shadow:var(--shadow)}
+@keyframes lockCardIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media (prefers-reduced-motion: reduce){.admin-lock,.admin-lock.show .admin-lock-card{animation:none;transition:none}}.admin-lock-card h3{font:900 22px Montserrat;margin:0 0 7px}.admin-lock-card p{margin:0 0 18px;color:var(--muted);font-size:13px;line-height:1.5}.admin-lock-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:15px}.admin-lock-error{min-height:18px;margin-top:9px;color:var(--red);font-size:12px;font-weight:800}
+.client-list{display:grid;gap:9px;max-height:650px;overflow:auto}.client-item{border:1px solid var(--line);border-radius:13px;padding:13px;cursor:pointer;transition:border-color .18s ease,background .18s ease,box-shadow .18s ease}.client-item:hover{border-color:var(--blue);background:#f7fbff;box-shadow:0 8px 20px #071b3a0d}.client-item-top{display:flex;justify-content:space-between;gap:10px}.client-item b{font-size:13px}.client-item small{color:var(--muted);display:block;margin-top:4px}.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px}.dot.green{background:var(--green)}.dot.yellow{background:var(--yellow)}.dot.red{background:var(--red)}
+.toast{position:fixed;right:25px;bottom:25px;background:var(--navy);color:#fff;padding:14px 18px;border-radius:12px;box-shadow:var(--shadow);transform:translateY(120px);opacity:0;transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .25s ease;z-index:50;font-weight:700;max-width:320px}.toast.show{transform:translateY(0);opacity:1}
+footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;font-size:11px;border-top:1px solid var(--line);gap:15px}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding:45px 6%}.admin-grid{grid-template-columns:1fr}.client-top{grid-template-columns:1fr}.payment-row{grid-template-columns:55px 1fr auto}.payment-row .payment-meta{display:none}.payment-actions{justify-content:flex-end}.section-head{align-items:start;flex-direction:column}.trust-strip{margin:-28px 5% 34px;padding:20px}.trust-inner{grid-template-columns:repeat(2,1fr);row-gap:16px}.trust-item:nth-child(odd){border-left:0;padding-left:0}.trust-item:nth-child(n+3){border-left:0;padding-left:0}.transfer-steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.topbar{padding:0 4%;height:68px}.brand-logo{width:126px;height:42px}.brand strong,.brand small{display:none}.top-actions{gap:4px}.nav-btn{padding:9px;font-size:11px}.hero{padding:38px 5%}.hero h1{font-size:42px}.search-row{flex-direction:column}.client-panel{padding:25px 4%}.overview{grid-template-columns:1fr 1fr}.metric{padding:14px}.identity h2{font-size:21px}.avatar{width:54px;height:54px}.timeline-wrap{padding:20px 12px;overflow-x:auto}.timeline{min-width:840px}.commitments{padding:18px}.payment-row{grid-template-columns:45px 1fr auto}.payment-amount{font-size:12px}.fields.two{grid-template-columns:1fr}.full{grid-column:auto}.admin-grid,.section-head{padding-left:4%;padding-right:4%}.form-card,.list-card{padding:18px}.editor-row{grid-template-columns:35px 1fr;row-gap:6px}.editor-row select{grid-column:1/-1}.retiro-card{flex-direction:column;align-items:start}footer{flex-direction:column}}
 @media(max-width:600px){
   .timeline-wrap{padding:20px 16px;overflow:hidden}
   .timeline-title{align-items:flex-start;gap:10px;flex-direction:column;margin-bottom:20px}
-  .timeline-title h3{font-size:17px;line-height:1.25}
+  .timeline-title h3{font-size:18px;line-height:1.25}
   .timeline{min-width:0;display:grid;gap:12px}
   .timeline:before{left:23px;right:auto;top:20px;bottom:20px;width:4px;height:auto}
-  .step{display:grid;grid-template-columns:50px 1fr;column-gap:12px;text-align:left;align-items:center;min-height:70px}
-  .step-dot{grid-row:1/4;width:50px;height:50px;border-width:4px;margin:0;font-size:17px}
+  .step{display:grid;grid-template-columns:50px 1fr;column-gap:12px;text-align:left;align-items:center;min-height:72px}
+  .step-dot{grid-row:1/4;width:50px;height:50px;border-width:4px;margin:0;font-size:18px}
   .step h4{margin:0 0 3px;font-size:11px;line-height:1.25}
   .step p{font-size:11px;line-height:1.35}
   .step strong{font-size:12px;line-height:1.35;margin-top:3px}
   .step.final-combo{grid-template-columns:50px 1fr;margin-top:0;padding:14px 12px;border-radius:16px}
   .step.final-combo .final-caption{font-size:10px;line-height:1.25}
-  .step-dot.final-dot{font-size:21px}
+  .step-dot.final-dot{font-size:22px}
   .payment-data-card{padding:18px}
   .payment-data-head{flex-direction:column}
   .account-owner{width:100%;min-width:0}
   .bank-grid{grid-template-columns:1fr}
   .bank-line{display:grid;grid-template-columns:54px 1fr auto;align-items:center}
+  .editor-proof-line{padding-left:43px}
+  .trust-strip{margin:-22px 4% 28px;padding:16px}
+  .trust-inner{grid-template-columns:1fr;gap:14px}
+  .trust-item{border-left:0!important;padding-left:0!important}
+  .trust-item:not(:first-child){padding-top:14px;border-top:1px solid var(--line)}
+  .transfer-steps{grid-template-columns:1fr}
 }
-
-/* ===== Bloques de transparencia y confianza ===== */
-.summary-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:22px 24px;box-shadow:var(--shadow);margin-bottom:22px}
-.summary-card h3{margin:0 0 4px;font:700 18px Montserrat}
-.summary-sub{color:var(--muted);font-size:13.5px;margin:0 0 18px;line-height:1.55}
-.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:13px}
-.summary-item{background:var(--sky);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px}
-.summary-item small{display:block;color:var(--muted);font-weight:700;font-size:11.5px;margin-bottom:6px;letter-spacing:.3px}
-.summary-item strong{font:700 19px Montserrat;display:block}
-.summary-item span{display:block;color:var(--muted);font-size:11.5px;margin-top:5px;line-height:1.45}
-.summary-item.paid{background:var(--green-light);border-color:#cdeedc}
-.summary-item.paid strong{color:var(--green-deep)}
-.summary-item.balance{background:var(--gold-light);border-color:#f0e2bd}
-.summary-item.now{background:var(--blue-light);border-color:#cfe1f8}
-.summary-item.now strong{color:var(--blue-deep)}
-.summary-bar{height:10px;background:#e9eef6;border-radius:20px;overflow:hidden;margin:18px 0 9px}
-.summary-bar>div{height:100%;background:linear-gradient(90deg,var(--green),var(--green-deep));border-radius:20px;transition:.5s}
-.summary-note{color:var(--muted);font-size:12.5px;line-height:1.6;margin:0}
-.summary-detail{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
-.summary-detail summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--blue-deep);list-style:none}
-.summary-detail summary::-webkit-details-marker{display:none}
-.summary-detail summary:before{content:"▸ ";transition:.2s}
-.summary-detail[open] summary:before{content:"▾ "}
-.detail-line{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px}
-.detail-line:last-child{border-bottom:0}
-.detail-line span{color:var(--muted)}
-.detail-line b{white-space:nowrap}
-.detail-line.total{font-weight:800;color:var(--ink)}
-
-.verify-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;margin:14px 0 2px}
-.verify-step{display:flex;gap:11px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:13px 14px}
-.verify-step .vnum{width:26px;height:26px;border-radius:8px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:800;flex-shrink:0}
-.verify-step b{display:block;font-size:13px;margin-bottom:3px}
-.verify-step span{display:block;color:var(--muted);font-size:12px;line-height:1.5}
-
-.receipt-strip{display:flex;gap:9px;align-items:center;flex-wrap:wrap;background:var(--blue-light);border:1px solid #cfe1f8;color:var(--blue-deep);border-radius:var(--r-md);padding:11px 14px;margin-top:12px;font-size:12.5px;font-weight:600;line-height:1.5}
-.receipt-strip a{color:var(--blue-deep);font-weight:800}
-.receipt-strip.done{background:var(--green-light);border-color:#cdeedc;color:var(--green-deep)}
-.receipt-strip.done a{color:var(--green-deep)}
-
-.help-card{background:#fff;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:var(--r-lg);padding:22px 24px;box-shadow:var(--shadow-sm);margin-bottom:22px}
-.help-card h3{margin:0 0 6px;font:700 17px Montserrat}
-.help-card>p{margin:0 0 14px;color:var(--muted);font-size:13.5px;line-height:1.6}
-.help-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:12px}
-.help-option{border:1px solid var(--line);border-radius:var(--r-md);padding:13px 15px;background:var(--bg)}
-.help-option b{display:block;font-size:13.5px;margin-bottom:4px}
-.help-option span{color:var(--muted);font-size:12.5px;line-height:1.5}
-
-.support-bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:var(--r-lg);padding:20px 24px;margin-bottom:22px}
-.support-bar b{display:block;font:700 16px Montserrat;margin-bottom:3px}
-.support-bar p{margin:0;color:#bcd4f2;font-size:13px;line-height:1.5}
-.support-actions{display:flex;gap:10px;flex-wrap:wrap}
-.support-actions a{background:#fff;color:var(--navy);text-decoration:none;font-weight:800;font-size:13.5px;padding:11px 16px;border-radius:10px;display:inline-flex;gap:8px;align-items:center}
-.support-actions a.ghost{background:#ffffff1a;color:#fff;border:1px solid #ffffff38}
-.support-actions a:hover{opacity:.92}
-
-.countdown-timer.calm{background:var(--blue-light);color:var(--blue-deep)}
-.deadline-help{display:block;margin-top:6px;color:var(--muted);font-size:11.5px;line-height:1.5}
-@media(max-width:700px){
-  .support-bar{flex-direction:column;align-items:flex-start}
-  .support-actions a{width:100%;justify-content:center}
-}
+/* ===== Vista Suscripción / Bonificación de carpeta ===== */
+.sus-hero{background:radial-gradient(circle at 80% 20%,#1a65b8 0,#0c2c5d 40%,var(--navy) 78%);color:#fff;padding:54px 6% 64px;display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+.sus-hero h1{font:900 clamp(32px,4.4vw,56px)/1.02 Montserrat;margin:12px 0 14px;letter-spacing:-2px}
+.sus-hero h1 span{color:var(--cyan)}
+.sus-hero p{color:#c9d8ed;font-size:16.5px;line-height:1.65;max-width:560px;margin:0 0 20px}
+.sus-bullets{display:flex;flex-wrap:wrap;gap:10px;padding:0;margin:0;list-style:none}
+.sus-bullets li{background:#ffffff14;border:1px solid #ffffff2b;padding:9px 13px;border-radius:999px;font-size:13px;font-weight:700}
+.promo-card{background:#fff;color:var(--ink);border-radius:24px;padding:26px;box-shadow:0 25px 65px #0005;text-align:center;position:relative;overflow:hidden}
+.promo-tag{display:inline-block;background:var(--red);color:#fff;font:900 13px Montserrat;letter-spacing:1px;padding:8px 16px;border-radius:999px;transform:rotate(-2deg)}
+.promo-off{font:900 clamp(52px,7vw,84px)/1 Montserrat;color:var(--red);margin:14px 0 2px;letter-spacing:-3px}
+.promo-off small{display:block;font:900 15px Montserrat;letter-spacing:1.5px;color:var(--ink)}
+.promo-prices{display:flex;align-items:center;justify-content:center;gap:16px;margin:18px 0 6px;flex-wrap:wrap}
+.promo-before{color:var(--muted);font-weight:800;text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:3px;font-size:20px}
+.promo-now{background:var(--yellow);border-radius:14px;padding:10px 18px;font:900 30px Montserrat;color:var(--navy);letter-spacing:-1px;box-shadow:0 10px 24px #ffd51a55}
+.promo-now b{display:block;font:900 11px Inter;letter-spacing:2px;color:#7a5c00}
+.promo-note{color:var(--muted);font-size:13px;margin:10px 0 0}
+.sus-wrap{max-width:1020px;margin:-32px auto 60px;padding:0 5%}
+.sus-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px;box-shadow:var(--shadow)}
+.sus-steps{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.sus-step{flex:1;min-width:170px;background:#f7faff;border:1px solid var(--line);border-radius:14px;padding:13px 15px;font-size:13px;color:var(--muted)}
+.sus-step b{display:block;color:var(--ink);font-size:14px;margin-bottom:2px}
+.sus-section{border-top:1px solid var(--line);padding-top:22px;margin-top:22px}
+.sus-section:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.sus-section h3{font:900 19px Montserrat;margin:0 0 4px}
+.sus-section > p{color:var(--muted);margin:0 0 16px;font-size:14px}
+.sus-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sus-fields label{display:block;font-weight:700;font-size:13.5px}
+.sus-fields label span.req{color:var(--red)}
+.sus-fields input,.sus-fields select{margin-top:6px}
+.sus-fields .full{grid-column:1/-1}
+.hint{display:block;color:var(--muted);font-weight:500;font-size:12px;margin-top:5px}
+.sus-docs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.doc-box{border:2px dashed #c6d7ea;border-radius:16px;padding:18px;text-align:center;background:#f9fcff;transition:.2s}
+.doc-box:hover{border-color:var(--blue);background:#f2f8ff}
+.doc-box b{display:block;font-size:14px;margin-bottom:4px}
+.doc-box small{color:var(--muted);display:block;margin-bottom:12px}
+.doc-box input[type=file]{display:none}
+.doc-box .mini-btn{width:auto}
+.doc-prev{margin-top:12px}
+.doc-prev img{max-width:100%;max-height:150px;border-radius:10px;border:1px solid var(--line)}
+.doc-prev .file-name{display:block;font-size:12px;color:var(--muted);margin-top:6px;word-break:break-all}
+.doc-optional{background:#fff8e1;border:1px solid #ffe08a;border-radius:14px;padding:14px 16px;font-size:13.5px;color:#7a5c00;margin-top:14px}
+.sus-legal{display:flex;gap:10px;align-items:flex-start;margin-top:22px;font-size:13px;color:var(--muted)}
+.sus-legal input{width:18px;height:18px;margin-top:2px;flex:0 0 auto}
+.sus-actions{display:flex;gap:12px;justify-content:flex-end;margin-top:24px;flex-wrap:wrap}
+.sus-error{background:#ffe7e7;color:#a52323;border-radius:12px;padding:12px 15px;font-weight:700;font-size:13.5px;margin-top:16px;display:none}
+.sus-error.show{display:block}
+.sus-ok{text-align:center;padding:26px 10px}
+.sus-ok .ok-icon{width:76px;height:76px;border-radius:50%;background:#e5faed;color:#0caa48;display:grid;place-items:center;font-size:38px;margin:0 auto 16px}
+.sus-ok h2{font:900 27px Montserrat;margin:0 0 8px}
+.sus-ok p{color:var(--muted);max-width:520px;margin:0 auto 10px}
+.sus-code{display:inline-block;background:var(--navy);color:#fff;font:900 18px Montserrat;letter-spacing:2px;padding:10px 20px;border-radius:12px;margin:12px 0 18px}
+.sus-resume{text-align:left;background:#f7faff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;max-width:560px;margin:0 auto 18px;font-size:13.5px}
+.sus-resume div{display:flex;justify-content:space-between;gap:14px;padding:5px 0;border-bottom:1px dashed #e2eaf4}
+.sus-resume div:last-child{border-bottom:0}
+.sus-resume span:first-child{color:var(--muted)}
+.sus-resume span:last-child{font-weight:700;text-align:right}
+.sus-ok-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.wa-btn{border:0;background:#25d366;color:#fff;border-radius:11px;padding:13px 19px;font-weight:800;box-shadow:0 8px 20px #25d36640;text-decoration:none;display:inline-block}
+@media(max-width:860px){.sus-hero{grid-template-columns:1fr;padding:34px 5% 48px;gap:28px}.sus-wrap{margin-top:-20px}}
+@media(max-width:600px){.sus-fields,.sus-docs{grid-template-columns:1fr}.sus-card{padding:20px}.sus-actions{flex-direction:column-reverse}.sus-actions button{width:100%}}
 </style>
 </head>
 <body>
@@ -407,12 +244,13 @@ footer{padding:26px 6%;color:#7b879a;font-size:12px;border-top:1px solid var(--l
     <img class="brand-logo" src="assets/mundoauto-logo.png" alt="MundoAuto">
     <div>
       <strong>MUNDO<span>AUTO</span></strong>
-      <small>Portal oficial de compromisos</small>
+      <small>Portal de Compromisos</small>
     </div>
   </div>
   <div class="top-actions">
     <button class="nav-btn active" data-view="consulta">🔎 Consulta</button>
-    <button class="nav-btn" data-view="admin">⚙️ Administración</button>
+    <button class="nav-btn" data-view="suscripcion">📝 Suscribirme 95% OFF</button>
+    <!--button class="nav-btn" data-view="admin">⚙️ Administración</button-->
   </div>
 </header>
 
@@ -420,21 +258,21 @@ footer{padding:26px 6%;color:#7b879a;font-size:12px;border-top:1px solid var(--l
   <section id="view-consulta" class="view active">
     <div class="hero">
       <div class="hero-copy">
-        <span class="eyebrow">Seguimiento de tu operación en tiempo real</span>
-        <h1>Cada pago te acerca<br>un paso más a <em>tu auto</em>.</h1>
-        <p>Consultá el estado de tu entrega inicial y tus cuotas, subí tus comprobantes y seguí tu avance hasta el día del retiro, todo desde un mismo lugar. Cada importe que abonás queda registrado con su fecha y su comprobante, y lo podés revisar cuando quieras.</p>
+        <span class="eyebrow">SEGUIMIENTO DE OPERACIÓN</span>
+        <h1>Tu camino hacia<br><span>tu auto</span> empieza acá.</h1>
+        <p>Consultá el estado de tu entrega inicial, tus cuotas y tu avance hasta el momento del retiro.</p>
       </div>
       <div class="search-card">
-        <label for="dniSearch">Consultá tu operación</label>
+        <label for="dniSearch">Ingresá tu DNI</label>
         <div class="search-row">
-          <input id="dniSearch" type="text" inputmode="numeric" placeholder="Ingresá tu DNI, ej. 20345678" maxlength="12">
+          <input id="dniSearch" type="text" inputmode="numeric" placeholder="Ej. 20345678" maxlength="12">
           <button id="searchBtn" class="primary-btn">Consultar</button>
         </div>
-        <small>🔒 Usamos tu DNI únicamente para mostrarte el estado de tu propia operación.</small>
+        <small>Ingresá el DNI de tu operación para ver el estado actualizado.</small>
       </div>
     </div>
 
-    <div class="trust-strip">
+      <div class="trust-strip">
       <div class="trust-inner">
         <div class="trust-item"><div class="trust-icon">🔐</div><div><b>Datos protegidos</b><span>Conexión segura y Ley N° 25.326</span></div></div>
         <div class="trust-item"><div class="trust-icon">🏦</div><div><b>Cuentas a nombre de la empresa</b><span>MundoAuto Multimarcas S.A. · CUIT 30-71234681-3</span></div></div>
@@ -442,11 +280,11 @@ footer{padding:26px 6%;color:#7b879a;font-size:12px;border-top:1px solid var(--l
         <div class="trust-item"><div class="trust-icon">🤝</div><div><b>Acompañamiento real</b><span>Tu asesor te guía en cada etapa</span></div></div>
       </div>
     </div>
-
+    
     <div id="emptyState" class="empty-state">
       <div class="empty-icon">🚗</div>
       <h2>Consultá tu operación</h2>
-      <p>Ingresá tu DNI para ver el avance de tu entrega inicial y de tus cuotas, tal como están registrados en nuestro sistema.</p>
+      <p>Ingresá el DNI para visualizar el avance, la entrega inicial y el estado de tus cuotas.</p>
     </div>
 
     <div id="clientPanel" class="client-panel hidden"></div>
@@ -559,13 +397,174 @@ footer{padding:26px 6%;color:#7b879a;font-size:12px;border-top:1px solid var(--l
       </aside>
     </div>
   </section>
+
+  <!-- ============ VISTA: SUSCRIPCIÓN CON BONIFICACIÓN ============ -->
+  <section id="view-suscripcion" class="view">
+    <div class="sus-hero">
+      <div>
+        <span class="eyebrow">¡BONIFICACIÓN ESPECIAL!</span>
+        <h1>Gestión de<br><span>la carpeta</span></h1>
+        <p>Olvidate de los costos de gestión y empezá hoy tu plan de manera simple, rápida y segura. Completá el formulario y un asesor se comunica con vos para confirmar tu suscripción.</p>
+        <ul class="sus-bullets">
+          <li>🛡️ Seguridad en tu compra</li>
+          <li>🤝 Atención personalizada</li>
+          <li>🚗 Amplia variedad de vehículos</li>
+          <li>🔧 Servicio post venta</li>
+        </ul>
+      </div>
+      <div class="promo-card">
+        <span class="promo-tag">¡TU PLAN, MÁS CERCA!</span>
+        <div class="promo-off">95%<small>DE DESCUENTO</small></div>
+        <div class="promo-prices">
+          <span class="promo-before" id="promoBefore">$300.000</span>
+          <span class="promo-now"><b>AHORA</b><span id="promoNow">$15.000</span></span>
+        </div>
+        <p class="promo-note">Promoción sujeta a disponibilidad. El valor bonificado se confirma al momento de la suscripción.</p>
+      </div>
+    </div>
+
+    <div class="sus-wrap">
+      <div class="sus-card" id="susFormCard">
+        <div class="sus-steps">
+          <div class="sus-step"><b>1 · Completá tus datos</b>Personales y laborales.</div>
+          <div class="sus-step"><b>2 · Subí tu DNI (opcional)</b>Frente y dorso. Podés enviarlo después.</div>
+          <div class="sus-step"><b>3 · Te contactamos</b>Un asesor confirma la bonificación.</div>
+        </div>
+
+        <form id="susForm" novalidate>
+          <div class="sus-section">
+            <h3>Datos personales</h3>
+            <p>Completá los campos con los datos tal como figuran en tu DNI.</p>
+            <div class="sus-fields">
+              <label class="full">Nombre y apellido <span class="req">*</span>
+                <input id="susNombre" required placeholder="Ej. Juan Pérez" autocomplete="name">
+              </label>
+              <label>DNI <span class="req">*</span>
+                <input id="susDni" required inputmode="numeric" maxlength="12" placeholder="Ej. 20345678">
+              </label>
+              <label>Fecha de nacimiento <span class="req">*</span>
+                <input id="susNacimiento" type="date" required>
+              </label>
+              <label>Estado civil <span class="req">*</span>
+                <select id="susEstadoCivil" required>
+                  <option value="">Seleccioná una opción</option>
+                  <option>Soltero/a</option>
+                  <option>Casado/a</option>
+                  <option>En pareja / Concubinato</option>
+                  <option>Divorciado/a</option>
+                  <option>Viudo/a</option>
+                </select>
+              </label>
+              <label>Teléfono <span class="req">*</span>
+                <input id="susTelefono" required inputmode="tel" placeholder="Ej. 351 555 5555" autocomplete="tel">
+              </label>
+              <label class="full">Domicilio (calle, número, piso/dpto) <span class="req">*</span>
+                <input id="susDomicilio" required placeholder="Ej. Av. San Martín 1234, Piso 2 Dpto B">
+              </label>
+              <label>Código postal <span class="req">*</span>
+                <input id="susCp" required inputmode="numeric" maxlength="8" placeholder="Ej. 5152">
+              </label>
+              <label>Localidad <span class="req">*</span>
+                <input id="susLocalidad" required placeholder="Ej. Villa Carlos Paz">
+              </label>
+              <label class="full">Provincia <span class="req">*</span>
+                <select id="susProvincia" required>
+                  <option value="">Seleccioná una provincia</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="sus-section">
+            <h3>Datos laborales e ingresos</h3>
+            <p>Esta información nos permite armar el plan que mejor se adapte a vos.</p>
+            <div class="sus-fields">
+              <label>Profesión / Ocupación <span class="req">*</span>
+                <input id="susProfesion" required placeholder="Ej. Comerciante">
+              </label>
+              <label>Situación laboral <span class="req">*</span>
+                <select id="susSituacion" required>
+                  <option value="">Seleccioná una opción</option>
+                  <option>Relación de dependencia</option>
+                  <option>Cuenta propia / Autónomo</option>
+                  <option>Monotributista</option>
+                  <option>Jubilado / Pensionado</option>
+                  <option>Otro</option>
+                </select>
+              </label>
+              <label class="full">Empresa / Actividad y antigüedad
+                <input id="susEmpleo" placeholder="Ej. Distribuidora Sur S.A. · 3 años">
+                <span class="hint">Opcional, pero agiliza la aprobación.</span>
+              </label>
+              <label>Ingresos mensuales aproximados <span class="req">*</span>
+                <input id="susIngresos" type="number" min="0" step="1000" required placeholder="Ej. 900000">
+              </label>
+              <label>Fecha de cobro <span class="req">*</span>
+                <input id="susFechaCobro" required placeholder="Ej. día 5 de cada mes">
+                <span class="hint">Indicá el día del mes en que cobrás.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="sus-section">
+            <h3>Documentación (opcional)</h3>
+            <p>Subí la foto del DNI frente y dorso. <b>No es obligatorio:</b> si no la subís ahora, tu formulario se envía igual y podés mandarla después por WhatsApp.</p>
+            <div class="sus-docs">
+              <div class="doc-box">
+                <b>🪪 DNI · Frente</b>
+                <small>JPG, PNG o PDF · hasta 10 MB</small>
+                <input type="file" id="susDocFrente" accept="image/*,application/pdf">
+                <button type="button" class="mini-btn" data-file="susDocFrente">Seleccionar archivo</button>
+                <div class="doc-prev" id="prevFrente"></div>
+              </div>
+              <div class="doc-box">
+                <b>🪪 DNI · Dorso</b>
+                <small>JPG, PNG o PDF · hasta 10 MB</small>
+                <input type="file" id="susDocDorso" accept="image/*,application/pdf">
+                <button type="button" class="mini-btn" data-file="susDocDorso">Seleccionar archivo</button>
+                <div class="doc-prev" id="prevDorso"></div>
+              </div>
+            </div>
+            <div class="doc-optional">ℹ️ Si preferís no subir el documento, dejá los campos vacíos y presioná <b>Enviar solicitud</b>. Tu suscripción queda registrada como <b>“documentación pendiente”</b> y un asesor te la pide luego.</div>
+          </div>
+
+          <label class="sus-legal">
+            <input type="checkbox" id="susLegal" checked>
+            <span>Autorizo a MundoAuto Multimarcas S.A. a contactarme y a tratar mis datos personales con fines de evaluación de la solicitud, conforme a la Ley N° 25.326 de Protección de Datos Personales.</span>
+          </label>
+
+          <div id="susError" class="sus-error"></div>
+
+          <div class="sus-actions">
+            <button type="button" id="susReset" class="ghost-btn">Limpiar formulario</button>
+            <button type="submit" id="susSubmit" class="primary-btn">Enviar solicitud y obtener el 95% OFF</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="sus-card hidden" id="susOkCard">
+        <div class="sus-ok">
+          <div class="ok-icon">✓</div>
+          <h2>¡Solicitud enviada!</h2>
+          <p id="susOkMsg">Recibimos tus datos. Un asesor se comunica con vos a la brevedad para confirmar la bonificación de la gestión de carpeta.</p>
+          <div class="sus-code" id="susCode">—</div>
+          <div class="sus-resume" id="susResume"></div>
+          <div class="sus-ok-actions">
+            <a id="susWa" class="wa-btn" href="#" target="_blank" rel="noopener">💬 Enviar por WhatsApp</a>
+            <button type="button" id="susDownload" class="secondary-btn">⬇️ Descargar copia</button>
+            <button type="button" id="susNew" class="ghost-btn">Cargar otra solicitud</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer>
   <div class="footer-inner">
     <span>
-      <b>MUNDOAUTO MULTIMARCAS S.A.</b> · CUIT 30-71234681-3<br>
-      +54 351 000-0000
+      <b>MUNDOAUTO MULTIMARCAS S.A.</b> · CUIT 30-71234681-3
     </span>
     <div class="footer-trust">
       <span>🔒 Conexión cifrada (HTTPS)</span>
@@ -584,23 +583,7 @@ const SUPABASE_URL = "https://pamiixztulwcjymllzle.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_iP1AfoZzzSmkN_gAIGqs7g_-sHv1Sht";
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const PROOF_BUCKET = "comprobantes";
-const ADMIN_PASSWORD = "MA24568"; // ⚠️ Ver notas: esto NO protege el panel, cualquiera puede leerlo desde el navegador.
-
-// ---------------------------------------------------------
-// ⬇️ COMPLETAR CON LOS DATOS REALES DE LA EMPRESA ⬇️
-// Son los que más confianza generan: un cliente que puede
-// llamar, escribir o ir a la sucursal duda mucho menos.
-// ---------------------------------------------------------
-const CONTACTO = {
-  whatsapp: "5493510000000",                 // sólo números, con código de país
-  telefonoVisible: "+54 351 000-0000",
-  plazoValidacion: "24 a 48 horas hábiles",
-  razonSocial: "MUNDOAUTO MULTIMARCAS S.A.",
-  cuit: "30-71234681-3"
-};
-function waLink(texto){
-  return "https://wa.me/" + CONTACTO.whatsapp + "?text=" + encodeURIComponent(texto);
-}
+const ADMIN_PASSWORD = "MA24568";
 
 /* -----------------------------------------------------------
    A partir de acá la app funciona 100% contra Supabase:
@@ -611,6 +594,7 @@ let currentClientId = null;   // cliente mostrado en la vista "Consulta"
 let currentClientData = null; // último objeto de cliente renderizado (para refrescar)
 let adminClients = [];        // caché de la lista del panel de administración
 let adminUnlocked = false;
+let editingPayments = [];     // cuotas del cliente que se está editando (para no perder estado/comprobantes)
 
 // ---------------------------------------------------------
 // Mapeo: filas de Supabase (clients + payments) -> forma que
@@ -827,19 +811,6 @@ function renderClient(c){
   const balanceAmount = initialBalance(initial);
   const currentCommitment = currentCommitmentDate(c, entregaInicialDone);
 
-  // --- Resumen económico: el cliente ve exactamente cuánto es el total,
-  // --- cuánto lleva pagado y cuánto le falta. Nada oculto.
-  const cuotasTotales   = total || c.installmentCount || 0;
-  const cuotasPagadas   = paid;
-  const montoCuotas     = (Number(c.installmentValue)||0) * cuotasTotales;
-  const montoCuotasPago = (Number(c.installmentValue)||0) * cuotasPagadas;
-  const totalOperacion  = (Number(initial.amount)||0) + montoCuotas;
-  const totalPagado     = depositAmount + montoCuotasPago;
-  const saldoTotal      = Math.max(0, totalOperacion - totalPagado);
-  const pctPagado       = totalOperacion ? Math.round(totalPagado/totalOperacion*100) : 0;
-  const montoAhora      = !entregaInicialDone ? balanceAmount : (Number(c.installmentValue)||0);
-  const conceptoAhora   = !entregaInicialDone ? "Entrega inicial" : (next ? `Cuota ${next.n} de ${cuotasTotales}` : "Todo al día");
-
   const panel = document.getElementById("clientPanel");
   panel.innerHTML = `
     <div class="client-top">
@@ -859,30 +830,6 @@ function renderClient(c){
       <div class="metric"><small>ESTADO DE RETIRO</small><strong>${ready ? "Habilitado" : "En proceso"}</strong></div>
     </div>
 
-    <div class="summary-card">
-      <h3>📊 Resumen de tu operación</h3>
-      <p class="summary-sub">Estos son todos los números de tu plan, tal como están cargados en el sistema. Si alguno no coincide con lo que firmaste, avisanos antes de transferir.</p>
-      <div class="summary-grid">
-        <div class="summary-item"><small>TOTAL DE LA OPERACIÓN</small><strong>${money(totalOperacion)}</strong><span>Entrega inicial + ${cuotasTotales} cuota${cuotasTotales===1?"":"s"}</span></div>
-        <div class="summary-item paid"><small>YA ABONASTE</small><strong>${money(totalPagado)}</strong><span>${pctPagado}% del total, confirmado por MundoAuto</span></div>
-        <div class="summary-item balance"><small>TE FALTA</small><strong>${money(saldoTotal)}</strong><span>Saldo restante hasta el retiro</span></div>
-        <div class="summary-item now"><small>A PAGAR AHORA</small><strong>${ready ? "—" : money(montoAhora)}</strong><span>${escapeHtml(conceptoAhora)}${currentCommitment && !ready ? " · vence "+formatDate(currentCommitment) : ""}</span></div>
-      </div>
-      <div class="summary-bar"><div style="width:${pctPagado}%"></div></div>
-      <p class="summary-note">Cada importe que confirmamos queda registrado acá con su fecha y su comprobante. Podés consultar esta página cuando quieras con tu DNI.</p>
-      <details class="summary-detail">
-        <summary>Ver el detalle completo</summary>
-        <div style="margin-top:10px">
-          <div class="detail-line"><span>Carpeta</span><b>${carpetaDone?"Pagada":"Pendiente"}${c.folder && c.folder.paidDate ? " · "+formatDate(c.folder.paidDate) : ""}</b></div>
-          <div class="detail-line"><span>Entrega inicial</span><b>${money(initial.amount)}</b></div>
-          <div class="detail-line"><span>Abonado de la entrega inicial</span><b>${money(depositAmount)}</b></div>
-          <div class="detail-line"><span>${cuotasTotales} cuota${cuotasTotales===1?"":"s"} de ${money(c.installmentValue)}</span><b>${money(montoCuotas)}</b></div>
-          <div class="detail-line"><span>Cuotas confirmadas (${cuotasPagadas}/${cuotasTotales})</span><b>${money(montoCuotasPago)}</b></div>
-          <div class="detail-line total"><span>Saldo pendiente</span><b>${money(saldoTotal)}</b></div>
-        </div>
-      </details>
-    </div>
-
     <div class="initial-card">
       <div class="initial-head">
         <h3>💳 Entrega inicial</h3>
@@ -897,14 +844,9 @@ function renderClient(c){
           <div class="initial-deadline">
             <div class="countdown-wrap"><span class="countdown-label">⏰ Entrega inicial</span><span id="initialCountdownTimer" class="countdown-timer">--</span></div>
             <small>Vence ${formatDate(dueInitial)} · ${initialCountdownText(initial)}</small>
-            <small class="deadline-help">¿No llegás con la fecha? Escribinos antes del vencimiento y la reprogramamos sin vueltas.</small>
           </div>
           <div class="bonus-tag ${bonusActive?"active":""}">${bonusActive?"✓":"○"} Traslado a domicilio bonificado ${bonusActive?"activo":"al completar la entrega inicial"}</div>
-          ${initial.proof ? `<div class="receipt-strip ${entregaInicialDone?"done":""}">
-            <span>${entregaInicialDone?"✅":"📎"} Recibimos tu comprobante${initial.proofDate ? " el "+formatDate(initial.proofDate) : ""}.</span>
-            <span>${entregaInicialDone?"Pago confirmado por MundoAuto.":"Lo validamos en "+CONTACTO.plazoValidacion+" y te avisamos por WhatsApp."}</span>
-            <a href="${initial.proof}" target="_blank" rel="noopener">Ver comprobante</a>
-          </div>` : ""}
+          ${initial.proof ? `<div class="proof-tag">📎 <a href="${initial.proof}" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700">Ver comprobante</a>${initial.proofDate ? " · "+formatDate(initial.proofDate) : ""}</div>` : ""}
         </div>
         <button class="icon-btn" onclick="uploadProofInitial('${c.id}')" ${initial.status==="paid"?"disabled":""}>📎 ${initial.proof ? "Actualizar comprobante" : "Cargar comprobante"}</button>
       </div>
@@ -959,17 +901,29 @@ function renderClient(c){
           <p>Elegí el banco que te resulte más cómodo, copiá el alias o CBU y después subí tu comprobante desde tu operación para que lo verifiquemos.</p>
         </div>
         <div class="account-owner">
-          <small>TITULAR VERIFICADO</small>
+          <span class="verified-pill">✅ TITULAR VERIFICADO</span>
           <strong>MUNDOAUTO MULTIMARCAS S.A.</strong>
-          <span>CUIT 30-71234681-3</span>
+          <span>CUIT: 30-71234681-3</span>
         </div>
       </div>
-      <div class="security-note">⚠️ <span><b>Transferí sólo a estas cuentas.</b> Son las únicas cuentas oficiales de MundoAuto. Nunca te vamos a pedir claves, tokens ni códigos de tu home banking, ni te vamos a pedir que pagues a un alias a nombre de una persona. Si alguien lo hace, cortá y llamanos al ${CONTACTO.telefonoVisible}.</span></div>
-      <div class="verify-steps">
-        <div class="verify-step"><div class="vnum">1</div><div><b>Pegá el CBU o el alias</b><span>Copialos desde acá con el botón, así evitás errores de tipeo.</span></div></div>
-        <div class="verify-step"><div class="vnum">2</div><div><b>Confirmá el titular</b><span>Antes de aceptar, tu banco tiene que mostrar <b>${CONTACTO.razonSocial}</b>, CUIT ${CONTACTO.cuit}. Si aparece otro nombre, no transfieras.</span></div></div>
-        <div class="verify-step"><div class="vnum">3</div><div><b>Subí el comprobante</b><span>Desde el clip 📎 de la cuota. Queda guardado en tu operación con fecha y hora.</span></div></div>
-        <div class="verify-step"><div class="vnum">4</div><div><b>Esperá la confirmación</b><span>Validamos en ${CONTACTO.plazoValidacion} y vas a ver el estado cambiar a “PAGADA” en esta misma pantalla.</span></div></div>
+      <div class="transfer-warning">⚠️ <span>Transferí sólo a estas cuentas. <b>Son las únicas cuentas oficiales de MundoAuto.</b></span></div>
+      <div class="transfer-steps">
+        <div class="t-step">
+          <div class="t-step-top"><span class="t-step-num">1</span><b>Pegá el CBU o el alias</b></div>
+          <span class="t-step-desc">Copialos desde acá con el botón, así evitás errores de tipeo.</span>
+        </div>
+        <div class="t-step">
+          <div class="t-step-top"><span class="t-step-num">2</span><b>Confirmá el titular</b></div>
+          <span class="t-step-desc">Antes de aceptar, tu banco tiene que mostrar MUNDOAUTO MULTIMARCAS S.A., CUIT 30-71234681-3. Si aparece otro nombre, no transfieras.</span>
+        </div>
+        <div class="t-step">
+          <div class="t-step-top"><span class="t-step-num">3</span><b>Subí el comprobante</b></div>
+          <span class="t-step-desc">Desde el clip 📎 de la cuota. Queda guardado en tu operación con fecha y hora.</span>
+        </div>
+        <div class="t-step">
+          <div class="t-step-top"><span class="t-step-num">4</span><b>Esperá la confirmación</b></div>
+          <span class="t-step-desc">Validamos en 24 a 48 horas hábiles y vas a ver el estado cambiar a "PAGADA" en esta misma pantalla.</span>
+        </div>
       </div>
       <div class="bank-grid">
         <div class="bank-card">
@@ -997,7 +951,7 @@ function renderClient(c){
           <div class="bank-line"><small>Alias</small><b>MUNDOAUTO.GALICIA</b><button class="copy-btn" onclick="copyPaymentData('MUNDOAUTO.GALICIA')">Copiar</button></div>
         </div>
       </div>
-      <p class="advisor-note">¿Preferís otro medio de pago? Coordinalo directamente con tu asesor.</p>
+      <p class="advisor-note">Si preferís otro método de pago, coordiná directamente con tu asesor.</p>
     </div>
 
     <div class="commitments">
@@ -1045,7 +999,6 @@ function renderClient(c){
                 <b>Cuota ${p.n} · ¡Es tu turno!</b>
                 <small>Vencimiento: ${formatDate(p.due)}</small>
                 <div class="countdown-wrap"><span class="countdown-label">⏰ Tiempo restante</span><span id="countdownTimer" class="countdown-timer">--</span></div>
-                ${p.proof ? `<div class="receipt-strip"><span>📎 Comprobante recibido${p.proofDate?" el "+formatDate(p.proofDate):""} · lo estamos validando.</span><a href="${p.proof}" target="_blank" rel="noopener">Ver</a></div>` : ""}
               </div>
               <div class="payment-amount">${money(c.installmentValue)}</div>
               <div class="payment-meta"><span class="payment-status ${paymentStatusClass(p.status)}">${paymentStatusText(p.status)}</span></div>
@@ -1068,29 +1021,6 @@ function renderClient(c){
 
         return rows + lockedTeaser + metaRow;
       })()}
-    </div>
-
-    ${!ready ? `
-    <div class="help-card">
-      <h3>🤝 ¿Y si este mes se te complica?</h3>
-      <p>Preferimos que nos avises antes del vencimiento y no que dejes la operación en el aire. Estas son tus opciones reales, sin letra chica:</p>
-      <div class="help-options">
-        <div class="help-option"><b>Pagar una parte</b><span>Podés abonar una seña y descontarla del saldo. Queda registrada acá con su comprobante.</span></div>
-        <div class="help-option"><b>Pedir una extensión</b><span>Si avisás antes del vencimiento, movemos la fecha del compromiso sin perder lo abonado.</span></div>
-        <div class="help-option"><b>Reprogramar el plan</b><span>Tu asesor puede recalcular las cuotas que faltan según lo que puedas pagar por mes.</span></div>
-        <div class="help-option"><b>Hablar con una persona</b><span>Escribile a tu asesor y vemos juntos cómo seguir.</span></div>
-      </div>
-    </div>` : ""}
-
-    <div class="support-bar">
-      <div>
-        <b>¿Alguna duda antes de transferir?</b>
-        <p>Hablá con ${escapeHtml(c.advisor||"tu asesor")} antes de hacer el pago. Preguntar siempre es gratis.</p>
-      </div>
-      <div class="support-actions">
-        <a href="${waLink("Hola, soy "+(c.name||"")+" (DNI "+(c.dni||"")+"). Tengo una consulta sobre mi operación en MundoAuto.")}" target="_blank" rel="noopener">💬 WhatsApp</a>
-        <a class="ghost" href="tel:${CONTACTO.telefonoVisible.replace(/[^+\d]/g,"")}">📞 ${CONTACTO.telefonoVisible}</a>
-      </div>
     </div>
 
     <div class="retiro-card">
@@ -1129,20 +1059,16 @@ function startCountdown(due, id="countdownTimer"){
     const target = new Date(due+"T23:59:59");
     const diff = target - new Date();
     if(diff <= 0){
-      el.textContent = "Venció el " + formatDate(dateOnly(due)) + " · reprogramalo con tu asesor";
+      el.textContent = "¡Venció! Regularizá cuanto antes";
       el.classList.add("expired");
-      el.classList.remove("calm");
       clearInterval(window[key]);
       return;
     }
     const d = Math.floor(diff/86400000);
     const h = Math.floor((diff%86400000)/3600000);
     const m = Math.floor((diff%3600000)/60000);
-    // Sin segundos: informa el plazo real sin generar una sensación de apuro artificial.
-    if(d > 0)      el.textContent = `${d} día${d===1?"":"s"} · ${h} h`;
-    else if(h > 0) el.textContent = `${h} h ${m} min`;
-    else           el.textContent = `${m} min`;
-    el.classList.toggle("calm", d >= 3);
+    const s = Math.floor((diff%60000)/1000);
+    el.textContent = `${d}d ${h}h ${m}m ${s}s`;
   }
   tick();
   window[key] = setInterval(tick, 1000);
@@ -1204,7 +1130,6 @@ function renderPaymentEditor(count=5, existing=[]){
       <div class="editor-row">
         <div class="number">#${i+1}</div>
         <input type="date" class="pay-due" value="${p.due||""}">
-        <input type="number" class="pay-value" value="${Number(document.getElementById("installmentValue").value)||0}" min="0">
         <select class="pay-status">
           <option value="pending" ${p.status==="pending"?"selected":""}>Pendiente</option>
           <option value="verifying" ${p.status==="verifying"?"selected":""}>Verificando comprobante</option>
@@ -1290,7 +1215,8 @@ function editClient(id){
   document.getElementById("initialConfirmedDate").value = initial.confirmedDate||"";
   document.getElementById("initialProofInfo").textContent = initial.proof ? `📎 Comprobante recibido${initial.proofDate?" el "+formatDate(initial.proofDate):""}:` : "Todavía no se recibió comprobante de la entrega inicial.";
   document.getElementById("initialProofPreview").innerHTML = proofPreviewHtml(initial.proof, initial.proofDate);
-  renderPaymentEditor(c.installmentCount,c.payments);
+  editingPayments = c.payments || [];
+  renderPaymentEditor(c.installmentCount,editingPayments);
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
@@ -1402,6 +1328,7 @@ function resetForm(){
   document.getElementById("initialProofInfo").textContent="Todavía no se recibió comprobante de la entrega inicial.";
   document.getElementById("initialProofPreview").innerHTML="";
   document.getElementById("installmentCount").value=5;
+  editingPayments = [];
   renderPaymentEditor(5);
 }
 function showToast(msg){
@@ -1480,14 +1407,23 @@ document.getElementById("folderStatus").addEventListener("change",e=>{
   if(e.target.value==="paid" && !paidDate.value) paidDate.value = new Date().toISOString().slice(0,10);
   if(e.target.value!=="paid") paidDate.value = "";
 });
-document.getElementById("installmentCount").addEventListener("change",e=>renderPaymentEditor(e.target.value));
-document.getElementById("installmentValue").addEventListener("input",()=>{
-  document.querySelectorAll(".pay-value").forEach(x=>x.value=document.getElementById("installmentValue").value);
-});
+document.getElementById("installmentCount").addEventListener("change",e=>renderPaymentEditor(e.target.value, currentEditorRows()));
+// Lee lo que ya está tipeado/tildado en el editor de cuotas, para no
+// perder estado ni comprobantes al regenerar fechas o cambiar la cantidad.
+function currentEditorRows(){
+  return [...document.querySelectorAll(".editor-row")].map((row,i)=>({
+    n:i+1,
+    due:row.querySelector(".pay-due").value,
+    status:row.querySelector(".pay-status").value,
+    proof: editingPayments[i]?.proof || "",
+    proofDate: editingPayments[i]?.proofDate || ""
+  }));
+}
 document.getElementById("generatePayments").addEventListener("click",()=>{
   const count=Number(document.getElementById("installmentCount").value)||5;
+  const preserved=currentEditorRows();
   const start=new Date(); start.setDate(start.getDate()+30);
-  renderPaymentEditor(count);
+  renderPaymentEditor(count, preserved);
   document.querySelectorAll(".pay-due").forEach((el,i)=>{const d=new Date(start);d.setMonth(d.getMonth()+i);el.value=d.toISOString().slice(0,10)});
 });
 document.getElementById("clientForm").addEventListener("submit", async e=>{
@@ -1561,6 +1497,257 @@ document.getElementById("clientForm").addEventListener("submit", async e=>{
 });
 
 renderPaymentEditor(5);
+
+
+/* =========================================================
+   VISTA SUSCRIPCIÓN · Bonificación gestión de carpeta 95% OFF
+   - Guarda en la tabla "suscripciones" de Supabase.
+   - Las fotos del DNI son OPCIONALES: si no se suben (o si falla
+     la subida), la solicitud se envía igual y queda marcada como
+     "documentación pendiente".
+   - Si la base no responde, los datos NO se pierden: se ofrece
+     enviar por WhatsApp y descargar una copia.
+========================================================= */
+const SUS_TABLE   = "suscripciones";        // tabla en Supabase
+const SUS_BUCKET  = PROOF_BUCKET;           // reutiliza el bucket "comprobantes"
+const SUS_WHATSAPP = "5493541000000";       // <-- CAMBIAR por el WhatsApp de la concesionaria
+const SUS_PRECIO_LISTA = 300000;
+const SUS_PRECIO_PROMO = 15000;
+
+const PROVINCIAS = ["Buenos Aires","CABA","Catamarca","Chaco","Chubut","Córdoba","Corrientes","Entre Ríos","Formosa","Jujuy","La Pampa","La Rioja","Mendoza","Misiones","Neuquén","Río Negro","Salta","San Juan","San Luis","Santa Cruz","Santa Fe","Santiago del Estero","Tierra del Fuego","Tucumán"];
+
+(function initSuscripcion(){
+  const $ = id => document.getElementById(id);
+  const form = $("susForm");
+  if(!form) return;
+
+  // Provincias
+  const selProv = $("susProvincia");
+  PROVINCIAS.forEach(p=>{ const o=document.createElement("option"); o.textContent=p; selProv.appendChild(o); });
+  selProv.value = "Córdoba";
+
+  // Precios del cartel
+  $("promoBefore").textContent = money(SUS_PRECIO_LISTA);
+  $("promoNow").textContent    = money(SUS_PRECIO_PROMO);
+
+  // Botones que abren el selector de archivos
+  document.querySelectorAll("[data-file]").forEach(btn=>{
+    btn.addEventListener("click", ()=> $(btn.dataset.file).click());
+  });
+
+  function previewFile(input, box){
+    const f = input.files && input.files[0];
+    box.innerHTML = "";
+    if(!f) return;
+    if(f.size > 10*1024*1024){
+      box.innerHTML = `<span class="file-name">⚠️ El archivo supera los 10 MB. Elegí uno más liviano o enviálo luego por WhatsApp.</span>`;
+      input.value = "";
+      return;
+    }
+    if(f.type.startsWith("image/")){
+      const url = URL.createObjectURL(f);
+      box.innerHTML = `<img src="${url}" alt="Vista previa"><span class="file-name">${f.name}</span>`;
+    } else {
+      box.innerHTML = `<span class="file-name">📄 ${f.name}</span>`;
+    }
+  }
+  $("susDocFrente").addEventListener("change", e=>previewFile(e.target, $("prevFrente")));
+  $("susDocDorso").addEventListener("change",  e=>previewFile(e.target, $("prevDorso")));
+
+  // Solo números en DNI / CP
+  ["susDni","susCp"].forEach(id=>{
+    $(id).addEventListener("input", e=>{ e.target.value = e.target.value.replace(/\D/g,""); });
+  });
+
+  function showError(msg){
+    const box = $("susError");
+    box.textContent = msg;
+    box.classList.add("show");
+    box.scrollIntoView({behavior:"smooth", block:"center"});
+  }
+  function clearError(){ $("susError").classList.remove("show"); }
+
+  function collect(){
+    return {
+      nombre:       $("susNombre").value.trim(),
+      dni:          $("susDni").value.trim(),
+      nacimiento:   $("susNacimiento").value,
+      estado_civil: $("susEstadoCivil").value,
+      domicilio:    $("susDomicilio").value.trim(),
+      telefono:     $("susTelefono").value.trim(),
+      cp:           $("susCp").value.trim(),
+      localidad:    $("susLocalidad").value.trim(),
+      provincia:    $("susProvincia").value,
+      profesion:    $("susProfesion").value.trim(),
+      situacion:    $("susSituacion").value,
+      empleo:       $("susEmpleo").value.trim(),
+      ingresos:     Number($("susIngresos").value)||0,
+      fecha_cobro:  $("susFechaCobro").value.trim()
+    };
+  }
+
+  const OBLIGATORIOS = {
+    nombre:"Nombre y apellido", dni:"DNI", nacimiento:"Fecha de nacimiento",
+    estado_civil:"Estado civil", domicilio:"Domicilio", telefono:"Teléfono",
+    cp:"Código postal", localidad:"Localidad", provincia:"Provincia",
+    profesion:"Profesión", situacion:"Situación laboral",
+    ingresos:"Ingresos mensuales", fecha_cobro:"Fecha de cobro"
+  };
+
+  function validar(d){
+    const faltan = Object.keys(OBLIGATORIOS).filter(k=> !d[k] || (k==="ingresos" && d.ingresos<=0));
+    if(faltan.length) return "Completá estos campos: " + faltan.map(k=>OBLIGATORIOS[k]).join(", ") + ".";
+    if(d.dni.length < 7) return "El DNI debe tener al menos 7 dígitos.";
+    if(d.telefono.replace(/\D/g,"").length < 8) return "Revisá el teléfono: parece incompleto.";
+    if(!$("susLegal").checked) return "Necesitamos tu autorización para tratar los datos y poder contactarte.";
+    return null;
+  }
+
+  function resumenTexto(d, codigo, docs){
+    return [
+      "*SOLICITUD DE SUSCRIPCIÓN - MUNDOAUTO*",
+      "Bonificación gestión de carpeta 95% OFF ("+money(SUS_PRECIO_LISTA)+" → "+money(SUS_PRECIO_PROMO)+")",
+      "Código: "+codigo,
+      "",
+      "Nombre y apellido: "+d.nombre,
+      "DNI: "+d.dni,
+      "Fecha de nacimiento: "+formatDate(d.nacimiento),
+      "Estado civil: "+d.estado_civil,
+      "Domicilio: "+d.domicilio,
+      "Teléfono: "+d.telefono,
+      "Código postal: "+d.cp,
+      "Localidad: "+d.localidad,
+      "Provincia: "+d.provincia,
+      "",
+      "Profesión: "+d.profesion,
+      "Situación laboral: "+d.situacion,
+      (d.empleo ? "Empleo/Actividad: "+d.empleo : null),
+      "Ingresos mensuales: "+money(d.ingresos),
+      "Fecha de cobro: "+d.fecha_cobro,
+      "",
+      "Documentación: "+(docs.frente||docs.dorso ? "adjunta" : "PENDIENTE (a enviar por WhatsApp)")
+    ].filter(Boolean).join("\n");
+  }
+
+  function pintarResumen(d, docs){
+    const filas = [
+      ["Nombre y apellido", d.nombre],
+      ["DNI", d.dni],
+      ["Fecha de nacimiento", formatDate(d.nacimiento)],
+      ["Estado civil", d.estado_civil],
+      ["Domicilio", d.domicilio + " · CP " + d.cp],
+      ["Localidad / Provincia", d.localidad + ", " + d.provincia],
+      ["Teléfono", d.telefono],
+      ["Profesión", d.profesion],
+      ["Situación laboral", d.situacion],
+      ["Ingresos mensuales", money(d.ingresos)],
+      ["Fecha de cobro", d.fecha_cobro],
+      ["Documentación", (docs.frente||docs.dorso) ? "Recibida" : "Pendiente de envío"]
+    ];
+    $("susResume").innerHTML = filas.map(f=>`<div><span>${f[0]}</span><span>${f[1]}</span></div>`).join("");
+  }
+
+  form.addEventListener("submit", async e=>{
+    e.preventDefault();
+    clearError();
+    const d = collect();
+    const err = validar(d);
+    if(err) return showError(err);
+
+    const btn = $("susSubmit");
+    const label = btn.textContent;
+    btn.disabled = true; btn.textContent = "Enviando…";
+
+    const codigo = "MA-" + d.dni.slice(-4) + "-" + String(Date.now()).slice(-5);
+    const docs = { frente:"", dorso:"" };
+    let avisoDocs = "";
+
+    // 1) Subida OPCIONAL de la documentación. Si falla, seguimos igual.
+    try{
+      const fFrente = $("susDocFrente").files[0];
+      const fDorso  = $("susDocDorso").files[0];
+      if(fFrente) docs.frente = await uploadProofFile(fFrente, `suscripciones/${d.dni}/frente`);
+      if(fDorso)  docs.dorso  = await uploadProofFile(fDorso,  `suscripciones/${d.dni}/dorso`);
+    }catch(upErr){
+      console.error("Documentación no subida:", upErr);
+      avisoDocs = " No pudimos subir la foto del DNI, pero tus datos quedaron registrados igual: podés enviarla por WhatsApp.";
+    }
+
+    const payload = {
+      codigo,
+      nombre: d.nombre,
+      dni: d.dni,
+      fecha_nacimiento: d.nacimiento,
+      estado_civil: d.estado_civil,
+      domicilio: d.domicilio,
+      telefono: d.telefono,
+      codigo_postal: d.cp,
+      localidad: d.localidad,
+      provincia: d.provincia,
+      profesion: d.profesion,
+      situacion_laboral: d.situacion,
+      datos_laborales: d.empleo || null,
+      ingresos_mensuales: d.ingresos,
+      fecha_cobro: d.fecha_cobro,
+      doc_frente_url: docs.frente || null,
+      doc_dorso_url: docs.dorso || null,
+      doc_estado: (docs.frente && docs.dorso) ? "completa" : (docs.frente||docs.dorso ? "parcial" : "pendiente"),
+      promo: "Gestión de carpeta 95% OFF",
+      precio_lista: SUS_PRECIO_LISTA,
+      precio_promo: SUS_PRECIO_PROMO,
+      estado: "nueva"
+    };
+
+    // 2) Guardado en Supabase. Si falla, no perdemos los datos.
+    let guardado = true;
+    try{
+      const { error } = await sb.from(SUS_TABLE).insert(payload);
+      if(error) throw error;
+    }catch(dbErr){
+      console.error(dbErr);
+      guardado = false;
+    }
+
+    // 3) Pantalla de confirmación (siempre se muestra: el formulario se completa igual)
+    const texto = resumenTexto(d, codigo, docs);
+    pintarResumen(d, docs);
+    $("susCode").textContent = "Código " + codigo;
+    $("susOkMsg").textContent = guardado
+      ? "Recibimos tus datos y ya quedaron registrados. Un asesor se comunica con vos a la brevedad para confirmar la bonificación de la gestión de carpeta." + avisoDocs
+      : "Tus datos se completaron correctamente, pero no pudimos registrarlos automáticamente. Enviálos por WhatsApp con el botón de abajo o descargá la copia para no perderlos." + avisoDocs;
+    $("susWa").href = "https://wa.me/" + SUS_WHATSAPP + "?text=" + encodeURIComponent(texto);
+    $("susDownload").onclick = ()=>{
+      const blob = new Blob([texto], {type:"text/plain;charset=utf-8"});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = `solicitud-${codigo}.txt`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    };
+
+    $("susFormCard").classList.add("hidden");
+    $("susOkCard").classList.remove("hidden");
+    window.scrollTo({top:0, behavior:"smooth"});
+    showToast(guardado ? "Solicitud enviada correctamente." : "Formulario completado. Enviá la copia por WhatsApp.");
+
+    btn.disabled = false; btn.textContent = label;
+  });
+
+  function limpiar(){
+    form.reset();
+    selProv.value = "Córdoba";
+    $("prevFrente").innerHTML = ""; $("prevDorso").innerHTML = "";
+    $("susLegal").checked = true;
+    clearError();
+  }
+  $("susReset").addEventListener("click", limpiar);
+  $("susNew").addEventListener("click", ()=>{
+    limpiar();
+    $("susOkCard").classList.add("hidden");
+    $("susFormCard").classList.remove("hidden");
+    window.scrollTo({top:0, behavior:"smooth"});
+  });
+})();
 
 window.editClient=editClient; window.deleteClient=deleteClient; window.uploadProof=uploadProof; window.uploadProofInitial=uploadProofInitial; window.gestionarRetiro=gestionarRetiro; window.copyPaymentData=copyPaymentData;
 </script>
