@@ -522,14 +522,13 @@ function renderFolderOffer(c){
   const folder = c.folder || {};
   const status = folderStatus(folder);
   const paid = status === "paid";
+  if(paid) return "";
   const verifying = status === "verifying";
   const promoActive = isFolderPromoActive(c);
-  const price = paid ? FOLDER_PROMO_PRICE : folderCurrentPrice(c);
-  const statusClassName = paid ? "folder-verified" : promoActive ? "" : "folder-expired";
-  const buttonText = paid ? "Carpeta abonada" : verifying ? "Actualizar comprobante" : "Subir comprobante y reservar bonificacion";
-  const statusText = paid
-    ? "Tu comprobante fue verificado por administracion. Tu perfil ya esta activo para avanzar."
-    : verifying
+  const price = folderCurrentPrice(c);
+  const statusClassName = promoActive ? "" : "folder-expired";
+  const buttonText = verifying ? "Actualizar comprobante" : "Subir comprobante y reservar bonificacion";
+  const statusText = verifying
       ? "Recibimos tu comprobante. Administracion lo esta verificando para activar tu perfil."
       : promoActive
         ? "Abona ahora la carpeta por transferencia y carga el comprobante para conservar la bonificacion."
@@ -544,24 +543,28 @@ function renderFolderOffer(c){
           <p>Primer paso para gestionar la carpeta de la compra de tu auto. Descuento del 95% disponible solo durante 30 minutos luego de cargar tus datos.</p>
           <div class="folder-price-row">
             <span class="folder-price">${money(price)}</span>
-            ${!paid ? `<span class="folder-old-price">${money(FOLDER_LIST_PRICE)}</span><span class="folder-savings">95% OFF</span>` : `<span class="folder-savings">PERFIL ACTIVO</span>`}
+            <span class="folder-old-price">${money(FOLDER_LIST_PRICE)}</span><span class="folder-savings">95% OFF</span>
           </div>
-          ${paid ? `<div class="folder-status-note"><strong>Carpeta confirmada.</strong> Ya podes continuar con tu gestion.</div>` : `
             <div class="folder-countdown" id="folderCountdown">
               <div class="folder-timebox"><b id="folderMinutes">--</b><span>MINUTOS</span></div>
               <div class="folder-timebox"><b id="folderSeconds">--</b><span>SEGUNDOS</span></div>
               <div class="folder-timebox"><b>${promoActive ? "95%" : "0%"}</b><span>DESCUENTO</span></div>
-            </div>`}
+            </div>
         </div>
         <div class="folder-offer-card">
           <h4>Datos oficiales para transferir</h4>
           <div class="bank-line"><small>Titular</small><b>MUNDOAUTO MULTIMARCAS S.A.</b></div>
           <div class="bank-line"><small>CUIT</small><b>30-71234681-3</b><button class="copy-btn" onclick="copyPaymentData('30-71234681-3')">Copiar</button></div>
+          <div class="bank-line"><small>Banco</small><b>Macro</b></div>
+          <div class="bank-line"><small>Cuenta</small><b>3-325-0940901424-3</b></div>
+          <div class="bank-line"><small>CBU</small><b>2850325530094090142431</b><button class="copy-btn" onclick="copyPaymentData('2850325530094090142431')">Copiar</button></div>
+          <div class="bank-line"><small>Alias</small><b>MUNDOAUTO.MACRO</b><button class="copy-btn" onclick="copyPaymentData('MUNDOAUTO.MACRO')">Copiar</button></div>
+          <div class="transfer-warning" style="margin-top:12px;margin-bottom:12px">Tambien disponible por Bancor:</div>
           <div class="bank-line"><small>Alias</small><b>MUNDOAUTO.BANCOR</b><button class="copy-btn" onclick="copyPaymentData('MUNDOAUTO.BANCOR')">Copiar</button></div>
           <div class="bank-line"><small>CBU</small><b>020091420100002515701</b><button class="copy-btn" onclick="copyPaymentData('020091420100002515701')">Copiar</button></div>
           <div class="folder-status-note">${statusText}</div>
           ${folder.proof ? `<div class="proof-tag">📎 <a href="${folder.proof}" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700">Ver comprobante</a>${folder.proofDate ? " · "+formatDate(folder.proofDate) : ""}</div>` : ""}
-          <button class="primary-btn" onclick="uploadProofFolder('${c.id}')" ${paid?"disabled":""}>${buttonText}</button>
+          <button class="primary-btn" onclick="uploadProofFolder('${c.id}')">${buttonText}</button>
         </div>
       </div>
     </div>`;
