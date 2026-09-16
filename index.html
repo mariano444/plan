@@ -80,6 +80,7 @@ input,select{width:100%;border:1px solid var(--line);background:#fff;border-radi
 .meta-icon{width:48px;height:48px;border-radius:50%;background:#ffffff20;display:grid;place-items:center;font-size:22px;flex-shrink:0}
 .meta-text b{display:block;font:900 13px Montserrat;letter-spacing:.5px;color:var(--yellow)}
 .meta-text small{display:block;color:#c9d8ed;font-size:12px;margin-top:3px}
+.payment-data-card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:26px;margin-bottom:25px}.payment-data-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:18px}.payment-data-head h3{font:900 20px Montserrat;margin:0 0 7px}.payment-data-head p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}.account-owner{background:linear-gradient(120deg,#071b3a,#0d3a75);color:#fff;border-radius:16px;padding:14px 16px;min-width:260px}.account-owner small{display:block;color:#c9d8ed;font-size:11px;font-weight:800;letter-spacing:.8px}.account-owner strong{display:block;margin:4px 0;font:900 15px Montserrat;color:var(--yellow)}.account-owner span{font-size:13px;font-weight:800}.bank-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.bank-card{border:1px solid var(--line);border-radius:16px;padding:15px;background:#f8fbff}.bank-card h4{margin:0 0 9px;font:900 14px Montserrat;color:var(--navy)}.bank-line{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:7px 0;border-top:1px solid #e8eef5}.bank-line:first-of-type{border-top:0}.bank-line small{color:var(--muted);font-weight:900;font-size:11px}.bank-line b{font-size:12px;text-align:right;word-break:break-all}.copy-btn{border:1px solid var(--blue);background:#fff;color:var(--blue);border-radius:9px;padding:7px 9px;font-size:11px;font-weight:900;white-space:nowrap}.copy-btn:hover{background:#eaf4ff}.advisor-note{margin:16px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
 .commitments{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:26px}.commitments h3{font:900 20px Montserrat;margin:0 0 16px}.payment-row{display:grid;grid-template-columns:70px 1.4fr 1fr 1fr auto;gap:14px;align-items:center;padding:15px 0;border-bottom:1px solid #edf2f7}.payment-row:last-child{border-bottom:0}.payment-number{width:43px;height:43px;border-radius:12px;background:#eef5fc;display:grid;place-items:center;font-weight:900;color:var(--navy)}.payment-info b{display:block}.payment-info small,.payment-meta small{color:var(--muted)}.payment-amount{font-weight:900}.payment-status{font-size:12px;font-weight:900;padding:7px 10px;border-radius:9px;display:inline-block}.payment-actions{display:flex;gap:6px}.icon-btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 10px}.icon-btn:hover{border-color:var(--blue)}.icon-btn:disabled{opacity:.4;cursor:not-allowed}
 .retiro-card{margin-top:25px;border-radius:22px;background:linear-gradient(120deg,#071b3a,#0d3a75);color:#fff;padding:28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.retiro-card h3{font:900 24px Montserrat;margin:0 0 8px}.retiro-card p{margin:0;color:#bed0e7;max-width:520px}.locked-btn{background:#ffffff22!important;color:#c9d8ed!important;box-shadow:none!important}.locked-btn:hover{transform:none!important}
 .section-head{padding:48px 6% 28px;display:flex;justify-content:space-between;align-items:end;gap:20px}.section-head h2{font:900 34px Montserrat;margin:7px 0}.section-head p{color:var(--muted);margin:0}
@@ -116,6 +117,11 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
   .step.final-combo{grid-template-columns:50px 1fr;margin-top:0;padding:14px 12px;border-radius:16px}
   .step.final-combo .final-caption{font-size:10px;line-height:1.25}
   .step-dot.final-dot{font-size:22px}
+  .payment-data-card{padding:18px}
+  .payment-data-head{flex-direction:column}
+  .account-owner{width:100%;min-width:0}
+  .bank-grid{grid-template-columns:1fr}
+  .bank-line{display:grid;grid-template-columns:54px 1fr auto;align-items:center}
 }
 </style>
 </head>
@@ -608,6 +614,47 @@ function renderClient(c){
       </div>
     </div>
 
+    <div class="payment-data-card">
+      <div class="payment-data-head">
+        <div>
+          <h3>🏦 Datos para transferir</h3>
+          <p>Podés copiar el alias o CBU de la cuenta que prefieras y luego subir el comprobante desde tu operación.</p>
+        </div>
+        <div class="account-owner">
+          <small>TITULAR DE LA CUENTA</small>
+          <strong>MUNDOAUTO MULTIMARCAS S.A.</strong>
+          <span>CUIT: 30-71234681-3</span>
+        </div>
+      </div>
+      <div class="bank-grid">
+        <div class="bank-card">
+          <h4>Bancor</h4>
+          <div class="bank-line"><small>Cuenta</small><b>CC $ 9140025015700</b></div>
+          <div class="bank-line"><small>CBU</small><b>020091420100002515701</b><button class="copy-btn" onclick="copyPaymentData('020091420100002515701')">Copiar</button></div>
+          <div class="bank-line"><small>Alias</small><b>MUNDOAUTO.BANCOR</b><button class="copy-btn" onclick="copyPaymentData('MUNDOAUTO.BANCOR')">Copiar</button></div>
+        </div>
+        <div class="bank-card">
+          <h4>Macro</h4>
+          <div class="bank-line"><small>Cuenta</small><b>3-325-0940901424-3</b></div>
+          <div class="bank-line"><small>CBU</small><b>2850325530094090142431</b><button class="copy-btn" onclick="copyPaymentData('2850325530094090142431')">Copiar</button></div>
+          <div class="bank-line"><small>Alias</small><b>MUNDOAUTO.MACRO</b><button class="copy-btn" onclick="copyPaymentData('MUNDOAUTO.MACRO')">Copiar</button></div>
+        </div>
+        <div class="bank-card">
+          <h4>Santander</h4>
+          <div class="bank-line"><small>Cuenta</small><b>374-002810/5</b></div>
+          <div class="bank-line"><small>CBU</small><b>0720374720000000281054</b><button class="copy-btn" onclick="copyPaymentData('0720374720000000281054')">Copiar</button></div>
+          <div class="bank-line"><small>Alias</small><b>MUNDOAUTO.RIO</b><button class="copy-btn" onclick="copyPaymentData('MUNDOAUTO.RIO')">Copiar</button></div>
+        </div>
+        <div class="bank-card">
+          <h4>Galicia</h4>
+          <div class="bank-line"><small>Cuenta</small><b>0004411-2770-9</b></div>
+          <div class="bank-line"><small>CBU</small><b>0070770320000004411293</b><button class="copy-btn" onclick="copyPaymentData('0070770320000004411293')">Copiar</button></div>
+          <div class="bank-line"><small>Alias</small><b>MUNDOAUTO.GALICIA</b><button class="copy-btn" onclick="copyPaymentData('MUNDOAUTO.GALICIA')">Copiar</button></div>
+        </div>
+      </div>
+      <p class="advisor-note">Si preferís otro método de pago, coordiná directamente con tu asesor.</p>
+    </div>
+
     <div class="commitments">
       <h3>📋 Compromisos de pago</h3>
       <div class="payment-row folder-row">
@@ -988,6 +1035,27 @@ function showToast(msg){
   const t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show");
   clearTimeout(window.__toast); window.__toast=setTimeout(()=>t.classList.remove("show"),2600);
 }
+async function copyPaymentData(value){
+  try{
+    if(navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(value);
+    } else {
+      const input=document.createElement("input");
+      input.value=value;
+      input.setAttribute("readonly","");
+      input.style.position="fixed";
+      input.style.opacity="0";
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand("copy");
+      input.remove();
+    }
+    showToast("Dato copiado: " + value);
+  }catch(err){
+    console.error(err);
+    showToast("No se pudo copiar. Mantené presionado el dato para copiarlo.");
+  }
+}
 
 function activateView(btn){
   document.querySelectorAll(".nav-btn").forEach(x=>x.classList.remove("active")); btn.classList.add("active");
@@ -1121,7 +1189,7 @@ document.getElementById("clientForm").addEventListener("submit", async e=>{
 
 renderPaymentEditor(5);
 
-window.editClient=editClient; window.deleteClient=deleteClient; window.uploadProof=uploadProof; window.uploadProofInitial=uploadProofInitial; window.gestionarRetiro=gestionarRetiro;
+window.editClient=editClient; window.deleteClient=deleteClient; window.uploadProof=uploadProof; window.uploadProofInitial=uploadProofInitial; window.gestionarRetiro=gestionarRetiro; window.copyPaymentData=copyPaymentData;
 </script>
 </body>
 </html>
