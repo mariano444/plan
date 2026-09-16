@@ -102,6 +102,21 @@ input,select{width:100%;border:1px solid var(--line);background:#fff;border-radi
 footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;font-size:11px;border-top:1px solid var(--line);gap:15px}
 @media(max-width:900px){.hero{grid-template-columns:1fr;padding:45px 6%}.admin-grid{grid-template-columns:1fr}.client-top{grid-template-columns:1fr}.payment-row{grid-template-columns:55px 1fr auto}.payment-row .payment-meta{display:none}.payment-actions{justify-content:flex-end}.section-head{align-items:start;flex-direction:column}}
 @media(max-width:600px){.topbar{padding:0 4%;height:68px}.brand-logo{width:126px;height:42px}.brand strong,.brand small{display:none}.top-actions{gap:4px}.nav-btn{padding:9px;font-size:11px}.hero{padding:38px 5%}.hero h1{font-size:42px}.search-row{flex-direction:column}.client-panel{padding:25px 4%}.overview{grid-template-columns:1fr 1fr}.metric{padding:14px}.identity h2{font-size:21px}.avatar{width:54px;height:54px}.timeline-wrap{padding:20px 12px;overflow-x:auto}.timeline{min-width:840px}.commitments{padding:18px}.payment-row{grid-template-columns:45px 1fr auto}.payment-amount{font-size:12px}.fields.two{grid-template-columns:1fr}.full{grid-column:auto}.admin-grid,.section-head{padding-left:4%;padding-right:4%}.form-card,.list-card{padding:18px}.editor-row{grid-template-columns:35px 1fr 115px}.editor-row select{grid-column:2/-1}.retiro-card{flex-direction:column;align-items:start}footer{flex-direction:column}}
+@media(max-width:600px){
+  .timeline-wrap{padding:20px 16px;overflow:hidden}
+  .timeline-title{align-items:flex-start;gap:10px;flex-direction:column;margin-bottom:20px}
+  .timeline-title h3{font-size:18px;line-height:1.25}
+  .timeline{min-width:0;display:grid;gap:12px}
+  .timeline:before{left:23px;right:auto;top:20px;bottom:20px;width:4px;height:auto}
+  .step{display:grid;grid-template-columns:50px 1fr;column-gap:12px;text-align:left;align-items:center;min-height:72px}
+  .step-dot{grid-row:1/4;width:50px;height:50px;border-width:4px;margin:0;font-size:18px}
+  .step h4{margin:0 0 3px;font-size:11px;line-height:1.25}
+  .step p{font-size:11px;line-height:1.35}
+  .step strong{font-size:12px;line-height:1.35;margin-top:3px}
+  .step.final-combo{grid-template-columns:50px 1fr;margin-top:0;padding:14px 12px;border-radius:16px}
+  .step.final-combo .final-caption{font-size:10px;line-height:1.25}
+  .step-dot.final-dot{font-size:22px}
+}
 </style>
 </head>
 <body>
