@@ -565,7 +565,7 @@ footer{padding:26px 6%;color:#7b879a;font-size:12px;border-top:1px solid var(--l
   <div class="footer-inner">
     <span>
       <b>MUNDOAUTO MULTIMARCAS S.A.</b> · CUIT 30-71234681-3<br>
-      Av. Ejemplo 1234, Córdoba · Lunes a viernes de 9 a 18 h · +54 351 000-0000
+      +54 351 000-0000
     </span>
     <div class="footer-trust">
       <span>🔒 Conexión cifrada (HTTPS)</span>
@@ -594,8 +594,6 @@ const ADMIN_PASSWORD = "MA24568"; // ⚠️ Ver notas: esto NO protege el panel,
 const CONTACTO = {
   whatsapp: "5493510000000",                 // sólo números, con código de país
   telefonoVisible: "+54 351 000-0000",
-  direccion: "Av. Ejemplo 1234, Córdoba",
-  horario: "Lunes a viernes de 9 a 18 h",
   plazoValidacion: "24 a 48 horas hábiles",
   razonSocial: "MUNDOAUTO MULTIMARCAS S.A.",
   cuit: "30-71234681-3"
@@ -999,7 +997,7 @@ function renderClient(c){
           <div class="bank-line"><small>Alias</small><b>MUNDOAUTO.GALICIA</b><button class="copy-btn" onclick="copyPaymentData('MUNDOAUTO.GALICIA')">Copiar</button></div>
         </div>
       </div>
-      <p class="advisor-note">¿Preferís otro medio de pago o pagar en la sucursal? Coordinalo con tu asesor: ${CONTACTO.direccion} · ${CONTACTO.horario}.</p>
+      <p class="advisor-note">¿Preferís otro medio de pago? Coordinalo directamente con tu asesor.</p>
     </div>
 
     <div class="commitments">
@@ -1080,7 +1078,7 @@ function renderClient(c){
         <div class="help-option"><b>Pagar una parte</b><span>Podés abonar una seña y descontarla del saldo. Queda registrada acá con su comprobante.</span></div>
         <div class="help-option"><b>Pedir una extensión</b><span>Si avisás antes del vencimiento, movemos la fecha del compromiso sin perder lo abonado.</span></div>
         <div class="help-option"><b>Reprogramar el plan</b><span>Tu asesor puede recalcular las cuotas que faltan según lo que puedas pagar por mes.</span></div>
-        <div class="help-option"><b>Hablar con una persona</b><span>Escribinos por WhatsApp o acercate a la sucursal: ${CONTACTO.direccion}, ${CONTACTO.horario}.</span></div>
+        <div class="help-option"><b>Hablar con una persona</b><span>Escribile a tu asesor y vemos juntos cómo seguir.</span></div>
       </div>
     </div>` : ""}
 
