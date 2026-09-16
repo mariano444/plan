@@ -631,17 +631,24 @@ function renderClient(c){
       </div>
     </div>
 
-    <div class="payment-data-card">
+ <div class="payment-data-card">
       <div class="payment-data-head">
         <div>
           <h3>🏦 Datos para transferir</h3>
-          <p>Podés copiar el alias o CBU de la cuenta que prefieras y luego subir el comprobante desde tu operación.</p>
+          <p>Elegí el banco que te resulte más cómodo, copiá el alias o CBU y después subí tu comprobante desde tu operación para que lo verifiquemos.</p>
         </div>
         <div class="account-owner">
-          <small>TITULAR DE LA CUENTA</small>
+          <small>TITULAR VERIFICADO</small>
           <strong>MUNDOAUTO MULTIMARCAS S.A.</strong>
-          <span>CUIT: 30-71234681-3</span>
+          <span>CUIT 30-71234681-3</span>
         </div>
+      </div>
+      <div class="security-note">⚠️ <span><b>Transferí sólo a estas cuentas.</b> Son las únicas cuentas oficiales de MundoAuto.</span></div>
+      <div class="verify-steps">
+        <div class="verify-step"><div class="vnum">1</div><div><b>Pegá el CBU o el alias</b><span>Copialos desde acá con el botón, así evitás errores de tipeo.</span></div></div>
+        <div class="verify-step"><div class="vnum">2</div><div><b>Confirmá el titular</b><span>Antes de aceptar, tu banco tiene que mostrar <b>${CONTACTO.razonSocial}</b>, CUIT ${CONTACTO.cuit}. Si aparece otro nombre, no transfieras.</span></div></div>
+        <div class="verify-step"><div class="vnum">3</div><div><b>Subí el comprobante</b><span>Desde el clip 📎 de la cuota. Queda guardado en tu operación con fecha y hora.</span></div></div>
+        <div class="verify-step"><div class="vnum">4</div><div><b>Esperá la confirmación</b><span>Validamos en ${CONTACTO.plazoValidacion} y vas a ver el estado cambiar a “PAGADA” en esta misma pantalla.</span></div></div>
       </div>
       <div class="bank-grid">
         <div class="bank-card">
@@ -669,7 +676,7 @@ function renderClient(c){
           <div class="bank-line"><small>Alias</small><b>MUNDOAUTO.GALICIA</b><button class="copy-btn" onclick="copyPaymentData('MUNDOAUTO.GALICIA')">Copiar</button></div>
         </div>
       </div>
-      <p class="advisor-note">Si preferís otro método de pago, coordiná directamente con tu asesor.</p>
+      <p class="advisor-note">¿Preferís otro medio de pago? Coordinalo directamente con tu asesor.</p>
     </div>
 
     <div class="commitments">
