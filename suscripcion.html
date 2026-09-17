@@ -180,20 +180,25 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
 .sus-hero h1{font:900 clamp(30px,4.4vw,56px)/1.05 Montserrat;margin:12px 0 14px;letter-spacing:-2px}
 .sus-hero h1 span{color:var(--cyan)}
 .sus-hero p{color:#c9d8ed;font-size:clamp(14.5px,1.7vw,16.5px);line-height:1.65;max-width:560px;margin:0 0 20px}
-.sus-bullets{display:flex;flex-wrap:wrap;gap:10px;padding:0;margin:0;list-style:none}
-.sus-bullets li{background:#ffffff14;border:1px solid #ffffff2b;padding:9px 13px;border-radius:999px;font-size:13px;font-weight:700;white-space:nowrap}
+.sus-bullets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;padding:0;margin:0;list-style:none}
+.sus-bullets li{display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,#ffffff17,#ffffff0a);border:1px solid #ffffff2b;padding:11px 14px;border-radius:14px;font-size:13.5px;font-weight:700;line-height:1.25;transition:transform .2s ease,background .2s ease,border-color .2s ease}
+.sus-bullets li:hover{background:#ffffff22;border-color:#ffffff4a;transform:translateY(-2px)}
+.sus-bullet-icon{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:32px;height:32px;border-radius:10px;font-size:15px;background:linear-gradient(135deg,var(--cyan),var(--blue));box-shadow:0 6px 14px #26b9ff3d}
 
 /* --- Banner promocional --- */
-.promo-card{position:relative;overflow:hidden;text-align:center;color:var(--ink);background:linear-gradient(165deg,#ffffff 0%,#fbfdff 55%,#f2f8ff 100%);border-radius:26px;padding:clamp(22px,3.4vw,32px) clamp(20px,3.4vw,30px) clamp(24px,3.4vw,28px);box-shadow:0 30px 70px #00184a3d,0 0 0 1px #ffffff66 inset;isolation:isolate}
+.promo-card{position:relative;overflow:hidden;text-align:center;color:var(--ink);background:linear-gradient(165deg,#ffffff 0%,#fbfdff 55%,#f2f8ff 100%);border-radius:26px;padding:clamp(22px,3.4vw,32px) clamp(20px,3.4vw,30px) clamp(24px,3.4vw,28px);box-shadow:0 30px 70px #00184a3d,0 0 0 1px #ffffff66 inset;isolation:isolate;animation:promoGlow 2.6s ease-in-out infinite}
 .promo-card::before{content:"";position:absolute;inset:-40% -20% auto -20%;height:60%;background:radial-gradient(closest-side,#ffe9a833,transparent 70%);z-index:-1;pointer-events:none}
+@keyframes promoGlow{0%,100%{box-shadow:0 30px 70px #00184a3d,0 0 0 1px #ffffff66 inset,0 0 0 0 #ed3c3c00}50%{box-shadow:0 30px 70px #00184a3d,0 0 0 1px #ffffff66 inset,0 0 32px 6px #ed3c3c33}}
+@media (prefers-reduced-motion: reduce){.promo-card{animation:none}}
 .promo-ribbon{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(120deg,var(--red),#ff6a4d);color:#fff;font:900 12.5px Montserrat;letter-spacing:.6px;padding:8px 16px 8px 13px;border-radius:999px;box-shadow:0 8px 18px #ed3c3c40}
 .promo-ribbon .dot-live{width:7px;height:7px;border-radius:50%;background:#fff;animation:pingDot 1.5s ease-in-out infinite;flex-shrink:0}
 @keyframes pingDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(1.4)}}
 @media (prefers-reduced-motion: reduce){.promo-ribbon .dot-live{animation:none}}
-.promo-off{position:relative;font:900 clamp(50px,7vw,80px)/1 Montserrat;color:var(--red);margin:16px 0 2px;letter-spacing:-3px}
+.promo-off{position:relative;font:900 clamp(50px,7vw,80px)/1 Montserrat;background:linear-gradient(155deg,#ff6a4d,var(--red) 55%,#b3141f);-webkit-background-clip:text;background-clip:text;color:transparent;margin:16px 0 2px;letter-spacing:-3px}
 .promo-off sup{font-size:.4em;top:-.5em}
 .promo-off small{display:block;font:900 13.5px Montserrat;letter-spacing:1.8px;color:var(--navy);margin-top:2px}
 .promo-prices{display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,16px);margin:18px 0 8px;flex-wrap:wrap}
+.promo-savings{display:inline-block;background:linear-gradient(120deg,var(--green),var(--green2));color:#fff;font:900 12.5px Montserrat;letter-spacing:.3px;padding:7px 15px;border-radius:999px;box-shadow:0 8px 18px #18c95b40;margin:2px 0 16px}
 .promo-before{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.3px}
 .promo-before strong{color:var(--ink);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2.5px;font-weight:800;font-size:18px}
 .promo-arrow{color:var(--muted);font-size:18px;font-weight:900}
@@ -247,7 +252,7 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
 .wa-btn{border:0;background:#25d366;color:#fff;border-radius:11px;padding:13px 19px;font-weight:800;box-shadow:0 8px 20px #25d36640;text-decoration:none;display:inline-block}
 @media(max-width:1024px){.promo-card{max-width:440px;margin:0 auto}}
 @media(max-width:860px){.sus-hero{grid-template-columns:1fr;padding:34px 5% 48px;gap:28px;text-align:center}.sus-hero p{margin-left:auto;margin-right:auto}.sus-bullets{justify-content:center}.sus-wrap{margin-top:-20px}.promo-card{max-width:420px}}
-@media(max-width:600px){.sus-hero{padding:30px 6% 42px}.promo-card{border-radius:22px;padding:20px 18px 22px}.promo-ribbon{font-size:11.5px;padding:7px 13px 7px 11px}.promo-off small{font-size:12px;letter-spacing:1.4px}.promo-before{font-size:11px}.promo-before strong{font-size:16px}.promo-now{padding:9px 16px}.promo-cta{font-size:14px;padding:13px 18px}.sus-fields,.sus-docs{grid-template-columns:1fr}.sus-card{padding:20px}.sus-actions{flex-direction:column-reverse}.sus-actions button{width:100%}}
+@media(max-width:600px){.sus-hero{padding:30px 6% 42px}.sus-bullets{grid-template-columns:1fr}.promo-card{border-radius:22px;padding:20px 18px 22px}.promo-ribbon{font-size:11.5px;padding:7px 13px 7px 11px}.promo-off small{font-size:12px;letter-spacing:1.4px}.promo-before{font-size:11px}.promo-before strong{font-size:16px}.promo-now{padding:9px 16px}.promo-cta{font-size:14px;padding:13px 18px}.sus-fields,.sus-docs{grid-template-columns:1fr}.sus-card{padding:20px}.sus-actions{flex-direction:column-reverse}.sus-actions button{width:100%}}
 @media(max-width:380px){.promo-prices{gap:8px}.promo-arrow{display:none}}
 </style>
 </head>
@@ -432,7 +437,12 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
         <span class="eyebrow">¡BONIFICACIÓN ESPECIAL!</span>
         <h1>Gestión de<br><span>la carpeta</span></h1>
         <p>Olvidate de los costos de gestión y empezá hoy tu plan de manera simple, rápida y segura. Completá el formulario y un asesor se comunica con vos para confirmar tu suscripción.</p>
-
+        <ul class="sus-bullets">
+          <li><span class="sus-bullet-icon">🛡️</span><span>Seguridad en tu compra</span></li>
+          <li><span class="sus-bullet-icon">🤝</span><span>Atención personalizada</span></li>
+          <li><span class="sus-bullet-icon">🚗</span><span>Amplia variedad de vehículos</span></li>
+          <li><span class="sus-bullet-icon">🔧</span><span>Servicio post venta</span></li>
+        </ul>
       </div>
       <div class="promo-card">
         <span class="promo-ribbon"><span class="dot-live"></span>¡TU PLAN, MÁS CERCA!</span>
@@ -442,17 +452,9 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
           <span class="promo-arrow">→</span>
           <span class="promo-now"><b>AHORA PAGÁS</b><span id="promoNow">$15.000</span></span>
         </div>
+        <span class="promo-savings">💰 Ahorrás <span id="promoSavings">$285.000</span></span>
         <a href="#susForm" class="promo-cta">✍️ Quiero mi bonificación</a>
         <!--p class="promo-note">⏳ Promoción sujeta a disponibilidad. El valor bonificado se confirma al momento de la suscripción.</p-->
-      </div>
-    </div>
-
-    <div class="trust-strip">
-      <div class="trust-inner">
-        <div class="trust-item"><div class="trust-icon">🔐</div><div><b>Datos protegidos</b><span>Conexión segura y Ley N° 25.326</span></div></div>
-        <div class="trust-item"><div class="trust-icon">🏦</div><div><b>Cuentas a nombre de la empresa</b><span>MundoAuto Multimarcas S.A. · CUIT 30-71234681-3</span></div></div>
-        <div class="trust-item"><div class="trust-icon">🧾</div><div><b>Comprobante con respaldo</b><span>Cada pago queda registrado y validado</span></div></div>
-        <div class="trust-item"><div class="trust-icon">🤝</div><div><b>Acompañamiento real</b><span>Tu asesor te guía en cada etapa</span></div></div>
       </div>
     </div>
 
@@ -573,12 +575,6 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
             <button type="submit" id="susSubmit" class="primary-btn">Enviar solicitud y obtener el 95% OFF</button>
           </div>
         </form>
-          <ul class="sus-bullets">
-          <li>🛡️ Seguridad en tu compra</li>
-          <li>🤝 Atención personalizada</li>
-          <li>🚗 Amplia variedad de vehículos</li>
-          <li>🔧 Servicio post venta</li>
-        </ul>
       </div>
 
       <div class="sus-card hidden" id="susOkCard">
@@ -1569,6 +1565,7 @@ const PROVINCIAS = ["Buenos Aires","CABA","Catamarca","Chaco","Chubut","Córdoba
   // Precios del cartel
   $("promoBefore").textContent = money(SUS_PRECIO_LISTA);
   $("promoNow").textContent    = money(SUS_PRECIO_PROMO);
+  $("promoSavings").textContent = money(SUS_PRECIO_LISTA - SUS_PRECIO_PROMO);
 
   // Botones que abren el selector de archivos
   document.querySelectorAll("[data-file]").forEach(btn=>{
