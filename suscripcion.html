@@ -294,6 +294,89 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
   .sus-actions button{width:100%}
   .sus-trust{grid-template-columns:1fr}
 }
+
+/* ===== Mejoras: datos de la agencia, confianza y formulario ===== */
+#susForm{scroll-margin-top:96px}
+/* El banner de precio queda oculto (atributo hidden en el HTML). Se mantiene en el DOM
+   para no romper los cálculos de precios; para volver a mostrarlo, quitá el atributo hidden. */
+.promo-card[hidden]{display:none}
+
+.sus-cta{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:15px 24px;border-radius:13px;background:linear-gradient(135deg,#18c95b,#0caa48);color:#052411;font:900 15px Inter,Arial,sans-serif;text-decoration:none;box-shadow:0 10px 24px #18c95b40}
+.sus-cta:hover{transform:translateY(-1px);box-shadow:0 14px 30px #18c95b55}
+.sus-cta svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.sus-cta-note{display:block;margin-top:10px;color:#9fb4d3;font-size:13px}
+
+/* Tarjeta de la agencia (hero) */
+.agency-card{background:#fff;color:var(--ink);border-radius:22px;padding:26px;box-shadow:0 24px 60px #00122e59}
+.ag-head{display:flex;gap:14px;align-items:center;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.ag-shield{width:48px;height:48px;border-radius:14px;background:#e5faed;display:grid;place-items:center;flex-shrink:0}
+.ag-shield svg{width:26px;height:26px;stroke:#0caa48;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ag-head small{display:block;color:var(--muted);font-size:12.5px;font-weight:700}
+.ag-head h2{margin:2px 0 0;font:900 19px/1.2 Montserrat,Arial,sans-serif;letter-spacing:-.3px;color:var(--navy)}
+.ag-list{list-style:none;margin:0;padding:6px 0 0;display:grid}
+.ag-list li{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid #edf2f7}
+.ag-list li:last-child{border-bottom:0}
+.ag-ico{width:34px;height:34px;border-radius:10px;background:#eaf4ff;display:grid;place-items:center;flex-shrink:0}
+.ag-ico svg{width:18px;height:18px;stroke:var(--blue);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ag-list small{display:block;color:var(--muted);font-size:12px;font-weight:700;line-height:1.2}
+.ag-list b,.ag-list a{display:block;font-size:14.5px;font-weight:800;color:var(--ink);margin-top:2px;line-height:1.35;text-decoration:none;word-break:break-word}
+.ag-list a:hover{color:var(--blue);text-decoration:underline}
+.ag-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.ag-actions:empty{display:none}
+.ag-btn{flex:1 1 150px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:12px;font-weight:800;font-size:14px;text-decoration:none;border:1px solid var(--line);background:#fff;color:var(--ink)}
+.ag-btn:hover{border-color:var(--blue);color:var(--blue)}
+.ag-btn.wa{background:#25d366;border-color:#25d366;color:#053b1a;box-shadow:0 8px 20px #25d36640}
+.ag-btn.wa:hover{color:#053b1a;transform:translateY(-1px)}
+
+/* Avance del formulario */
+.sus-progress{margin:0 0 18px}
+.sp-top{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:var(--muted);font-weight:700}
+.sp-top b{color:var(--ink)}
+.sp-track{height:9px;background:#e8eef5;border-radius:20px;overflow:hidden;margin-top:8px}
+.sp-fill{height:100%;width:0;border-radius:20px;background:linear-gradient(90deg,var(--blue),var(--cyan));transition:width .35s ease}
+.sus-progress.done .sp-fill{background:linear-gradient(90deg,var(--green),#7bea49)}
+.sus-progress.done .sp-top b{color:#087d37}
+
+/* Campos con error */
+.sus-fields input.is-invalid,.sus-fields select.is-invalid{border-color:var(--red);background-color:#fff7f7;box-shadow:0 0 0 4px #ed3c3c14}
+
+/* Por qué pedimos estos datos */
+.why-note{display:flex;gap:10px;align-items:flex-start;margin-top:16px;padding:12px 14px;border-radius:12px;background:#f2f8ff;border:1px solid #cfe3f8;font-size:13.5px;line-height:1.55;color:#33506f}
+.why-note svg{width:18px;height:18px;flex-shrink:0;margin-top:2px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Bloque de seguridad junto al envío */
+.sus-secure{display:flex;gap:14px;align-items:flex-start;margin-top:22px;padding:16px 18px;border-radius:16px;background:#f3fcf6;border:1px solid #c6ecd3}
+.sus-secure-ico{width:40px;height:40px;border-radius:12px;background:#dff6e7;display:grid;place-items:center;flex-shrink:0}
+.sus-secure-ico svg{width:22px;height:22px;stroke:#0caa48;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sus-secure b{display:block;font-size:15px;color:var(--ink)}
+.sus-secure p{margin:4px 0 0;font-size:13.5px;line-height:1.55;color:#3d5a49}
+.sus-secure-help{display:flex;gap:8px 14px;flex-wrap:wrap;align-items:center;margin-top:10px;font-size:13.5px;font-weight:700;color:#2b3c57}
+.sus-secure-help:empty{display:none}
+.sus-secure-help a{color:var(--blue);text-decoration:none;font-weight:800}
+.sus-secure-help a:hover{text-decoration:underline}
+
+/* Confirmación */
+.ok-agency{max-width:560px;margin:0 auto 22px;padding:14px 16px;border-radius:14px;background:var(--bg);font-size:14px;line-height:1.6;color:#43536c;text-align:left}
+.ok-agency:empty{display:none}
+.ok-agency a{color:var(--blue);font-weight:800;text-decoration:none}
+
+/* Tarjetas de confianza con subtítulo */
+.sus-trust li b{display:block;font-size:13.5px;font-weight:800;line-height:1.25}
+.sus-trust li small{display:block;margin-top:3px;font-size:12px;font-weight:500;color:var(--muted);line-height:1.4}
+
+/* Pie */
+.foot-contact{color:#7b879a}
+.foot-contact a{color:inherit;text-decoration:none;border-bottom:1px dotted #a9b4c4}
+.foot-contact a:hover{color:var(--blue)}
+
+@media(max-width:900px){
+  .agency-card{max-width:520px}
+}
+@media(max-width:600px){
+  .agency-card{padding:20px 18px;border-radius:20px}
+  .sus-cta{width:100%;justify-content:center}
+  .sus-secure{flex-direction:column;gap:10px}
+}
 </style>
 </head>
 <body>
@@ -483,8 +566,22 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Rápida</li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Segura</li>
           </ul>
+          <a href="#susForm" class="sus-cta">Completar el formulario <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+          <span class="sus-cta-note">Son 3 pasos simples y un asesor de MundoAuto te contacta.</span>
         </div>
-        <div class="promo-card">
+
+        <!-- Datos de la agencia (se completan desde el objeto AGENCIA, al final del archivo) -->
+        <aside class="agency-card" aria-labelledby="agTitle">
+          <div class="ag-head">
+            <span class="ag-shield"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+            <div><small>Estás en el sitio oficial de</small><h2 id="agTitle">MundoAuto Multimarcas S.A.</h2></div>
+          </div>
+          <ul class="ag-list" id="agList"></ul>
+          <div class="ag-actions" id="agActions"></div>
+        </aside>
+
+        <!-- Banner de precio: OCULTO. Quitá el atributo "hidden" para volver a mostrarlo. -->
+        <div class="promo-card" hidden aria-hidden="true">
           <div class="promo-top"><span class="promo-tag">Gestión de carpeta</span><span class="promo-off">95% OFF</span></div>
           <div class="promo-label">Ahora pagás</div>
           <div class="promo-now" id="promoNow">$15.000</div>
@@ -497,6 +594,10 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
 
     <div class="sus-wrap">
       <div class="sus-card" id="susFormCard">
+        <div class="sus-progress" id="susProgress" aria-live="polite">
+          <div class="sp-top"><b id="spLabel">Completá tus datos</b><span id="spPct">0%</span></div>
+          <div class="sp-track"><div class="sp-fill" id="spFill"></div></div>
+        </div>
         <ol class="sus-steps">
           <li class="sus-step"><span class="n">1</span><div><b>Completá tus datos</b><small>Personales y laborales.</small></div></li>
           <li class="sus-step"><span class="n">2</span><div><b>Subí tu DNI (opcional)</b><small>Frente y dorso. Podés enviarlo después.</small></div></li>
@@ -514,10 +615,10 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
                 <input id="susNombre" required placeholder="Ej. Juan Pérez" autocomplete="name">
               </label>
               <label>DNI <span class="req">*</span>
-                <input id="susDni" required inputmode="numeric" maxlength="12" placeholder="Ej. 20345678">
+                <input id="susDni" required inputmode="numeric" maxlength="12" autocomplete="off" placeholder="Ej. 20345678">
               </label>
               <label>Fecha de nacimiento <span class="req">*</span>
-                <input id="susNacimiento" type="date" required>
+                <input id="susNacimiento" type="date" required autocomplete="bday">
               </label>
               <label>Estado civil <span class="req">*</span>
                 <select id="susEstadoCivil" required>
@@ -533,16 +634,16 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
                 <input id="susTelefono" required inputmode="tel" placeholder="Ej. 351 555 5555" autocomplete="tel">
               </label>
               <label class="full">Domicilio (calle, número, piso/dpto) <span class="req">*</span>
-                <input id="susDomicilio" required placeholder="Ej. Av. San Martín 1234, Piso 2 Dpto B">
+                <input id="susDomicilio" required autocomplete="street-address" placeholder="Ej. Av. San Martín 1234, Piso 2 Dpto B">
               </label>
               <label>Código postal <span class="req">*</span>
-                <input id="susCp" required inputmode="numeric" maxlength="8" placeholder="Ej. 5152">
+                <input id="susCp" required inputmode="numeric" maxlength="8" autocomplete="postal-code" placeholder="Ej. 5152">
               </label>
               <label>Localidad <span class="req">*</span>
-                <input id="susLocalidad" required placeholder="Ej. Villa Carlos Paz">
+                <input id="susLocalidad" required autocomplete="address-level2" placeholder="Ej. Villa Carlos Paz">
               </label>
               <label class="full">Provincia <span class="req">*</span>
-                <select id="susProvincia" required>
+                <select id="susProvincia" required autocomplete="address-level1">
                   <option value="">Seleccioná una provincia</option>
                 </select>
               </label>
@@ -580,6 +681,7 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
                 <span class="hint">Indicá el día del mes en que cobrás.</span>
               </label>
             </div>
+            <div class="why-note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span><b>¿Por qué te pedimos esto?</b> Tus ingresos y tu fecha de cobro nos sirven únicamente para armar un plan acorde a tu situación. Solo los ve el equipo de MundoAuto que evalúa tu solicitud.</span></div>
           </div>
 
           <div class="sus-section">
@@ -614,6 +716,15 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
             <div><span>Total a pagar</span><b data-money="promo">$15.000</b></div>
           </div>
 
+          <div class="sus-secure">
+            <span class="sus-secure-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+            <div>
+              <b>Tus datos están protegidos</b>
+              <p>La conexión es cifrada (HTTPS) y usamos tu información solo para evaluar tu solicitud y contactarte, conforme a la Ley N° 25.326 de Protección de Datos Personales.</p>
+              <div class="sus-secure-help" id="agHelp"></div>
+            </div>
+          </div>
+
           <label class="sus-legal">
             <input type="checkbox" id="susLegal" checked>
             <span>Autorizo a MundoAuto Multimarcas S.A. a contactarme y a tratar mis datos personales con fines de evaluación de la solicitud, conforme a la Ley N° 25.326 de Protección de Datos Personales.</span>
@@ -635,6 +746,7 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
           <p id="susOkMsg">Recibimos tus datos. Un asesor se comunica con vos a la brevedad para confirmar la bonificación de la gestión de carpeta.</p>
           <div class="sus-code" id="susCode">—</div>
           <div class="sus-resume" id="susResume"></div>
+          <div class="ok-agency" id="agOk"></div>
           <div class="sus-ok-actions">
             <a id="susConsult" class="primary-btn" href="index.html">Consultar DNI y abonar carpeta</a>
             <a id="susWa" class="secondary-btn hidden" href="#" target="_blank" rel="noopener" style="display:none">📲 Enviar por WhatsApp</a>
@@ -647,10 +759,10 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
 
     <div class="sus-trust-wrap">
       <ul class="sus-trust">
-        <li><span class="sus-trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span>Seguridad en tu compra</span></li>
-        <li><span class="sus-trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.5 0 4.5 2 4.5 5"/></svg></span><span>Atención personalizada</span></li>
-        <li><span class="sus-trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16l1.5-5.5A2 2 0 0 1 8.4 9h7.2a2 2 0 0 1 1.9 1.5L19 16"/><rect x="3" y="16" width="18" height="4" rx="1.5"/><path d="M7 18h.01M17 18h.01"/></svg></span><span>Amplia variedad de vehículos</span></li>
-        <li><span class="sus-trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><span>Servicio post venta</span></li>
+        <li><span class="sus-trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span><b>Seguridad en tu compra</b><small>Cada operación queda registrada con su comprobante.</small></span></li>
+        <li><span class="sus-trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.5 0 4.5 2 4.5 5"/></svg></span><span><b>Atención personalizada</b><small>Un asesor te acompaña en todo el proceso.</small></span></li>
+        <li><span class="sus-trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16l1.5-5.5A2 2 0 0 1 8.4 9h7.2a2 2 0 0 1 1.9 1.5L19 16"/><rect x="3" y="16" width="18" height="4" rx="1.5"/><path d="M7 18h.01M17 18h.01"/></svg></span><span><b>Amplia variedad de vehículos</b><small>Cero km y usados de distintas marcas.</small></span></li>
+        <li><span class="sus-trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><span><b>Servicio post venta</b><small>Service y asistencia después de tu compra.</small></span></li>
       </ul>
     </div>
   </section>
@@ -661,6 +773,7 @@ footer{padding:25px 6%;display:flex;justify-content:space-between;color:#7b879a;
   <div class="footer-inner">
     <span>
       <b>MUNDOAUTO MULTIMARCAS S.A.</b> · CUIT 30-71234681-3
+      <span class="foot-contact" id="footContact"></span>
     </span>
     <div class="footer-trust">
       <span>🔒 Conexión cifrada (HTTPS)</span>
@@ -1611,6 +1724,23 @@ const SUS_PRECIO_LISTA = 300000;
 const SUS_PRECIO_PROMO = 15000;
 const SUS_PRECIO_FIJO  = 50000;   // precio fijo con descuento una vez terminados los 30 minutos
 
+/* ------------------------------------------------------------------
+   DATOS DE LA AGENCIA — completá acá los datos reales.
+   Solo se muestran los campos que tengan contenido: si dejás uno
+   vacío ("") simplemente no aparece en la página.
+   El WhatsApp se toma de SUS_WHATSAPP (arriba).
+------------------------------------------------------------------ */
+const AGENCIA = {
+  razonSocial: "MundoAuto Multimarcas S.A.",
+  cuit:        "30-71234681-3",
+  direccion:   "",   // Ej. "Av. Ejemplo 1234, Ciudad, Provincia"
+  telefono:    "",   // Ej. "0351 555-5555"
+  email:       "",   // Ej. "info@mundoauto.com.ar"
+  horario:     "",   // Ej. "Lunes a viernes de 9 a 18 h · Sábados de 9 a 13 h"
+  web:         "mundoauto.com.ar",
+  maps:        ""    // Opcional: link de Google Maps. Si queda vacío se arma con la dirección.
+};
+
 const PROVINCIAS = ["Buenos Aires","CABA","Catamarca","Chaco","Chubut","Córdoba","Corrientes","Entre Ríos","Formosa","Jujuy","La Pampa","La Rioja","Mendoza","Misiones","Neuquén","Río Negro","Salta","San Juan","San Luis","Santa Cruz","Santa Fe","Santiago del Estero","Tierra del Fuego","Tucumán"];
 
 (function initSuscripcion(){
@@ -1664,7 +1794,13 @@ const PROVINCIAS = ["Buenos Aires","CABA","Catamarca","Chaco","Chubut","Córdoba
     const box = $("susError");
     box.textContent = msg;
     box.classList.add("show");
-    box.scrollIntoView({behavior:"smooth", block:"center"});
+    const primero = form.querySelector(".is-invalid");
+    if(primero){
+      primero.scrollIntoView({behavior:"smooth", block:"center"});
+      primero.focus({preventScroll:true});
+    } else {
+      box.scrollIntoView({behavior:"smooth", block:"center"});
+    }
   }
   function clearError(){ $("susError").classList.remove("show"); }
 
@@ -1697,11 +1833,29 @@ const PROVINCIAS = ["Buenos Aires","CABA","Catamarca","Chaco","Chubut","Córdoba
 
   function validar(d){
     const faltan = Object.keys(OBLIGATORIOS).filter(k=> !d[k] || (k==="ingresos" && d.ingresos<=0));
-    if(faltan.length) return "Completá estos campos: " + faltan.map(k=>OBLIGATORIOS[k]).join(", ") + ".";
+    if(faltan.length) return "Completá los campos marcados en rojo: " + faltan.map(k=>OBLIGATORIOS[k]).join(", ") + ".";
     if(d.dni.length < 7) return "El DNI debe tener al menos 7 dígitos.";
     if(d.telefono.replace(/\D/g,"").length < 8) return "Revisá el teléfono: parece incompleto.";
     if(!$("susLegal").checked) return "Necesitamos tu autorización para tratar los datos y poder contactarte.";
     return null;
+  }
+
+  const CAMPO_ID = {
+    nombre:"susNombre", dni:"susDni", nacimiento:"susNacimiento", estado_civil:"susEstadoCivil",
+    domicilio:"susDomicilio", telefono:"susTelefono", cp:"susCp", localidad:"susLocalidad",
+    provincia:"susProvincia", profesion:"susProfesion", situacion:"susSituacion",
+    ingresos:"susIngresos", fecha_cobro:"susFechaCobro"
+  };
+  // Marca en rojo los campos vacíos o con formato dudoso
+  function marcarFaltantes(d){
+    Object.keys(CAMPO_ID).forEach(k=>{
+      let malo = !d[k] || (k==="ingresos" && d.ingresos<=0);
+      if(k==="dni" && d.dni && d.dni.length < 7) malo = true;
+      if(k==="telefono" && d.telefono && d.telefono.replace(/\D/g,"").length < 8) malo = true;
+      const el = $(CAMPO_ID[k]);
+      el.classList.toggle("is-invalid", malo);
+      el.setAttribute("aria-invalid", malo ? "true" : "false");
+    });
   }
 
   function resumenTexto(d, codigo, docs){
@@ -1753,6 +1907,7 @@ const PROVINCIAS = ["Buenos Aires","CABA","Catamarca","Chaco","Chubut","Córdoba
     clearError();
     const d = collect();
     const err = validar(d);
+    marcarFaltantes(d);
     if(err) return showError(err);
 
     const btn = $("susSubmit");
@@ -1824,6 +1979,9 @@ const PROVINCIAS = ["Buenos Aires","CABA","Catamarca","Chaco","Chubut","Córdoba
       : "Tus datos se completaron correctamente, pero no pudimos registrarlos automáticamente. Enviálos por WhatsApp con el botón de abajo o descargá la copia para no perderlos." + avisoDocs;
     $("susConsult").href = "index.html?dni=" + encodeURIComponent(d.dni);
     $("susWa").href = "https://wa.me/" + SUS_WHATSAPP + "?text=" + encodeURIComponent(texto);
+    // Si no se pudo guardar en la base, el botón de WhatsApp se muestra para no perder la solicitud
+    $("susWa").classList.toggle("hidden", guardado);
+    $("susWa").style.display = guardado ? "none" : "";
     $("susDownload").onclick = ()=>{
       const blob = new Blob([texto], {type:"text/plain;charset=utf-8"});
       const a = document.createElement("a");
@@ -1855,6 +2013,112 @@ const PROVINCIAS = ["Buenos Aires","CABA","Catamarca","Chaco","Chubut","Córdoba
     $("susFormCard").classList.remove("hidden");
     window.scrollTo({top:0, behavior:"smooth"});
   });
+})();
+
+/* =========================================================
+   DATOS DE LA AGENCIA + AVANCE DEL FORMULARIO
+   - Pinta la tarjeta de la agencia (hero), el bloque de ayuda junto
+     al envío, la confirmación y el pie, a partir del objeto AGENCIA.
+   - Muestra el avance de los campos obligatorios.
+========================================================= */
+(function initAgenciaYProgreso(){
+  const $ = id => document.getElementById(id);
+  const A = (typeof AGENCIA === "object" && AGENCIA) ? AGENCIA : {};
+
+  // WhatsApp: solo se usa si es un número real (el de ejemplo termina en varios ceros)
+  const wa = String(typeof SUS_WHATSAPP !== "undefined" ? SUS_WHATSAPP : "").replace(/\D/g,"");
+  const waOk = /^\d{10,15}$/.test(wa) && !/0{6,}$/.test(wa);
+  const waUrl = waOk ? "https://wa.me/" + wa + "?text=" + encodeURIComponent("Hola MundoAuto, quiero consultar por la bonificación de la gestión de carpeta.") : "";
+
+  const digitos = v => String(v||"").replace(/\D/g,"");
+  const web = String(A.web||"").trim();
+  const webUrl = web ? (/^https?:\/\//i.test(web) ? web : "https://" + web) : "";
+  const webTxt = web.replace(/^https?:\/\//i,"").replace(/\/$/,"");
+  const mapsUrl = A.maps || (A.direccion ? "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(A.direccion) : "");
+
+  const ICON = {
+    building:'<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 8h1M14 8h1M9 12h1M14 12h1M10 21v-4h4v4"/>',
+    doc:'<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>',
+    pin:'<path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+    phone:'<path d="M6.6 3h3l1.5 4-2 1.3a11 11 0 0 0 5.6 5.6l1.3-2 4 1.5v3a2 2 0 0 1-2.2 2A15 15 0 0 1 4.6 5.2 2 2 0 0 1 6.6 3z"/>',
+    mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
+    clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.7 5.6 3.7 9s-1.2 6.4-3.7 9c-2.5-2.6-3.7-5.6-3.7-9S9.5 5.6 12 3z"/>'
+  };
+  const svg = k => '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICON[k] + '</svg>';
+  const link = (href, txt) => '<a href="' + escapeHtml(href) + '"' + (/^https?:/.test(href) ? ' target="_blank" rel="noopener"' : '') + '>' + escapeHtml(txt) + '</a>';
+
+  // --- Tarjeta del hero
+  const filas = [];
+  if(A.razonSocial) filas.push(["building","Razón social", "<b>"+escapeHtml(A.razonSocial)+"</b>"]);
+  if(A.cuit)        filas.push(["doc","CUIT", "<b>"+escapeHtml(A.cuit)+"</b>"]);
+  if(A.direccion)   filas.push(["pin","Dirección", mapsUrl ? link(mapsUrl, A.direccion) : "<b>"+escapeHtml(A.direccion)+"</b>"]);
+  if(A.telefono)    filas.push(["phone","Teléfono", link("tel:" + digitos(A.telefono), A.telefono)]);
+  if(A.email)       filas.push(["mail","Email", link("mailto:" + A.email, A.email)]);
+  if(A.horario)     filas.push(["clock","Horario de atención", "<b>"+escapeHtml(A.horario)+"</b>"]);
+  if(webUrl)        filas.push(["globe","Sitio web", link(webUrl, webTxt)]);
+
+  const lista = $("agList");
+  if(lista) lista.innerHTML = filas.map(f =>
+    '<li><span class="ag-ico">' + svg(f[0]) + '</span><div><small>' + f[1] + '</small>' + f[2] + '</div></li>').join("");
+
+  const acciones = $("agActions");
+  if(acciones){
+    let h = "";
+    if(waUrl)   h += '<a class="ag-btn wa" href="' + escapeHtml(waUrl) + '" target="_blank" rel="noopener">Escribinos por WhatsApp</a>';
+    if(mapsUrl) h += '<a class="ag-btn" href="' + escapeHtml(mapsUrl) + '" target="_blank" rel="noopener">Cómo llegar</a>';
+    acciones.innerHTML = h;
+  }
+
+  // --- Ayuda junto al botón de envío
+  const contactos = [];
+  if(waUrl)       contactos.push(link(waUrl, "WhatsApp"));
+  if(A.telefono)  contactos.push(link("tel:" + digitos(A.telefono), A.telefono));
+  if(A.email)     contactos.push(link("mailto:" + A.email, A.email));
+  const ayuda = $("agHelp");
+  if(ayuda && contactos.length) ayuda.innerHTML = "<span>¿Dudas antes de enviar? Escribinos:</span> " + contactos.join(" · ");
+
+  // --- Confirmación
+  const ok = $("agOk");
+  if(ok && contactos.length) ok.innerHTML = "Un asesor de <b>" + escapeHtml(A.razonSocial || "MundoAuto") + "</b> se va a comunicar con vos. Si querés adelantarte o tenés una duda, escribinos: " + contactos.join(" · ") + ".";
+
+  // --- Pie
+  const pie = $("footContact");
+  if(pie){
+    const partes = [];
+    if(A.direccion) partes.push("📍 " + escapeHtml(A.direccion));
+    if(A.telefono)  partes.push("📞 " + escapeHtml(A.telefono));
+    if(A.email)     partes.push("✉️ " + escapeHtml(A.email));
+    pie.innerHTML = partes.length ? " · " + partes.join(" · ") : "";
+  }
+
+  // --- Avance del formulario
+  const form = $("susForm");
+  if(!form) return;
+  const ids = ["susNombre","susDni","susNacimiento","susEstadoCivil","susDomicilio","susTelefono","susCp","susLocalidad","susProvincia","susProfesion","susSituacion","susIngresos","susFechaCobro"];
+  const nac = $("susNacimiento");
+  if(nac) nac.max = new Date().toISOString().slice(0,10);
+
+  function actualizar(){
+    const hechos = ids.filter(id => { const v = $(id).value; return v && String(v).trim() !== "" && !(id==="susIngresos" && Number(v)<=0); }).length;
+    const pct = Math.round(hechos / ids.length * 100);
+    $("spFill").style.width = pct + "%";
+    $("spPct").textContent = pct + "%";
+    const faltan = ids.length - hechos;
+    $("spLabel").textContent = faltan === 0 ? "¡Listo! Ya podés enviar tu solicitud" : (hechos === 0 ? "Completá tus datos" : "Te " + (faltan === 1 ? "falta 1 campo obligatorio" : "faltan " + faltan + " campos obligatorios"));
+    $("susProgress").classList.toggle("done", faltan === 0);
+  }
+  function limpiarError(e){
+    const t = e.target;
+    if(t && t.classList && t.classList.contains("is-invalid")){ t.classList.remove("is-invalid"); t.setAttribute("aria-invalid","false"); }
+  }
+  form.addEventListener("input",  e => { limpiarError(e); actualizar(); });
+  form.addEventListener("change", e => { limpiarError(e); actualizar(); });
+  form.addEventListener("reset", () => setTimeout(() => {
+    form.querySelectorAll(".is-invalid").forEach(el => el.classList.remove("is-invalid"));
+    actualizar();
+  }, 0));
+  actualizar();
 })();
 
 window.editClient=editClient; window.deleteClient=deleteClient; window.uploadProof=uploadProof; window.uploadProofInitial=uploadProofInitial; window.gestionarRetiro=gestionarRetiro; window.copyPaymentData=copyPaymentData;
