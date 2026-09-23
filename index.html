@@ -817,7 +817,7 @@ function renderFolderOffer(c){
 
   const timerBlock = promoActive
     ? `<div class="fc-timer">
-         <div class="fc-timer-row"><span>La bonificación termina en</span><span class="fc-clock"><span id="folderMinutes">--</span>:<span id="folderSeconds">--</span></span></div>
+         <div class="fc-timer-row"><span>La bonificación termina en</span><span class="fc-clock" id="folderClock">--</span></div>
          <div class="fc-bar"><i id="folderBar"></i></div>
          <p class="fc-timer-note">Al terminar, la carpeta queda a precio fijo de ${money(FOLDER_FINAL_PRICE)} (${finalPct}% OFF).</p>
        </div>`
@@ -1327,24 +1327,32 @@ function startFolderOfferCountdown(c){
   if(target <= new Date()) return;
   const total = FOLDER_PROMO_MINUTES * 60000;
   function tick(){
-    const minEl = document.getElementById("folderMinutes");
-    const secEl = document.getElementById("folderSeconds");
+    const clockEl = document.getElementById("folderClock");
     const barEl = document.getElementById("folderBar");
-    if(!minEl || !secEl){ clearInterval(window.__folderOfferTimer); return; }
+    if(!clockEl){ clearInterval(window.__folderOfferTimer); return; }
     const diff = target - new Date();
     if(diff <= 0){
-      minEl.textContent = "00";
-      secEl.textContent = "00";
+      clockEl.textContent = "0 minutos";
       if(barEl) barEl.style.width = "0%";
       clearInterval(window.__folderOfferTimer);
       // al terminar el tiempo se vuelve a dibujar: queda el precio fijo de FOLDER_FINAL_PRICE
       if(currentClientData?.id === c.id) renderClient(currentClientData);
       return;
     }
-    const m = Math.floor(diff / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    minEl.textContent = String(m).padStart(2,"0");
-    secEl.textContent = String(s).padStart(2,"0");
+    // Si queda al menos 1 día se muestran días; si no, horas; si no, minutos
+    const DAY = 86400000, HOUR = 3600000, MIN = 60000;
+    let txt;
+    if(diff >= DAY){
+      const d = Math.floor(diff / DAY);
+      txt = d + (d === 1 ? " día" : " días");
+    } else if(diff >= HOUR){
+      const h = Math.floor(diff / HOUR);
+      txt = h + (h === 1 ? " hora" : " horas");
+    } else {
+      const m = Math.max(1, Math.ceil(diff / MIN));
+      txt = m + (m === 1 ? " minuto" : " minutos");
+    }
+    clockEl.textContent = txt;
     if(barEl) barEl.style.width = Math.max(0, Math.min(100, diff / total * 100)) + "%";
   }
   tick();
